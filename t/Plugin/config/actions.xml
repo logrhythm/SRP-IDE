@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<remv1:Remediation-Plugin xmlns:remv1="RemediationVersion1.xsd" Name="pxGrid" Guid="cda29f1c-cb8a-4748-b500-00d22e65ac21" Version="2" IsLogRhythmPlugin="true">
+  <remv1:Action Name="Create pxGrid Configuration File" Command="powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file Configuration.ps1" Order="1" />
+    <remv1:StringParameter Name="pxGrid UserName*" Switch="-pxGridUserName" Order="2" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="pxGrid Password*" Switch="-pxGridPassword" Order="3" />
+    </remv1:EncryptedParameter>
+    <remv1:StringParameter Name="pxGrid Server IP Address*" Switch="-pxGridServerIP" Order="4" />
+    <remv1:StringParameter Name="pxGrid Access Port Number" Switch="-pxGridPort" Order="5">
+      <remv1:DefaultInput>
+        <remv1:StaticInput Value="9060" />
+      </remv1:DefaultInput>
+    </remv1:StringParameter>
+  </remv1:Action>
+  <remv1:Action Name="Apply/Clear Host Policy" Command="powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file SetHostPolicy.ps1" Order="1" />
+    <remv1:StringParameter Name="Host MAC Address*" Switch="-HostName" Order="2" />
+    <remv1:StringParameter Name="Name of the Policy*" Switch="-PolicyName" Order="3" />
+    <remv1:StringParameter Name="Action to be Performed*" Switch="-Action" Order="4">
+      <remv1:DefaultInput>
+        <remv1:StaticInput Value="Apply" />
+      </remv1:DefaultInput>
+    </remv1:StringParameter>
+    <remv1:StringParameter Name="Override pxGrid User Name" Switch="-pxGridUserName" Order="5" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Override pxGrid Password" Switch="-pxGridPassword" Order="6" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+  <remv1:Action Name="Get Host Information" Command="powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file HostInfo.ps1" Order="1" />
+    <remv1:StringParameter Name="Host MAC Address*" Switch="-HostMacAddress" Order="2" />
+    <remv1:StringParameter Name="Override pxGrid User Name" Switch="-pxGridUserName" Order="3" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Override pxGrid Password" Switch="-pxGridPassword" Order="4" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+  <remv1:Action Name="Get User Information" Command="powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file GetUserInfo.ps1" Order="1" />
+    <remv1:StringParameter Name="User Name*" Switch="-UserName" Order="2" />
+    <remv1:StringParameter Name="Override pxGrid User Name" Switch="-pxGridUserName" Order="3" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Override pxGrid Password" Switch="-pxGridPassword" Order="4" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+  <remv1:Action Name="List All Policies" Command="powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file ListPolicy.ps1" Order="1" />
+    <remv1:StringParameter Name="Override pxGrid User Name" Switch="-pxGridUserName" Order="2" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Override pxGrid Password" Switch="-pxGridPassword" Order="3" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+</remv1:Remediation-Plugin>

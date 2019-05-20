@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is compatible with Silverlight-->
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="svg8631" Width="210" Height="297">
+  <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+  </Canvas.RenderTransform>
+  <Canvas.Resources/>
+  <!--Unknown tag: sodipodi:namedview-->
+  <!--Unknown tag: metadata-->
+  <Canvas Name="layer1">
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path7560" Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
+  </Canvas>
+</Canvas>

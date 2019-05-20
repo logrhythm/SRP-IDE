@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is compatible with Silverlight-->
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="svg5774" Width="210" Height="297">
+  <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+  </Canvas.RenderTransform>
+  <Canvas.Resources/>
+  <!--Unknown tag: sodipodi:namedview-->
+  <!--Unknown tag: metadata-->
+  <Canvas Name="layer1">
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6566" Fill="#FF2D7AC7" StrokeThickness="2.2859621" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 5.0980509 1.9049683e-4 A 1.1430953 1.1430953 0 0 1 5.893774 1.9627092 L 2.7595067 5.0969765 5.8947645 8.2322344 A 1.1432098 1.1432098 0 1 1 4.2775277 9.8484806 L 0.33463944 5.9055975 a 1.1430953 1.1430953 0 0 1 0 -1.6162514 L 4.2775277 0.34646294 A 1.1430953 1.1430953 0 0 1 5.0980509 1.9049683e-4 Z"/>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6568" Fill="#FF2D7AC7" StrokeThickness="2.2859621" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 14.901948 1.9049683e-4 A 1.1430953 1.1430953 0 0 0 14.106225 1.9627092 l 3.134272 3.1342673 -3.135263 3.1352579 a 1.1432097 1.1432097 0 1 0 1.617237 1.6162462 l 3.942888 -3.9428831 a 1.1430953 1.1430953 0 0 0 0 -1.6162514 L 15.722471 0.34646294 A 1.1430953 1.1430953 0 0 0 14.901948 1.9049683e-4 Z"/>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6570" Fill="#FFFFFFFF" StrokeThickness="2.24531913" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 11.582441 5.0037169e-4 A 1.1227717 1.1227717 0 0 0 10.569435 0.71585409 L 7.3488447 8.6502454 A 1.1227717 1.1227717 0 1 0 9.4294308 9.4945832 L 12.650016 1.5601919 A 1.1227717 1.1227717 0 0 0 11.582441 5.0037169e-4 Z"/>
+  </Canvas>
+</Canvas>

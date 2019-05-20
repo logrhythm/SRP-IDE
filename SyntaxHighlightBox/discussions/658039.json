@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1483964",
+    "ThreadId": "658039",
+    "Html": "Greetings,\r<br />\n<br />\nI got the package via NuGet and I created an VDHL.xml file which I copied from the documentation and I imported it as a resource. In the Window_Loaded event I wrote:<br />\n<pre><code>  box.CurrentHighlighter = HighlighterManager.Instance.Highlighters[&quot;VDHL&quot;];</code></pre>\n\nAs soon as it starts I get an exception:\r<br />\n<br />\nAn unhandled exception of type 'System.Collections.Generic.KeyNotFoundException' occurred in mscorlib.dll\r<br />\n<br />\nAny idea how to fix it?<br />\n",
+    "PostedDate": "2016-09-17T12:40:29.243-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

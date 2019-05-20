@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "If I set TextWrapping to Wrap it will not transfer characters to a \"new\" line, there will be whitespaces instead of them.\r\n![Image](http://s6.hostingkartinok.com/uploads/images/2013/11/b969b316ee481562b75990f3081ec4d6.png)",
+    "LastUpdatedDate": "2013-11-23T01:34:32.05-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "SyntaxHighlightBox",
+    "ReportedDate": "2013-11-23T01:34:32.05-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "TextWrapping doesn't work",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 4
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

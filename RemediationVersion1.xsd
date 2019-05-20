@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--xs:schema id="RemediationVersion1"
+    targetNamespace="RemediationVersion1.xsd"
+    elementFormDefault="qualified"
+    xmlns="RemediationVersion1.xsd"
+    xmlns:mstns="RemediationVersion1.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  -->
+  <!-- Remediation Plugin -->
+  <xs:element name="Remediation-Plugin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Action" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name ="Name" type ="xs:string" use="required" />
+      <xs:attribute name ="Version" type ="xs:int" use="required" />
+      <xs:attribute name ="Guid" type ="xs:string" use="required" />
+      <xs:attribute name ="IsLogRhythmPlugin" type="xs:boolean" use="optional" />
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Remediation Plugin Command -->
+  <xs:element name="Action">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Parameter" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name ="Name" type ="xs:string" use="required" />
+      <xs:attribute name ="Command" type ="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- Remediation Command Parameters -->
+  <xs:element name="Parameter" abstract ="true"/>
+  <xs:element name="InputParameter" abstract="true" substitutionGroup="Parameter"/>
+  <xs:element name="ConstantParameter" substitutionGroup="Parameter">
+    <xs:complexType>
+      <xs:attribute name="Name" type="xs:string" />
+      <xs:attribute name="Switch" type="xs:string" />
+      <xs:attribute name="Order" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EncryptedParameter" substitutionGroup="InputParameter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="InputParameter" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StringParameter" substitutionGroup="InputParameter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="DefaultInput" minOccurs="0" maxOccurs="1" />
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:string" />
+      <xs:attribute name="Switch" type="xs:string"/>
+      <xs:attribute name="Order" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Remediation Parameter Sorting Values -->
+  <xs:element name="SortOrder" abstract="true"/>
+  <xs:element name="SortByIndex" substitutionGroup="SortOrder" type="xs:string"/>
+  <xs:element name="Unsorted" substitutionGroup="SortOrder"/>
+  
+  <!-- Remediation Input Configurations -->
+  <xs:element name="DefaultInput" >
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="InputValue" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="InputValue" abstract="true"/>
+  <xs:element name="AlarmField" substitutionGroup="InputValue" abstract="true" />
+
+  <xs:element name="TimeFormat">
+    <xs:complexType>
+      <xs:attribute name="TimeZone" type="xs:string" use="optional"/>
+      <xs:attribute name="FormattingString" type="xs:string" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="StaticInput" substitutionGroup="InputValue">
+    <xs:complexType>
+      <xs:attribute name="Value" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Support Each Alarm Field as a Default Value -->
+  <!-- Alarm Fields -->
+  <xs:element name="AlarmId" substitutionGroup="AlarmField" />
+  <xs:element name="AlarmDate" substitutionGroup="AlarmField">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TimeFormat" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlarmRuleName" substitutionGroup="AlarmField" />
+  <xs:element name="MARCMsgId" substitutionGroup="AlarmField" />
+  <xs:element name="Direction" substitutionGroup="AlarmField" />
+  <xs:element name="NormalMessageDate" substitutionGroup="AlarmField">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TimeFormat" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MessageClass" substitutionGroup="AlarmField" />
+  <xs:element name="CommonEvent" substitutionGroup="AlarmField" />
+  <xs:element name="MPERule" substitutionGroup="AlarmField" />
+  <xs:element name="KnownSHost" substitutionGroup="AlarmField" />
+  <xs:element name="KnownDHost" substitutionGroup="AlarmField" />
+  <xs:element name="KnownService" substitutionGroup="AlarmField" />
+  <xs:element name="SIP" substitutionGroup="AlarmField" />
+  <xs:element name="DIP" substitutionGroup="AlarmField" />
+  <xs:element name="SHostName" substitutionGroup="AlarmField" />
+  <xs:element name="DHostName" substitutionGroup="AlarmField" />
+  <xs:element name="SPort" substitutionGroup="AlarmField" />
+  <xs:element name="DPort" substitutionGroup="AlarmField" />
+  <xs:element name="Protocol" substitutionGroup="AlarmField" />
+  <xs:element name="Login" substitutionGroup="AlarmField" />
+  <xs:element name="Account" substitutionGroup="AlarmField" />
+  <xs:element name="Sender" substitutionGroup="AlarmField" />
+  <xs:element name="Recipient" substitutionGroup="AlarmField" />
+  <xs:element name="Subject" substitutionGroup="AlarmField" />
+  <xs:element name="Object" substitutionGroup="AlarmField" />
+  <xs:element name="VenderMessageId" substitutionGroup="AlarmField" />
+  <xs:element name="BytesIn" substitutionGroup="AlarmField" />
+  <xs:element name="BytesOut" substitutionGroup="AlarmField" />
+  <xs:element name="ItemsIn" substitutionGroup="AlarmField" />
+  <xs:element name="ItemsOut" substitutionGroup="AlarmField" />
+  <xs:element name="Duration" substitutionGroup="AlarmField" />
+  <xs:element name="Process" substitutionGroup="AlarmField" />
+  <xs:element name="Amount" substitutionGroup="AlarmField" />
+  <xs:element name="Quantity" substitutionGroup="AlarmField" />
+  <xs:element name="Rate" substitutionGroup="AlarmField" />
+  <xs:element name="Size" substitutionGroup="AlarmField" />
+  <xs:element name="Domain" substitutionGroup="AlarmField" />
+  <xs:element name="Group" substitutionGroup="AlarmField" />
+  <xs:element name="URL" substitutionGroup="AlarmField" />
+  <xs:element name="Session" substitutionGroup="AlarmField" />
+  <xs:element name="SNetwork" substitutionGroup="AlarmField" />
+  <xs:element name="DNetwork" substitutionGroup="AlarmField" />
+  <xs:element name="SLocationCountry" substitutionGroup="AlarmField" />
+  <xs:element name="SLocationRegion" substitutionGroup="AlarmField" />
+  <xs:element name="SLocationCity" substitutionGroup="AlarmField" />
+  <xs:element name="DLocationCountry" substitutionGroup="AlarmField" />
+  <xs:element name="DLocationRegion" substitutionGroup="AlarmField" />
+  <xs:element name="DLocationCity" substitutionGroup="AlarmField" />
+  <xs:element name="SEntity" substitutionGroup="AlarmField" />
+  <xs:element name="DEntity" substitutionGroup="AlarmField" />
+  <xs:element name="SZone" substitutionGroup="AlarmField" />
+  <xs:element name="DZone" substitutionGroup="AlarmField" />
+  <xs:element name="Message" substitutionGroup="AlarmField" />
+  <xs:element name="ProtocolNumber" substitutionGroup="AlarmField" />
+
+</xs:schema>

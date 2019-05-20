@@ -1,0 +1,19 @@
+[
+  {
+    "Id": "0",
+    "Name": "2.0.1",
+    "DevelopmentStatus": "Beta",
+    "Description": "Debug version (with .pdb file) of the 2.0.1 source code.",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2010-11-14T04:55:17.63-08:00",
+    "Files": [
+      {
+        "Id": "253aa134-57e9-40ab-9eaa-e4d0a8a1cef1",
+        "FileName": "AurelienRibon.Ui.SyntaxHighlightBox 2.0.1.zip",
+        "Url": "./0/253aa134-57e9-40ab-9eaa-e4d0a8a1cef1",
+        "Type": "Application",
+        "UploadDate": "2010-11-14T04:55:17.363-08:00"
+      }
+    ]
+  }
+]

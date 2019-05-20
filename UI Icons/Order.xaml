@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is compatible with Silverlight-->
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="svg6953" Width="210" Height="297">
+  <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+  </Canvas.RenderTransform>
+  <Canvas.Resources/>
+  <!--Unknown tag: sodipodi:namedview-->
+  <!--Unknown tag: metadata-->
+  <Canvas Name="layer1">
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="circle4983" Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="M 4.7058833 -17.647057 A 2.3529413 2.3529413 0 0 1 2.352942 -15.294115 2.3529413 2.3529413 0 0 1 7.1525574e-7 -17.647057 2.3529413 2.3529413 0 0 1 2.352942 -19.999998 a 2.3529413 2.3529413 0 0 1 2.3529413 2.352941 z">
+      <Path.RenderTransform>
+        <RotateTransform Angle="90"/>
+      </Path.RenderTransform>
+    </Path>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="circle4985" Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="M 4.7058833 -2.3529394 A 2.3529413 2.3529413 0 0 1 2.352942 1.9073486e-6 2.3529413 2.3529413 0 0 1 7.1525574e-7 -2.3529394 2.3529413 2.3529413 0 0 1 2.352942 -4.7058806 2.3529413 2.3529413 0 0 1 4.7058833 -2.3529394 Z">
+      <Path.RenderTransform>
+        <RotateTransform Angle="90"/>
+      </Path.RenderTransform>
+    </Path>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="circle4987" Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="m 12.352959 -17.647057 a 2.3529413 2.3529413 0 0 1 -2.352941 2.352942 2.3529413 2.3529413 0 0 1 -2.3529412 -2.352942 2.3529413 2.3529413 0 0 1 2.3529412 -2.352941 2.3529413 2.3529413 0 0 1 2.352941 2.352941 z">
+      <Path.RenderTransform>
+        <RotateTransform Angle="90"/>
+      </Path.RenderTransform>
+    </Path>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4989" Fill="#FF2D7AC7" StrokeThickness="0.29411766" Data="M 13.883652 9.7319172 H 10.354251 V 2.9672068 h 3.582348 c -0.07059 -0.3889691 -0.07059 -0.7874981 0 -1.1764671 H 10.354251 9.1777729 5.5954251 c 0.070588 0.388969 0.070588 0.787498 0 1.1764671 h 3.5823478 v 7.9411772 h 4.8205881 c -0.07437 -0.2883 -0.112819 -0.584648 -0.114709 -0.882353 z"/>
+  </Canvas>
+</Canvas>

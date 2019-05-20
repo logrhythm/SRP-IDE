@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 3,
+    "Title": "Unfrozen brush spotted!"
+  },
+  {
+    "Id": 4,
+    "Title": "TextWrapping doesn't work"
+  },
+  {
+    "Id": 5,
+    "Title": "Control throws exception inside ItemsControl"
+  },
+  {
+    "Id": 6,
+    "Title": "Doesn't show highlighted text at startup before editing"
+  },
+  {
+    "Id": 7,
+    "Title": "Resources problem"
+  },
+  {
+    "Id": 8,
+    "Title": "Highlights disappear"
+  }
+]
