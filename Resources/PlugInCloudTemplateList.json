@@ -1,0 +1,53 @@
+{
+    "DocType": "PlugInCloudTemplateList",
+    "LastUpdateTime": "2019-05-20T22:17:35.2975194Z",
+    "PlugInCloudTemplateList": [
+                                  {
+                                    "Name":  "LogRhythm Good Practice",
+                                    "Version":  "1.0 - 2019-05-18",
+                                    "Author":  "Tony Massé",
+                                    "Description":  "Contain typical Actions for a SRP that follows the Good Practice of LogRhythm. Like Save Config, etc...",
+                                    "LastUpdated":  "2019-02-18T23:59:59.000Z",
+                                    "Content": [
+                                                 {
+                                                   "Actions": [
+                                                               {
+                                                                 "Name": "Create Configuration File",
+																 "Command": "",
+																 "Parameters": []
+                                                               },
+                                                               {
+                                                                 "Name": "Authenticated action",
+																 "Command": "",
+																 "Parameters": []
+                                                               },
+                                                               {
+                                                                 "Name": "XYZ",
+																 "Command": "",
+																 "Parameters": []
+                                                               }
+                                                              ]
+                                                 }
+                                               ]
+                                  },
+                                  {
+                                    "Name":  "Python Template",
+                                    "Version":  "0.5 - 2019-02-26",
+                                    "Author":  "Dan Crossley",
+                                    "Description":  "Contain XYZ...",
+                                    "LastUpdated":  "2019-02-26T23:59:59.000Z",
+                                    "Content": [
+                                                 {
+                                                   "APIWrappers": [
+                                                               {
+                                                                 "Name": "LogRhythm"
+                                                               },
+                                                               {
+                                                                 "Name": "Azure"
+                                                               }
+                                                              ]
+                                                 }
+                                               ]
+                                  }
+                                ]
+}
