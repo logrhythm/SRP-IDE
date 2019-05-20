@@ -1,6 +1,6 @@
 # ###########################################
 #
-# SmartResponse Plug-In Reader
+# LogRhythm SmartResponse Plug-In Editor
 #
 # ###############
 #
@@ -18,7 +18,7 @@
 # - Commenting some old code, to remove error messages
 # - Loading local copy of the Cloud Template List into the UI
 # - First Config file
-# - Frst PlugInCloudTemplateList file
+# - First PlugInCloudTemplateList file
 #
 # ################
 #
@@ -30,7 +30,7 @@
 
 
 ########################################################################################################################
-############################################# DO NOT MODIFY ANYTHING BELOW #############################################
+##################################### Variables, Constants and Function declaration ####################################
 ########################################################################################################################
 
 
@@ -158,7 +158,7 @@ LogInfo ("Version: " + $Version)
 if (-Not (Test-Path $configFile))
 {
 	LogError "File 'config.json' doesn't exists."
-    $ConfigReaderForm.ShowDialog() | out-null
+    $SRPEditorForm.ShowDialog() | out-null
 	#LogError "File 'config.json' doesn't exists. Exiting"
 	return
 }
@@ -186,7 +186,6 @@ catch
 
 # #################
 # Reading XAML file
-#$XAMLFile = "T:\Shared\LogRhythm\ConfigReader\ConfigReader\MainWindow.xaml"
 $XAMLFile = "SRP_IDE\SRP_IDE\MainWindow.xaml"
 
 if (Test-Path $XAMLFile)
@@ -252,25 +251,17 @@ catch
 # Read XAML
 [void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
 $reader=(New-Object System.Xml.XmlNodeReader $XAML) 
-try{$ConfigReaderForm=[Windows.Markup.XamlReader]::Load( $reader )}
+try{$SRPEditorForm=[Windows.Markup.XamlReader]::Load( $reader )}
 catch{LogError "Unable to load Windows.Markup.XamlReader for ConfigReader.MainWindow. Some possible causes for this problem include: .NET Framework is missing PowerShell must be launched with PowerShell -sta, invalid XAML code was encountered."; exit}
 
 
 ##################################
 # Store Form Objects In PowerShell
-$xaml.SelectNodes("//*[@Name]") | %{Set-Variable -Name ($_.Name) -Value $ConfigReaderForm.FindName($_.Name)}
+$xaml.SelectNodes("//*[@Name]") | %{Set-Variable -Name ($_.Name) -Value $SRPEditorForm.FindName($_.Name)}
 
 
 ##############################
 # Hide the Tabs of my TabItems
-#$tiPlugIn.Visibility="Hidden"
-#$tiActions.Visibility="Hidden"
-#$tiAction_X.Visibility="Hidden"
-#$tiOutput.Visibility="Hidden"
-#$tiPreferences.Visibility="Hidden"
-#... To be continued.
-
-#$tcTabs.Items[0].Visibility="Hidden"
 ForEach ($TabItem in $tcTabs.Items) {
     $TabItem.Visibility="Hidden"
 }
@@ -301,16 +292,6 @@ $btPrevious.Add_Click({
    if ($lvStep.SelectedIndex -gt 0)
    {
        $lvStep.SelectedIndex = $lvStep.SelectedIndex - 1
-<#
-       if ($lvStep.SelectedIndex -eq 2)
-       {
-           $lvStep.SelectedIndex = $lvStep.SelectedIndex - 2 # To skip the Wizard item
-       }
-       else
-       {
-           $lvStep.SelectedIndex = $lvStep.SelectedIndex - 1
-       }
-#>
    }
 })
 
@@ -320,7 +301,6 @@ $btNext.Add_Click({
 
 
 $lvStep.Add_SelectionChanged({
-#   if ($lvStep.SelectedIndex -eq 1) { $lvStep.SelectedIndex = 2 } # To skip the Wizard item
    if (($lvStep.SelectedIndex -ge 0) -and ($lvStep.SelectedIndex -le $tcTabs.Items.Count))
    {
        $tcTabs.SelectedIndex = $ListViewToTab.($lvStep.SelectedIndex)
@@ -388,243 +368,18 @@ $btPlugInDownloadCloudRefresh.Add_Click({
     PlugInDownloadCloudRefresh
 })
 
-<#
-# Log Files Retention
-$slKeepOldLogFilesForDaysReview.Add_ValueChanged({
-    $tbKeepOldLogFilesForDaysReview.Text = [math]::Round($slKeepOldLogFilesForDaysReview.Value).ToString()
-    $tbKeepOldLogFilesForDays.Text = [math]::Round($slKeepOldLogFilesForDaysReview.Value).ToString()
-    $slKeepOldLogFilesForDays.Value= $slKeepOldLogFilesForDaysReview.Value
-})
 
-$slKeepOldDiagFilesForDaysReview.Add_ValueChanged({
-    $tbKeepOldDiagFilesForDaysReview.Text = [math]::Round($slKeepOldDiagFilesForDaysReview.Value).ToString()
-    $tbKeepOldDiagFilesForDays.Text = [math]::Round($slKeepOldDiagFilesForDaysReview.Value).ToString()
-    $slKeepOldDiagFilesForDays.Value= $slKeepOldDiagFilesForDaysReview.Value
-})
+########################################################################################################################
+##################################################### Execution!!  #####################################################
+########################################################################################################################
 
-$slKeepOldLogFilesForDays.Add_ValueChanged({
-    $tbKeepOldLogFilesForDays.Text = [math]::Round($slKeepOldLogFilesForDays.Value).ToString()
-    $tbKeepOldLogFilesForDaysReview.Text = [math]::Round($slKeepOldLogFilesForDays.Value).ToString()
-    $slKeepOldLogFilesForDaysReview.Value= $slKeepOldLogFilesForDays.Value
-})
-
-$slKeepOldDiagFilesForDays.Add_ValueChanged({
-    $tbKeepOldDiagFilesForDays.Text = [math]::Round($slKeepOldDiagFilesForDays.Value).ToString()
-    $tbKeepOldDiagFilesForDaysReview.Text = [math]::Round($slKeepOldDiagFilesForDays.Value).ToString()
-    $slKeepOldDiagFilesForDaysReview.Value= $slKeepOldDiagFilesForDays.Value
-})
-
-$tbKeepOldLogFilesForDaysReview.Add_TextChanged({
-    try
-    {
-        $slKeepOldLogFilesForDaysReview.Value = $tbKeepOldLogFilesForDaysReview.Text.ToDecimal($Null)
-        $rttbKeepOldLogFilesForDaysReview.Fill = "#FF007BC2"
-    }
-    catch
-    {
-        $rttbKeepOldLogFilesForDaysReview.Fill = "Red"
-    }
-    $tbKeepOldLogFilesForDays.Text = $tbKeepOldLogFilesForDaysReview.Text
-    $slKeepOldLogFilesForDays.Value= $slKeepOldLogFilesForDaysReview.Value
-})
-
-$tbKeepOldDiagFilesForDaysReview.Add_TextChanged({
-    try
-    {
-        $slKeepOldDiagFilesForDaysReview.Value = $tbKeepOldDiagFilesForDaysReview.Text.ToDecimal($Null)
-        $rttbKeepOldDiagFilesForDaysReview.Fill = "#FF007BC2"
-    }
-    catch
-    {
-        $rttbKeepOldDiagFilesForDaysReview.Fill = "Red"
-    }
-    $tbKeepOldDiagFilesForDays.Text = $tbKeepOldDiagFilesForDaysReview.Text
-    $slKeepOldDiagFilesForDays.Value= $slKeepOldDiagFilesForDaysReview.Value
-})
-
-$tbKeepOldLogFilesForDays.Add_TextChanged({
-    try
-    {
-        $slKeepOldLogFilesForDays.Value = $tbKeepOldLogFilesForDays.Text.ToDecimal($Null)
-        $rttbKeepOldLogFilesForDays.Fill = "#FF007BC2"
-    }
-    catch
-    {
-        $rttbKeepOldLogFilesForDays.Fill = "Red"
-    }
-    $tbKeepOldLogFilesForDaysReview.Text = $tbKeepOldLogFilesForDays.Text
-    $slKeepOldLogFilesForDaysReview.Value= $slKeepOldLogFilesForDays.Value
-})
-
-$tbKeepOldDiagFilesForDays.Add_TextChanged({
-    try
-    {
-        $slKeepOldDiagFilesForDays.Value = $tbKeepOldDiagFilesForDays.Text.ToDecimal($Null)
-        $rttbKeepOldDiagFilesForDays.Fill = "#FF007BC2"
-    }
-    catch
-    {
-        $rttbKeepOldDiagFilesForDays.Fill = "Red"
-    }
-    $tbKeepOldDiagFilesForDaysReview.Text = $tbKeepOldDiagFilesForDays.Text
-    $slKeepOldDiagFilesForDaysReview.Value= $slKeepOldDiagFilesForDays.Value
-})
-#>
-
-# Circle text fields in Red if empty, and in Blue if not
-<#
-$tbStorageAccountName.Add_TextChanged({
-    if ($tbStorageAccountName.Text -eq "") { $rttbStorageAccountName.Fill = "Red" }
-    else { $rttbStorageAccountName.Fill = "#FF007BC2" }
-    $tbStorageAccountNameReview.Text = $tbStorageAccountName.Text
-})
-
-$tbStorageAccountKey.Add_TextChanged({
-    if ($tbStorageAccountKey.Text -eq "") { $rttbStorageAccountKey.Fill = "Red" }
-    else { $rttbStorageAccountKey.Fill = "#FF007BC2" }
-    $tbStorageAccountKeyReview.Text = $tbStorageAccountKey.Text
-})
-#>
-
-<#
-# Review Tab
-
-$tbStorageAccountNameReview.Add_TextChanged({
-    if ($tbStorageAccountNameReview.Text -eq "") { $rttbStorageAccountNameReview.Fill = "Red" }
-    else { $rttbStorageAccountNameReview.Fill = "#FF007BC2" }
-    $tbStorageAccountName.Text = $tbStorageAccountNameReview.Text
-})
-
-$tbStorageAccountKeyReview.Add_TextChanged({
-    if ($tbStorageAccountKeyReview.Text -eq "") { $rttbStorageAccountKeyReview.Fill = "Red" }
-    else { $rttbStorageAccountKeyReview.Fill = "#FF007BC2" }
-    $tbStorageAccountKey.Text = $tbStorageAccountKeyReview.Text
-})
-
-# Output format selection
-$rbOutputFormatStandard.Add_Checked({
-    $rbOutputFormatStandardReview.IsChecked = $rbOutputFormatStandard.IsChecked
-})
-
-$rbOutputFormatStandardReview.Add_Checked({
-    $rbOutputFormatStandard.IsChecked = $rbOutputFormatStandardReview.IsChecked
-})
-
-$rbOutputFormatOpenCollector.Add_Checked({
-    $rbOutputFormatOpenCollectorReview.IsChecked = $rbOutputFormatOpenCollector.IsChecked
-})
-
-$rbOutputFormatOpenCollectorReview.Add_Checked({
-    $rbOutputFormatOpenCollector.IsChecked = $rbOutputFormatOpenCollectorReview.IsChecked
-})
-
-# Job Scheduler
-$slJobScheduleFrequencyInMinutes.Add_ValueChanged({
-    $tbJobScheduleFrequencyInMinutes.Text = [math]::Round($slJobScheduleFrequencyInMinutes.Value).ToString()
-})
-
-$slJobScheduleDelayInMinutes.Add_ValueChanged({
-    $tbJobScheduleDelayInMinutes.Text = [math]::Round($slJobScheduleDelayInMinutes.Value).ToString()
-})
-
-$tbJobScheduleFrequencyInMinutes.Add_TextChanged({
-    try
-    {
-        $slJobScheduleFrequencyInMinutes.Value = $tbJobScheduleFrequencyInMinutes.Text.ToDecimal($Null)
-        $rttbJobScheduleFrequencyInMinutes.Fill = "#FF007BC2"
-    }
-    catch
-    {
-        $rttbJobScheduleFrequencyInMinutes.Fill = "Red"
-    }
-})
-
-$tbJobScheduleDelayInMinutes.Add_TextChanged({
-    try
-    {
-        $slJobScheduleDelayInMinutes.Value = $tbJobScheduleDelayInMinutes.Text.ToDecimal($Null)
-        $rttbJobScheduleDelayInMinutes.Fill = "#FF007BC2"
-    }
-    catch
-    {
-        $rttbJobScheduleDelayInMinutes.Fill = "Red"
-    }
-})
-
-
-$btCreateJobSchedule.Add_Click({
-	LogInfo "Creating a Scheduled Job..."
-	LogDebug ("ScriptFileName: ""{0}""." -f $ScriptFileName)
-	LogDebug ("Path: ""{0}""." -f $basePath)
-    $JobCommand = "powershell.exe"
-    $JobArguments = ("-File ""{0}""" -f (Join-Path -Path $basePath -ChildPath $ScriptFileName))
-    $JobWorkingDirectory = $basePath
-	LogDebug ("JobCommand: ""{0}""." -f $JobCommand)
-	LogDebug ("JobArguments: ""{0}""." -f $JobArguments)
-	LogDebug ("JobWorkingDirectory: ""{0}""." -f $JobWorkingDirectory)
-
-    $FrequencyInMinutes = $tbJobScheduleFrequencyInMinutes.Text.ToDecimal($Null)
-    $MinutesAfterTopOfHour = $tbJobScheduleDelayInMinutes.Text.ToDecimal($Null)
-    #$FirstRunDateTime = (Get-Date).AddMinutes($MinutesAfterTopOfHour)
-    $FirstRunDateTime = ([datetime]::ParseExact((Get-Date).tostring("yyyy-MM-dd"), "yyyy-MM-dd", $null)).AddMinutes($MinutesAfterTopOfHour)
-
-	LogDebug ("FirstRunDateTime: ""{0}""." -f $FirstRunDateTime)
-    
-    $JobName = $tbJobScheduleName.Text
-    
-    try
-    {
-        $JobAction = New-ScheduledTaskAction -Execute $JobCommand -Argument $JobArguments -WorkingDirectory $JobWorkingDirectory
-        $JobTrigger =  New-ScheduledTaskTrigger -Daily -At $FirstRunDateTime 
-        $DummyTrigger =  New-ScheduledTaskTrigger -Once -At $FirstRunDateTime -RepetitionDuration (New-TimeSpan -Days 1)  -RepetitionInterval  (New-TimeSpan -Minutes $FrequencyInMinutes)
-        $JobTrigger.Repetition = $DummyTrigger.Repetition
-        $JobSettings = New-ScheduledTaskSettingsSet -MultipleInstances IgnoreNew -DontStopIfGoingOnBatteries -StartWhenAvailable -DontStopOnIdleEnd -ExecutionTimeLimit (New-TimeSpan -Minutes $FrequencyInMinutes) -Priority 7
-        $JobPrincipal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType S4U
-        
-        # Check the Task already exists or not
-        Get-ScheduledTask -TaskName $JobName -ErrorAction SilentlyContinue -OutVariable ExistingTask 
-
-        if ($ExistingTask)
-        {
-            # If it does, update it
-    	    LogInfo "Scheduled Job already exists. Updating it."
-            Set-ScheduledTask -Action $JobAction -Trigger $JobTrigger -TaskName $JobName -Principal $JobPrincipal -Settings $JobSettings -ErrorAction Stop
-    	    LogInfo ("Job schedule ""{0}"" updated." -f $JobName)
-        }
-        else
-        {
-            # If it does not, create it
-    	    LogInfo "Scheduled Job doesn't exist. Creating it."
-            Register-ScheduledTask -Action $JobAction -Trigger $JobTrigger -TaskName $JobName -Principal $JobPrincipal -Settings $JobSettings -Description "Log Data Collection Job for LogRhythm." -ErrorAction Stop
-    	    LogInfo ("Job schedule ""{0}"" created." -f $JobName)
-        }
-    }
-    catch [Microsoft.Management.Infrastructure.CimException]
-    {
-        LogError ("Could not schedule the job! " + $_.Exception.Message)
-    }
-    catch
-    {
-        LogError ("Could not schedule the job! Exception was of type """ + $_.Exception.GetType().FullName + """. With error: " + $_.Exception.Message)
-    }
-})
-#>
-
-<#
-$tbStorageAccountName.Text = $configJson.StorageAccountName
-$tbStorageAccountKey.Text = $configJson.StorageAccountKey
-$tbKeepOldLogFilesForDays.Text = $configJson.KeepOldLogFilesForDays
-$tbKeepOldDiagFilesForDays.Text = $configJson.KeepOldDiagFilesForDays
-
-$tbStorageAccountNameReview.Text = $tbStorageAccountName.Text
-$tbStorageAccountKeyReview.Text = $tbStorageAccountKey.Text
-$tbKeepOldLogFilesForDaysReview.Text = $tbKeepOldLogFilesForDays.Text
-$tbKeepOldDiagFilesForDaysReview.Text = $tbKeepOldDiagFilesForDays.Text
-#>
 
 # Pre-populate the Cloud Template List
 PlugInDownloadCloudRefresh
 
-$ConfigReaderForm.ShowDialog() | out-null
+# Run the UI
+$SRPEditorForm.ShowDialog() | out-null
 
+# Time to depart, my old friend...
 LogInfo "Exiting SmartResponse Plug-In Editor"
+# Didn't we have a joly good time?

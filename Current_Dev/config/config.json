@@ -1,5 +1,5 @@
 {
     "DocType": "Main Configuration File",
     "LastUpdateTime": "2019-02-14T14:50:21.2975194Z",
-    "PlugInCloudTemplateURL": ""
+    "PlugInCloudTemplateURL": "https://raw.githubusercontent.com/TonyMasse/SRP-IDE/master/Resources/PlugInCloudTemplateList.json"
 }
