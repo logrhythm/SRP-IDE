@@ -1,3 +1,4 @@
+![LogRhythm / SmartResponse Plug-In Editor](Banner.png "LogRhythm SmartResponse Plug-In Editor")
 # LogRhythm SmartResponse Plug-In Editor (SRP-IDE)
 
 Hi there,
@@ -11,4 +12,5 @@ Contact me if you would like to be involded.
 Cheers,
 
  Tony
+
  
