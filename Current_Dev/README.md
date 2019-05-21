@@ -5,12 +5,12 @@
 Hi
 
 What's here:
-- **SRP_IDE**
-- **SRP-Editor-vXXX.ps1**
+1. **SRP_IDE**
+2. **SRP-Editor-vXXX.ps1**
  - The main PowerShell script
-- **UI Icons**
+3. **UI Icons**
  - The export of all the icons used by this project. Both in SVG (master) and XAML (exported from the SVG).
-- **logs**
+4. **logs**
  - The logs created by the PowerShell script each times it run (one file per day)
 
 Cheers,
