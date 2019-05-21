@@ -46,6 +46,15 @@
                                                                  "Name": "Azure"
                                                                }
                                                               ]
+                                                 },
+                                                 {
+                                                   "Actions": [
+                                                               {
+                                                                 "Name": "Do something in Python",
+																 "Command": "",
+																 "Parameters": []
+                                                               }
+                                                              ]
                                                  }
                                                ]
                                   }
