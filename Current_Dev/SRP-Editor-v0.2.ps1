@@ -348,7 +348,7 @@ function PlugInDownloadCloudRefresh()
 	                New-Item $PlugInCloudTemplateListJSONLocalFile -type file | out-null
                 }
                 # Write the Config into the Config file
-                $PlugInCloudTemplateListTempJSON | ConvertTo-Json | Out-File -FilePath $PlugInCloudTemplateListJSONLocalFile
+                $PlugInCloudTemplateListTempJSON | ConvertTo-Json -Depth 100 | Out-File -FilePath $PlugInCloudTemplateListJSONLocalFile
             }
             else
             {
