@@ -343,6 +343,8 @@ function PlugInDownloadCloudRefresh()
             if ($PlugInCloudTemplateListTempJSON.DocType -eq  "PlugInCloudTemplateList")
             {
                 $PlugInCloudTemplateListTempJSON | Add-Member -MemberType NoteProperty -Name 'DownloadTime' -Value (Get-Date).tostring($TimeStampFormatForJSON)
+                LogInfo ("Cloud document contains {0} templates." -f $PlugInCloudTemplateListTempJSON.PlugInCloudTemplateList.Count)
+                LogInfo ("Writing template document locally ({0})." -f $PlugInCloudTemplateListJSONLocalFile)
                 if (-Not (Test-Path $PlugInCloudTemplateListJSONLocalFile))
                 {
 	                New-Item $PlugInCloudTemplateListJSONLocalFile -type file | out-null
@@ -370,10 +372,10 @@ function PlugInDownloadCloudRefresh()
 	        ForEach ($attribute in @("DocType", "PlugInCloudTemplateList")) {
 		        if (-Not (Get-Member -inputobject $PlugInCloudTemplateListJSON -name $attribute -Membertype Properties) -Or [string]::IsNullOrEmpty($PlugInCloudTemplateListJSON.$attribute))
 		        {
-			        LogError ($attribute + " has not been specified in 'PlugInCloudTemplateList.json' file.")
+			        LogError ($attribute + " has not been specified in '{0}' file." -f $PlugInCloudTemplateListJSONLocalFile)
 		        }
 	        }
-            LogInfo "File 'PlugInCloudTemplateList.json' parsed correctly."
+            LogInfo ("File '{0}' parsed correctly." -f $PlugInCloudTemplateListJSONLocalFile)
 
             # All Good!
             # Build the array for the UI DataGrid from the JSON template list
@@ -381,24 +383,24 @@ function PlugInDownloadCloudRefresh()
             {
                 ForEach ($TemplateItem in $PlugInCloudTemplateListJSON.PlugInCloudTemplateList)
                 {
-                    $tmpObject = select-object -inputobject "" Name,Version,Author,Description,LastUpdated
-                    $tmpObject.Name = $TemplateItem.Name
-                    $tmpObject.Version = $TemplateItem.Version
-                    $tmpObject.Author = $TemplateItem.Author
-                    $tmpObject.Description = $TemplateItem.Description
-                    $tmpObject.LastUpdated = $TemplateItem.LastUpdated
-                    $PlugInCloudTemplateListArray += $tmpObject
+                    $PlugInCloudTemplateItem = select-object -inputobject "" Name,Version,Author,Description,LastUpdated
+                    $PlugInCloudTemplateItem.Name = $TemplateItem.Name
+                    $PlugInCloudTemplateItem.Version = $TemplateItem.Version
+                    $PlugInCloudTemplateItem.Author = $TemplateItem.Author
+                    $PlugInCloudTemplateItem.Description = $TemplateItem.Description
+                    $PlugInCloudTemplateItem.LastUpdated = $TemplateItem.LastUpdated
+                    $PlugInCloudTemplateListArray += $PlugInCloudTemplateItem
                 }
             }
         }
         catch
         {
-	        LogError "Could not parse 'PlugInCloudTemplateList.json' file. Going on empty."
+	        LogError ("Could not parse '{0}' file. Going on empty." -f $PlugInCloudTemplateListJSONLocalFile)
         }
     }
     else
     {
-	    LogInfo ("File 'PlugInCloudTemplateList.json' doesn't exists. Going on empty.")
+	    LogInfo ("File '{0}' doesn't exists. Going on empty." -f $PlugInCloudTemplateListJSONLocalFile)
         $PlugInCloudTemplateListJSON = "{}" | ConvertFrom-Json
     }
 
@@ -416,7 +418,7 @@ $btPlugInDownloadCloudRefresh.Add_Click({
 ########################################################################################################################
 
 
-# Pre-populate the Cloud Template List
+# Pre-populate the Cloud Template List from the local cashed copy
 PlugInDownloadCloudRefresh
 
 # Run the UI
