@@ -71,7 +71,7 @@ if (-Not (Test-Path $logFile))
 }
 
 # Local copy of the Plug-In Cloud Template List JSON
-$PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $configPath -ChildPath "PlugInCloudTemplateList.json"
+$PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $configPath -ChildPath "PlugInCloudTemplateListLocal.json"
 
 
 # Logging functions
