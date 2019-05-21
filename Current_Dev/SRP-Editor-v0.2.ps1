@@ -40,6 +40,10 @@ $VersionDate   = "2019-05-13"
 $VersionAuthor = "Tony Massé (tony.masse@logrhythm.com)"
 $Version       = "v$VersionNumber - $VersionDate - $VersionAuthor"
 
+# Time formats
+$TimeStampFormatForJSON = "yyyy-MM-ddTHH:mm:ss.fffZ"
+$TimeStampFormatForLogs = "yyyy.MM.dd HH:mm:ss"
+
 # Directories and files information
 # Base directory
 $basePath = Split-Path (Get-Variable MyInvocation).Value.MyCommand.Path
@@ -73,7 +77,7 @@ $PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $configPath -ChildPath "
 # Logging functions
 function LogMessage([string] $logLevel, [string] $message)
 {
-    $Msg  = ([string]::Format("{0}|{1}|{2}", (Get-Date).tostring("yyyy.MM.dd HH:mm:ss"), $logLevel, $message))
+    $Msg  = ([string]::Format("{0}|{1}|{2}", (Get-Date).tostring("$TimeStampFormatForLogs"), $logLevel, $message))
 	$Msg | Out-File -FilePath $logFile  -Append        
     Write-Host $Msg
 }
@@ -308,19 +312,54 @@ $lvStep.Add_SelectionChanged({
     
 })
 
+# ########
+# Build the list of Plug-in Cloud Templates
+
 function PlugInDownloadCloudRefresh()
 {
-    # ########
-    # Build the list of Plug-in Cloud Templates
+    param
+    (
+        [Switch] $DownloadFromCloud = $False
+    )
 
+    # Start with a fresh Array
     $PlugInCloudTemplateListArray = @()
 
     # Download the JSON template list TO the local disk
     # URL to download from is in: $configJson.PlugInCloudTemplateURL
-    # TODO - XXXXXXXXXXXXXXXXXX
 
-    $PlugInCloudTemplateListTemp = Invoke-WebRequest -Uri $configJson.PlugInCloudTemplateURL #-OutFile $output
-    $PlugInCloudTemplateListTemp
+    if ($DownloadFromCloud)
+    {
+        try
+        {
+            LogInfo ("Downloading Plug In Templates from the Cloud ({0})..." -f $configJson.PlugInCloudTemplateURL)
+            # Get from the Cloud
+            $PlugInCloudTemplateListTempRaw = Invoke-WebRequest -Uri $configJson.PlugInCloudTemplateURL #-OutFile $output
+            # Pass the JSON content into an object
+            LogInfo "Parsing Plug In Templates JSON..."
+            $PlugInCloudTemplateListTempJSON = $PlugInCloudTemplateListTempRaw.Content | ConvertFrom-Json
+            LogInfo "Parsed."
+            LogInfo ("Downloaded document of DocType: ""{0}"" // Last Updated on: {1}." -f $PlugInCloudTemplateListTempJSON.DocType, $PlugInCloudTemplateListTempJSON.LastUpdateTime)
+            if ($PlugInCloudTemplateListTempJSON.DocType -eq  "PlugInCloudTemplateList")
+            {
+                $PlugInCloudTemplateListTempJSON | Add-Member -MemberType NoteProperty -Name 'DownloadTime' -Value (Get-Date).tostring($TimeStampFormatForJSON)
+                if (-Not (Test-Path $PlugInCloudTemplateListJSONLocalFile))
+                {
+	                New-Item $PlugInCloudTemplateListJSONLocalFile -type file | out-null
+                }
+                # Write the Config into the Config file
+                $PlugInCloudTemplateListTempJSON | ConvertTo-Json | Out-File -FilePath $PlugInCloudTemplateListJSONLocalFile
+            }
+            else
+            {
+                LogError ("Wrong file type ({0})." -f $PlugInCloudTemplateListTempJSON.DocType)
+            }
+        }
+        catch
+        {
+            LogError ("Failed to download Plug In Templates from the Cloud ({0})." -f $configJson.PlugInCloudTemplateURL)
+        }
+    }
 
     # Load the JSON template list FROM the local disk
     if (Test-Path $PlugInCloudTemplateListJSONLocalFile)
@@ -368,7 +407,7 @@ function PlugInDownloadCloudRefresh()
 }
 
 $btPlugInDownloadCloudRefresh.Add_Click({
-    PlugInDownloadCloudRefresh
+    PlugInDownloadCloudRefresh -DownloadFromCloud
 })
 
 
