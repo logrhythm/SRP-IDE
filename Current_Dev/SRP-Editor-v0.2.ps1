@@ -19,6 +19,7 @@
 # - Loading local copy of the Cloud Template List into the UI
 # - First Config file
 # - First PlugInCloudTemplateList file
+# - Download from Cloud, parse, update and save locally the PlugInCloudTemplateList
 #
 # ################
 #
