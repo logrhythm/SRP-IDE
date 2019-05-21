@@ -319,6 +319,9 @@ function PlugInDownloadCloudRefresh()
     # URL to download from is in: $configJson.PlugInCloudTemplateURL
     # TODO - XXXXXXXXXXXXXXXXXX
 
+    $PlugInCloudTemplateListTemp = Invoke-WebRequest -Uri $configJson.PlugInCloudTemplateURL #-OutFile $output
+    $PlugInCloudTemplateListTemp
+
     # Load the JSON template list FROM the local disk
     if (Test-Path $PlugInCloudTemplateListJSONLocalFile)
     {
