@@ -9,7 +9,7 @@ What's here:
 #### **SRP_IDE**
 This is the VisualStudio project where the WPF interface is worked on in **MainWindow.xaml**.
 
-The project is set to C#, but actually (:exclamation:) _no code whatsoever that should put or used in there_.
+:warning: The project is set to C#, but actually **_no code whatsoever that should put or used in there_**.
 
 :point_right: **It's only to work on the XAML** :point_left:.
 
