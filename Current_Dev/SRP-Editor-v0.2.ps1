@@ -71,10 +71,6 @@ if (-Not (Test-Path $logFile))
 	New-Item $logFile -type file | out-null
 }
 
-# Local copy of the Plug-In Cloud Template List JSON
-$PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $configPath -ChildPath "PlugInCloudTemplateListLocal.json"
-
-
 # Logging functions
 function LogMessage([string] $logLevel, [string] $message)
 {
@@ -97,6 +93,18 @@ function LogDebug([string] $message)
 {
 	LogMessage "DEBUG" $message
 }
+
+# Cache directory
+$cachePath = Join-Path -Path $configPath -ChildPath "Local Cache"
+if (-Not (Test-Path $cachePath))
+{
+	New-Item -ItemType directory -Path $cachePath | out-null
+}
+
+# Local copy of the Plug-In Cloud Template List JSON
+$PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "PlugInCloudTemplateListLocal.json"
+
+
 
 function SimpleQueryGet([string] $SimpleQuery_)
 {
