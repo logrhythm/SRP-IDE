@@ -104,7 +104,7 @@ if (-Not (Test-Path $cachePath))
 # Local copy of the Plug-In Cloud Template List JSON
 $PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "PlugInCloudTemplateListLocal.json"
 
-
+<#
 
 function SimpleQueryGet([string] $SimpleQuery_)
 {
@@ -118,6 +118,8 @@ function SimpleQueryPost([string] $SimpleQuery_)
 	$response = Invoke-RestMethod -Uri ($url + $SimpleQuery_) -Method Post -Headers $headers
     $response  | Format-Table -wrap
 }
+
+#>
 
 # ########
 # Functions used to decompress/decode compressed/encoded UI XAML:
@@ -334,6 +336,10 @@ function PlugInDownloadCloudRefresh()
     # Start with a fresh Array
     $PlugInCloudTemplateListArray = @()
 
+    # Clean any error info on the UI
+    $caPlugInDownloadCloudRefreshStatus.ToolTip = ""
+    $caPlugInDownloadCloudRefreshStatus.Visibility = "Hidden"
+
     # Download the JSON template list TO the local disk
     # URL to download from is in: $configJson.PlugInCloudTemplateURL
 
@@ -363,12 +369,20 @@ function PlugInDownloadCloudRefresh()
             }
             else
             {
-                LogError ("Wrong file type ({0})." -f $PlugInCloudTemplateListTempJSON.DocType)
+                $TmpMsg = ("Wrong file type ({0})." -f $PlugInCloudTemplateListTempJSON.DocType)
+                LogError $TmpMsg
+                $caPlugInDownloadCloudRefreshStatus.ToolTip = $TmpMsg
+                $caPlugInDownloadCloudRefreshStatus.Visibility = "Visible"
+                $rttbPlugInCloudTemplateList.Fill = "#FFFF661E"
             }
         }
         catch
         {
-            LogError ("Failed to download Plug In Templates from the Cloud ({0})." -f $configJson.PlugInCloudTemplateURL)
+            $TmpMsg = ("Failed to download Plug In Templates from the Cloud ({0})." -f $configJson.PlugInCloudTemplateURL)
+            LogError $TmpMsg
+            $caPlugInDownloadCloudRefreshStatus.ToolTip = $TmpMsg
+            $caPlugInDownloadCloudRefreshStatus.Visibility = "Visible"
+            $rttbPlugInCloudTemplateList.Fill = "#FFFF661E"
         }
     }
 
@@ -418,9 +432,16 @@ function PlugInDownloadCloudRefresh()
 }
 
 $btPlugInDownloadCloudRefresh.Add_Click({
+#    $rttbPlugInCloudTemplateList.Fill = "#FFFF661E"
     PlugInDownloadCloudRefresh -DownloadFromCloud
+#    $rttbPlugInCloudTemplateList.Fill = "#FF007BC2"
 })
 
+$btPlugInDownloadCloudTemplate.Add_Click({
+    # Goofing around, trying to find a nice visual way to show that there was an issue
+    $rttbPlugInCloudTemplateList.Fill = "#FFFF661E" ## This is a test
+    $caPlugInDownloadCloudRefreshStatus.Visibility = "Visible" ## This is a test
+})
 
 ########################################################################################################################
 ##################################################### Execution!!  #####################################################
