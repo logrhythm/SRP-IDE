@@ -48,6 +48,7 @@ $TimeStampFormatForLogs = "yyyy.MM.dd HH:mm:ss"
 # Directories and files information
 # Base directory
 $basePath = Split-Path (Get-Variable MyInvocation).Value.MyCommand.Path
+cd $basePath
 
 # Config directory and file
 $configPath = Join-Path -Path $basePath -ChildPath "config"
@@ -443,6 +444,67 @@ $btPlugInDownloadCloudTemplate.Add_Click({
     $caPlugInDownloadCloudRefreshStatus.Visibility = "Visible" ## This is a test
 })
 
+# Setting up the TextBox validation function
+
+[System.Windows.RoutedEventHandler]$textChangedHandler = {
+			
+    try
+    {
+        $TextBoxTag = $_.OriginalSource.Tag
+        if ($TextBoxTag -match '^ValidIf__(.*)')
+        {
+            if ($matches.Count -gt 0)
+            {
+                LogDebug $matches[1]
+                $TextBoxValidated = $false
+                $TextBoxText = $_.OriginalSource.Text # Doing this as using $_.OriginalSource.Text in the Switch seems to provide weird results...
+
+                switch -wildcard ($matches[1]) {
+                   "NotEmpty"
+                   {
+                       if (-not ([string]::IsNullOrEmpty($TextBoxText))) { $TextBoxValidated = $true }
+                       break
+                   }
+                   "Empty"
+                   {
+                       if ([string]::IsNullOrEmpty($TextBoxText)) { $TextBoxValidated = $true }
+                       break
+                   }
+                   "RegEx:*"
+                   {
+                       $PatternAreYouThere = ($matches[1] -match 'RegEx:(.*)')
+                       $Pattern = $matches[1]
+                       #LogDebug $Pattern
+                       if ($TextBoxText -match $Pattern) { $TextBoxValidated = $true }
+                       break
+                   }
+                   default 
+                   {
+                       LogDebug ("Validation method un-supported for this TextBox ({0})" -f $matches[1])
+                       break
+                   }
+                }                
+
+                #LogInfo $TextBoxValidated
+                if ($TextBoxValidated)
+                {  # Valid
+                    (([Windows.Media.VisualTreeHelper]::GetParent($_.OriginalSource)).Children | Where-Object {$_ -is [System.Windows.Shapes.Rectangle] }).Fill="#FF007BC2"
+                }
+                else
+                {  # Not valid
+                    (([Windows.Media.VisualTreeHelper]::GetParent($_.OriginalSource)).Children | Where-Object {$_ -is [System.Windows.Shapes.Rectangle] }).Fill="Red"
+                }
+            }
+        }
+    }
+    catch
+    {
+        LogError "TextBox validation failed."
+    }
+}
+
+$SRPEditorForm.AddHandler([System.Windows.Controls.TextBox]::TextChangedEvent, $textChangedHandler)
+
 ########################################################################################################################
 ##################################################### Execution!!  #####################################################
 ########################################################################################################################
@@ -450,6 +512,7 @@ $btPlugInDownloadCloudTemplate.Add_Click({
 
 # Pre-populate the Cloud Template List from the local cashed copy
 PlugInDownloadCloudRefresh
+
 
 # Run the UI
 $SRPEditorForm.ShowDialog() | out-null

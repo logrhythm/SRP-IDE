@@ -1,0 +1,26 @@
+In the Tag of the TextBox.
+
+Examples:
+ValidIf__NotEmpty
+ValidIf__Integer__Positive
+ValidIf__Number__Min:350
+ValidIf__Number__Min:350__Max:450
+ValidIf__Contains:Tony
+
+Definition: (all optional)
+
+ValidIf__
+NotEmpty
+Empty
+NotNumber
+Number
+NotInteger
+Integer
+NotContains:
+Contains:
+RegEx:
+__
+Positive
+Negative
+Min:
+Max:

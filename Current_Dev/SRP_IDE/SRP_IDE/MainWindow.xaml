@@ -591,7 +591,7 @@
                                                         <BlurEffect/>
                                                     </Rectangle.Effect>
                                                 </Rectangle>
-                                                <TextBox x:Name="tbPlugInName" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
+                                                <TextBox x:Name="tbPlugInName" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                             </Grid>
                                             <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="The name of the SmartResponse PlugIn." HorizontalAlignment="Right" Width="15">
                                                 <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
@@ -613,7 +613,7 @@
                                                         <BlurEffect/>
                                                     </Rectangle.Effect>
                                                 </Rectangle>
-                                                <TextBox x:Name="tbPlugInProjectFolder" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
+                                                <TextBox x:Name="tbPlugInProjectFolder" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                             </Grid>
                                             <Button x:Name="btPlugInProjectFolderBrowse" Content="Browse" Height="30" VerticalAlignment="Top" Width="76" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
                                                 <Button.Effect>
@@ -648,7 +648,7 @@
                                                         <BlurEffect/>
                                                     </Rectangle.Effect>
                                                 </Rectangle>
-                                                <TextBox x:Name="tbPlugInAutho" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
+                                                <TextBox x:Name="tbPlugInAutho" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                             </Grid>
                                             <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What's your name again?" HorizontalAlignment="Right" Width="15">
                                                 <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
@@ -671,7 +671,7 @@
                                                         <BlurEffect/>
                                                     </Rectangle.Effect>
                                                 </Rectangle>
-                                                <TextBox x:Name="tbPlugInVersionMajor" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="0" VerticalAlignment="Top" Width="58" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" ToolTip="Major version number"/>
+                                                <TextBox x:Name="tbPlugInVersionMajor" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="0" VerticalAlignment="Top" Width="58" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" ToolTip="Major version number" Tag="ValidIf__RegEx:\d+"/>
                                             </Grid>
                                             <Grid HorizontalAlignment="Left" Height="40" Margin="105,20,0,0" VerticalAlignment="Top" Width="75">
                                                 <Rectangle x:Name="rttbPlugInVersionMinor" Fill="#FF007BC2" HorizontalAlignment="Left" Height="30" Margin="5,5,0,0" VerticalAlignment="Top" Width="60">
@@ -679,7 +679,7 @@
                                                         <BlurEffect/>
                                                     </Rectangle.Effect>
                                                 </Rectangle>
-                                                <TextBox x:Name="tbPlugInVersionMinor" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="0" VerticalAlignment="Top" Width="58" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" ToolTip="Minor version number"/>
+                                                <TextBox x:Name="tbPlugInVersionMinor" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="0" VerticalAlignment="Top" Width="58" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" ToolTip="Minor version number" Tag="ValidIf__RegEx:\d+"/>
                                             </Grid>
                                             <Grid HorizontalAlignment="Left" Height="40" Margin="185,20,0,0" VerticalAlignment="Top" Width="75">
                                                 <Rectangle x:Name="rttbPlugInVersionBuild" Fill="#FF007BC2" HorizontalAlignment="Left" Height="30" Margin="5,5,0,0" VerticalAlignment="Top" Width="60">
@@ -687,7 +687,7 @@
                                                         <BlurEffect/>
                                                     </Rectangle.Effect>
                                                 </Rectangle>
-                                                <TextBox x:Name="tbPlugInVersionBuild" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="0" VerticalAlignment="Top" Width="58" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" ToolTip="Build number"/>
+                                                <TextBox x:Name="tbPlugInVersionBuild" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="0" VerticalAlignment="Top" Width="58" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" ToolTip="Build number" Tag="ValidIf__RegEx:\d+"/>
                                             </Grid>
                                             <Grid HorizontalAlignment="Left" Height="40" Margin="260,20,0,0" VerticalAlignment="Top" Width="155">
                                                 <Rectangle Fill="#FF007BC2" HorizontalAlignment="Left" Height="15" Margin="5,12,0,0" VerticalAlignment="Top" Width="16">
@@ -839,7 +839,7 @@
                                                 <BlurEffect/>
                                             </Rectangle.Effect>
                                         </Rectangle>
-                                        <TextBox x:Name="tbActionsName" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="" VerticalAlignment="Top" Width="300" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
+                                        <TextBox x:Name="tbActionsName" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="" VerticalAlignment="Top" Width="300" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                     </Grid>
                                     <Button x:Name="btActionsNameRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="370,85,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
                                         <Button.Effect>
@@ -1043,7 +1043,7 @@
                                                 <BlurEffect/>
                                             </Rectangle.Effect>
                                         </Rectangle>
-                                        <TextBox x:Name="tbActionXCommand" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="" VerticalAlignment="Top" Width="358" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
+                                        <TextBox x:Name="tbActionXCommand" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="" VerticalAlignment="Top" Width="358" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                     </Grid>
                                     <Canvas Width="20" Height="20" Margin="26,155,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Path Fill="#FF2D7AC7" StrokeThickness="0.34290621" Data="M 10.424342 16.540524 9.464208 15.580389 15.979423 9.0651741 16.939558 10.025309 Z M 7.0638563 13.180048 13.579082 6.6648225 14.539227 7.6249672 8.0240011 14.140193 Z M 4.6635149 10.779707 11.17874 4.2644811 12.138875 5.2246258 5.6236597 11.739841 Z M 2.7432561 3.71584 c -0.7543878 0 -1.3716179 -0.61723 -1.3716179 -1.3716178 0 -0.7543878 0.6172301 -1.37161783 1.3716179 -1.37161783 0.7543877 0 1.3716178 0.61723003 1.3716178 1.37161783 0 0.7543878 -0.6172301 1.3716178 -1.3716178 1.3716178 z M 19.614225 9.6138253 10.012859 0.01244944 C 9.7385234 -0.26186596 9.3956291 -0.39903387 9.0527246 -0.39903387 H 2.7432561 C 1.2344601 -0.39903387 0 0.83542626 0 2.3442222 V 8.6193963 C 0 8.9965952 0.13716791 9.3394895 0.41148331 9.5795308 L 10.012859 19.180896 c 0.548641 0.548662 1.405913 0.548662 1.954574 0 l 7.646792 -7.646802 c 0.514367 -0.514356 0.514367 -1.405922 0 -1.9202687 z"/>
@@ -1362,7 +1362,7 @@
                                                         <BlurEffect/>
                                                     </Rectangle.Effect>
                                                 </Rectangle>
-                                                <TextBox x:Name="tbOutputFolder" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
+                                                <TextBox x:Name="tbOutputFolder" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                             </Grid>
                                             <Button x:Name="btOutputFolderBrowse" Content="Browse" Height="30" VerticalAlignment="Top" Width="76" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
                                                 <Button.Effect>
