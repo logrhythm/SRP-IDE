@@ -129,7 +129,7 @@ Field + Browse:
 
 
 <!--
-DataGrid + buttons:
+DataGrid + few buttons:
 =====================
 -->
                                                     <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
@@ -214,6 +214,139 @@ DataGrid + buttons:
                                                             </Canvas>
                                                         </Button>
                                                     </Grid>
+
+
+<!--
+DataGrid + all buttons:
+=====================
+-->
+<Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+  <Grid.RowDefinitions>
+    <RowDefinition/>
+    <RowDefinition Height="10"/>
+  </Grid.RowDefinitions>
+  <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="*"/>
+    <ColumnDefinition Width="40"/>
+  </Grid.ColumnDefinitions>
+  <Label Content="Order:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+  <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Path Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="M 4.7058833 -17.647057 A 2.3529413 2.3529413 0 0 1 2.352942 -15.294115 2.3529413 2.3529413 0 0 1 7.1525574e-7 -17.647057 2.3529413 2.3529413 0 0 1 2.352942 -19.999998 a 2.3529413 2.3529413 0 0 1 2.3529413 2.352941 z">
+      <Path.RenderTransform>
+        <RotateTransform Angle="90"/>
+      </Path.RenderTransform>
+    </Path>
+    <Path Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="M 4.7058833 -2.3529394 A 2.3529413 2.3529413 0 0 1 2.352942 1.9073486e-6 2.3529413 2.3529413 0 0 1 7.1525574e-7 -2.3529394 2.3529413 2.3529413 0 0 1 2.352942 -4.7058806 2.3529413 2.3529413 0 0 1 4.7058833 -2.3529394 Z">
+      <Path.RenderTransform>
+        <RotateTransform Angle="90"/>
+      </Path.RenderTransform>
+    </Path>
+    <Path Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="m 12.352959 -17.647057 a 2.3529413 2.3529413 0 0 1 -2.352941 2.352942 2.3529413 2.3529413 0 0 1 -2.3529412 -2.352942 2.3529413 2.3529413 0 0 1 2.3529412 -2.352941 2.3529413 2.3529413 0 0 1 2.352941 2.352941 z">
+      <Path.RenderTransform>
+        <RotateTransform Angle="90"/>
+      </Path.RenderTransform>
+    </Path>
+    <Path Fill="#FF2D7AC7" StrokeThickness="0.29411766" Data="M 13.883652 9.7319172 H 10.354251 V 2.9672068 h 3.582348 c -0.07059 -0.3889691 -0.07059 -0.7874981 0 -1.1764671 H 10.354251 9.1777729 5.5954251 c 0.070588 0.388969 0.070588 0.787498 0 1.1764671 h 3.5823478 v 7.9411772 h 4.8205881 c -0.07437 -0.2883 -0.112819 -0.584648 -0.114709 -0.882353 z"/>
+  </Canvas>
+  <Grid MinHeight="135" Margin="25,20,0,0" MinWidth="355">
+    <Rectangle Fill="#FF007BC2" Margin="5,5,10,5">
+      <Rectangle.Effect>
+        <BlurEffect/>
+      </Rectangle.Effect>
+    </Rectangle>
+    <Grid Margin="6,6,11,0">
+      <DataGrid x:Name="dgActonssOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
+        <DataGrid.Columns>
+          <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="320" IsReadOnly="True"/>
+        </DataGrid.Columns>
+      </DataGrid>
+    </Grid>
+  </Grid>
+  <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Use this table below to re-order or select the Actions." HorizontalAlignment="Right" Width="15" >
+    <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+  </Canvas>
+  <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,30,0,0">
+    <Button x:Name="btActonsOrderTop" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Action to the top of the list." Margin="0,0,0,10">
+      <Button.Effect>
+        <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+      </Button.Effect>
+      <Button.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FF484B4D" Offset="0"/>
+          <GradientStop Color="#FF3B3C3E" Offset="1"/>
+        </LinearGradientBrush>
+      </Button.Background>
+      <Canvas Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Path Fill="#FFCCCCCC" StrokeThickness="2.10521436" Data="M 0.3984375 0 L 0.3984375 14.736328 L 35.113281 14.736328 L 69.871094 14.736328 L 69.871094 0 L 0.3984375 0 z M 35.113281 14.736328 L 0 75.589844 L 70.269531 75.589844 L 35.113281 14.736328 z ">
+          <Path.RenderTransform>
+            <ScaleTransform ScaleX="0.26458333" ScaleY="0.26458333"/>
+          </Path.RenderTransform>
+        </Path>
+      </Canvas>
+    </Button>
+    <Button x:Name="btActonsOrderUp" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Move this Action up in the list." Margin="0,0,0,10">
+      <Button.Effect>
+        <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+      </Button.Effect>
+      <Button.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FF484B4D" Offset="0"/>
+          <GradientStop Color="#FF3B3C3E" Offset="1"/>
+        </LinearGradientBrush>
+      </Button.Background>
+      <Canvas Width="20" Height="17" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Path Fill="#FFCCCCCC" StrokeThickness="0.55700606" Data="M 0 16.100957 9.3015661 0 18.592253 16.100957 Z"/>
+      </Canvas>
+    </Button>
+    <Button x:Name="btActonsOrderDown" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Move this Action down in the list." Margin="0,0,0,10">
+      <Button.Effect>
+        <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+      </Button.Effect>
+      <Button.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FF484B4D" Offset="0"/>
+          <GradientStop Color="#FF3B3C3E" Offset="1"/>
+        </LinearGradientBrush>
+      </Button.Background>
+      <Canvas Width="20" Height="17" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Path Fill="#FFCCCCCC" StrokeThickness="0.55700606" Data="M 18.592253 -8.3446503e-7 9.2906872 16.100956 -5.9604645e-8 -8.3446503e-7 Z"/>
+      </Canvas>
+    </Button>
+    <Button x:Name="btActonsOrderBottom" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Action to the bottom of the list." Margin="0,0,0,10">
+      <Button.Effect>
+        <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+      </Button.Effect>
+      <Button.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FF484B4D" Offset="0"/>
+          <GradientStop Color="#FF3B3C3E" Offset="1"/>
+        </LinearGradientBrush>
+      </Button.Background>
+      <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Path Fill="#FFCCCCCC" StrokeThickness="10.34375763" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 0 0 L 35.115234 60.853516 L 70.269531 0 L 0 0 z M 35.115234 60.853516 L 0.3984375 60.853516 L 0.3984375 75.589844 L 69.871094 75.589844 L 69.871094 60.853516 L 35.115234 60.853516 z ">
+          <Path.RenderTransform>
+            <ScaleTransform ScaleX="0.26458333" ScaleY="0.26458333"/>
+          </Path.RenderTransform>
+        </Path>
+      </Canvas>
+    </Button>
+  </StackPanel>
+  <Button x:Name="btActonsDelete" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,0,0,10" Style="{DynamicResource GreyButtonStyle}" ToolTip="Delete the selected Action." Grid.Column="1">
+    <Button.Effect>
+      <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+    </Button.Effect>
+    <Button.Background>
+      <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF484B4D" Offset="0"/>
+        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+      </LinearGradientBrush>
+    </Button.Background>
+    <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+      <Path StrokeThickness="1.82824755" Stroke="#FFD50000" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 19.085876 9.999999 A 9.0858765 9.0858765 0 0 1 10 19.085876 9.0858765 9.0858765 0 0 1 0.91412354 9.999999 9.0858765 9.0858765 0 0 1 10 0.91412258 9.0858765 9.0858765 0 0 1 19.085876 9.999999 Z"/>
+      <Path StrokeThickness="1.82824755" Stroke="#FFD50000" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="m 4.894024 9.9462695 h 9.99696"/>
+    </Canvas>
+  </Button>
+</Grid>
 
 <!--
 Field + 1 small button:

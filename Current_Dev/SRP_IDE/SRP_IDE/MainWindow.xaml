@@ -733,6 +733,7 @@
                                                         </Canvas>
                                                         <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What's your name again?" HorizontalAlignment="Right" Width="15"/>
                                                     </Grid>
+                                                    <Grid Height="10"></Grid>
                                                 </DockPanel>
                                             </Grid>
                                             <Grid DockPanel.Dock="Top" Margin="0,5,0,25">
@@ -855,7 +856,7 @@
                                                                     </EventTrigger>
                                                                 </Canvas.Triggers>
                                                             </Canvas>
-                                                            <Button x:Name="btPlugInDownloadCloudRefresh" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Refresh the list of template from the Cloud." Grid.Column="1">
+                                                            <Button x:Name="btPlugInDownloadCloudRefresh" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,0,0,10" Style="{DynamicResource GreyButtonStyle}" ToolTip="Refresh the list of template from the Cloud." Grid.Column="1">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -996,11 +997,14 @@
                                                         </Canvas>
                                                     </Grid>
                                                     <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition Height="10"/>
+                                                        </Grid.RowDefinitions>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*"/>
                                                             <ColumnDefinition Width="40"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <!-- ############ -->
                                                         <Label Content="Order:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
                                                         <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                                             <Path Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="M 4.7058833 -17.647057 A 2.3529413 2.3529413 0 0 1 2.352942 -15.294115 2.3529413 2.3529413 0 0 1 7.1525574e-7 -17.647057 2.3529413 2.3529413 0 0 1 2.352942 -19.999998 a 2.3529413 2.3529413 0 0 1 2.3529413 2.352941 z">
@@ -1027,7 +1031,7 @@
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
                                                             <Grid Margin="6,6,11,0">
-                                                                <DataGrid x:Name="dgActonssOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
+                                                                <DataGrid x:Name="dgActonsOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
                                                                     <DataGrid.Columns>
                                                                         <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="320" IsReadOnly="True"/>
                                                                     </DataGrid.Columns>
@@ -1113,7 +1117,7 @@
                                                                 </Canvas>
                                                             </Button>
                                                         </StackPanel>
-                                                        <Button x:Name="btActonsDelete" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Delete the selected Action." Grid.Column="1">
+                                                        <Button x:Name="btActonsDelete" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,0,0,10" Style="{DynamicResource GreyButtonStyle}" ToolTip="Delete the selected Action." Grid.Column="1">
                                                             <Button.Effect>
                                                                 <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                             </Button.Effect>
@@ -1136,9 +1140,7 @@
                                     <Rectangle Fill="#FF2E2E2E" Height="573" Margin="10,10,0,0" RadiusY="3" RadiusX="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="460"/>
                                     <Rectangle Fill="#FF121212" HorizontalAlignment="Left" Height="1" Margin="10,55,0,0" VerticalAlignment="Top" Width="460"/>
                                     <Label Content="Actions" HorizontalAlignment="Left" Margin="20,13,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
-                                    -->
                                         <TextBlock HorizontalAlignment="Left" Margin="35,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFCCCCCC" Height="176" Width="221"><Run Text="Name:"/><LineBreak/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Import from Template:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Order:"/><LineBreak/><Run/></TextBlock>
-                                        <!--
                                     <Canvas Width="20" Height="20" Margin="26,89,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Path Fill="#FF2D7AC7" StrokeThickness="0.24916969" Data="m 19.956807 0.13190665 c -0.34884 -0.34883132 -2.591368 0.0498182 -4.460136 0.54817964 0.672754 0.39866841 1.370426 0.94683861 2.043189 1.61960151 0.697672 0.6976721 1.245851 1.3953441 1.64452 2.0930256 0.498342 -1.9186052 1.146177 -3.91196602 0.772427 -4.26080675 z"/>
                                         <Path Fill="#FF2D7AC7" StrokeThickness="0.24916969" Data="M 6.0780559 7.2332481 5.2308726 6.9093259 C 4.8820413 6.7847426 4.508282 6.8595077 4.2341969 7.1086648 L 0.27240324 11.070459 c -0.64784439 0.647844 -0.0498182 1.769103 0.84717386 1.569773 L 4.4335358 11.892723 C 4.707621 10.646872 5.1561264 8.977433 6.0780559 7.2332481 Z"/>
