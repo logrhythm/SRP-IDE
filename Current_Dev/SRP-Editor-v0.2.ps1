@@ -293,6 +293,8 @@ $ListViewToTab=@{
     5 = 5; # Language
     6 = 6; # Modules / Extensions
     7 = 7; # Sign
+    8 = 8; # Build
+    9 = 9; # Test
   }
 
 ############################
