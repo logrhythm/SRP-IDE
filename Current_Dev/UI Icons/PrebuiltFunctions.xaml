@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is compatible with Silverlight-->
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="svg8913" Width="210" Height="297">
+  <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+  </Canvas.RenderTransform>
+  <Canvas.Resources/>
+  <!--Unknown tag: sodipodi:namedview-->
+  <!--Unknown tag: metadata-->
+  <Canvas Name="layer1">
+    <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="M 3.0577667e-6 18.235298 H 20.000003 v 1.764706 H 3.0577667e-6 Z"/>
+    <Path Fill="#FFFFFFFF" StrokeThickness="0.29411763" Data="M 3.0577667e-6 -4.3702667e-6 H 2.3529441 V 17.058818 H 3.0577667e-6 Z"/>
+    <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="m 14.705873 14.705866 h 5.294117 v 2.352941 h -5.294117 z"/>
+    <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="M 14.705873 4.7058821 H 19.99999 V 13.529411 H 14.705873 Z"/>
+    <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="M 14.705873 1.1764842 H 19.99999 V 3.5294253 H 14.705873 Z"/>
+    <Path Fill="#FFFFFFFF" StrokeThickness="0.29411763" Data="m 11.176475 6.4705813 c -0.323527 0 -0.588239 -0.2647114 -0.588239 -0.588239 0 -0.3235275 0.264712 -0.5882278 0.588239 -0.5882278 0.323528 0 0.588228 0.2647003 0.588228 0.5882278 0 0.3235276 -0.2647 0.588239 -0.588228 0.588239 z m 0 9.4117677 c -0.323527 0 -0.588239 -0.264711 -0.588239 -0.588239 0 -0.323527 0.264712 -0.588239 0.588239 -0.588239 0.323528 0 0.588228 0.264712 0.588228 0.588239 0 0.323528 -0.2647 0.588239 -0.588228 0.588239 z M 13.529409 4.1176365 H 8.8235306 V 17.058816 h 4.7058784 z"/>
+    <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="M 6.4705858 4.7058755 H 4.70588 V 2.9411697 H 6.4705858 Z M 7.6470638 1.7647029 H 3.5294132 V 17.058816 h 4.1176506 z"/>
+  </Canvas>
+</Canvas>

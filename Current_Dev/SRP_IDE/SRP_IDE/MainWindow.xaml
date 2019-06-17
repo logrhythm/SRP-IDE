@@ -1244,7 +1244,7 @@
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*"/>
                                                             <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="70"/>
+                                                            <ColumnDefinition Width="80"/>
                                                         </Grid.ColumnDefinitions>
                                                         <Label Content="Parameters:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
                                                         <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -1275,7 +1275,7 @@
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                                            <Button x:Name="btActionXParamRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                            <Button x:Name="btActionXParamRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,10,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1354,12 +1354,12 @@
                                                             <Path Fill="#FFFFFFFF" StrokeThickness="1.17550397" Data="M 9.4121693 1.1194418 C 8.0193193 1.7469916 6.9998927 2.6727398 6.3570372 3.8972182 5.8672479 4.8155845 5.6241007 6.3007733 5.6241007 8.3517844 V 12.139853 H 10.053884 V 7.3409648 H 7.8956765 C 7.9415931 6.0093373 8.163691 4.9988602 8.5616468 4.3100882 8.9596024 3.6060102 9.5811504 3.0797224 10.422989 2.7276837 Z m 6.5384257 0 c -1.39285 0.6275498 -2.412277 1.553298 -3.055132 2.7777764 -0.489789 0.9183663 -0.733464 2.4035551 -0.733464 4.4545662 V 12.139853 H 16.59231 V 7.3409648 h -2.158208 c 0.04592 -1.3316275 0.267488 -2.3421046 0.665443 -3.0308766 0.397956 -0.704078 1.019504 -1.2303658 1.861342 -1.5824045 z"/>
                                                         </Canvas>
                                                         <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110" Grid.Column="2">
-                                                            <Rectangle Fill="Red" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                            <Rectangle Fill="#FF007BC2" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
                                                                 <Rectangle.Effect>
                                                                     <BlurEffect/>
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
-                                                            <TextBox x:Name="rttbActionXFieldMappingValue" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                            <TextBox x:Name="rttbActionXFieldMappingValue" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
                                                         </Grid>
                                                         <Canvas ToolTip="Use this table below to re-order or select the Actions." Grid.Column="2" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
@@ -1395,12 +1395,12 @@
                                                             <Path Fill="#FFFFFFFF" StrokeThickness="2.24531913" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 11.582441 4.8966901 A 1.1227717 1.1227717 0 0 0 10.569435 5.6120438 L 7.3488447 13.546435 a 1.1227717 1.1227717 0 1 0 2.0805861 0.844338 L 12.650016 6.4563816 A 1.1227717 1.1227717 0 0 0 11.582441 4.8966901 Z"/>
                                                         </Canvas>
                                                         <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110">
-                                                            <Rectangle Fill="Red" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                            <Rectangle Fill="#FF007BC2" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
                                                                 <Rectangle.Effect>
                                                                     <BlurEffect/>
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
-                                                            <TextBox x:Name="tbActionXFieldSwitch" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                            <TextBox x:Name="tbActionXFieldSwitch" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
                                                         </Grid>
                                                         <Canvas ToolTip="XXXXXX" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
@@ -1613,8 +1613,6 @@
                                     <Rectangle Fill="#FF2E2E2E" Height="579" Margin="10,10,0,0" RadiusY="3" RadiusX="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="460"/>
                                     <Rectangle Fill="#FF121212" HorizontalAlignment="Left" Height="1" Margin="10,55,0,0" VerticalAlignment="Top" Width="460"/>
                                     <Label Content="Action XYZ" HorizontalAlignment="Left" Margin="20,13,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
-                                    -->
-                                        <!--
                                         <Canvas Width="20" Height="14" Margin="26,92,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                             <Path Fill="#FF2D7AC7" StrokeThickness="2.99100471" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 1.4939771 5.3714608e-7 A 1.4956519 1.4956519 0 0 0 0.45283499 2.5678047 L 4.5537816 6.6687519 0.45153888 10.770995 A 1.4958016 1.4958016 0 1 0 2.5675684 12.885729 L 7.726533 7.72677 a 1.4956519 1.4956519 0 0 0 0 -2.1147407 L 2.5675684 0.45307128 A 1.4956519 1.4956519 0 0 0 1.4939771 5.3714608e-7 Z"/>
                                             <Path Fill="#FFFFFFFF" StrokeThickness="2.99100471" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 10.191772 10.347787 a 1.4956519 1.4956519 0 1 0 0 2.991006 h 8.291471 a 1.4956519 1.4956519 0 1 0 0 -2.991006 z"/>
@@ -1880,49 +1878,66 @@
                             <Grid Background="#FF121212">
                                 <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                     <Grid Background="#FF121212">
-                                        <Rectangle Fill="#FF2E2E2E" Height="190" Margin="10,10,40,0" RadiusY="3" RadiusX="3" VerticalAlignment="Top"/>
-                                        <Rectangle Fill="#FF121212" Height="1" Margin="10,55,40,0" VerticalAlignment="Top"/>
-                                        <Label Content="Output" HorizontalAlignment="Left" Margin="20,13,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
-                                        <StackPanel Margin="25,60,40,0">
-                                            <Grid Margin="0,0,0,5">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="90"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Label Content="Output folder:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
-                                                <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                                    <Path Fill="#FFFFFFFF" StrokeThickness="0.23474178" Data="M 20 6.4788732 13.286388 0.84507044 V 4.1314584 C 3.0046987 4.2253521 2.8638536 14.694839 2.8638536 14.694839 c 0 0 2.1830942 -5.5633851 10.4225344 -5.6338032 v 3.0516402 z"/>
-                                                    <Path Fill="#FF2D7AC7" StrokeThickness="0.23474178" Data="m 15.962444 11.760559 v 5.98592 H 1.4084507 V 3.1924853 H 11.877937 V 1.7840346 H 0 V 19.15493 l 17.370895 -0.07044 v -8.521122 z"/>
-                                                </Canvas>
-                                                <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
-                                                    <Rectangle x:Name="rttbOutputFolder" Fill="Red" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
-                                                        <Rectangle.Effect>
-                                                            <BlurEffect/>
-                                                        </Rectangle.Effect>
-                                                    </Rectangle>
-                                                    <TextBox x:Name="tbOutputFolder" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
-                                                </Grid>
-                                                <Button x:Name="btOutputFolderBrowse" Content="Browse" Height="30" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
-                                                    <Button.Effect>
-                                                        <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
-                                                    </Button.Effect>
-                                                    <Button.Background>
-                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                            <GradientStop Color="#FF484B4D" Offset="0"/>
-                                                            <GradientStop Color="#FF3B3C3E" Offset="1"/>
-                                                        </LinearGradientBrush>
-                                                    </Button.Background>
-                                                </Button>
-                                                <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="The top output folder for this project. Subfolders will be created inside this one. If this folder doesn't exist, it will be created." HorizontalAlignment="Right" Width="15">
-                                                    <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
-                                                </Canvas>
+                                        <DockPanel Margin="10,10,40,0" LastChildFill="False" >
+                                            <Grid DockPanel.Dock="Top" Margin="0,0,0,25">
+                                                <Rectangle Fill="#FF2E2E2E" RadiusY="3" RadiusX="3"/>
+                                                <Rectangle Fill="#FF121212" Height="1" Margin="0,45,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="Output" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
+                                                <DockPanel Margin="15,50,0,0">
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="90"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Output folder:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.23474178" Data="M 20 6.4788732 13.286388 0.84507044 V 4.1314584 C 3.0046987 4.2253521 2.8638536 14.694839 2.8638536 14.694839 c 0 0 2.1830942 -5.5633851 10.4225344 -5.6338032 v 3.0516402 z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.23474178" Data="m 15.962444 11.760559 v 5.98592 H 1.4084507 V 3.1924853 H 11.877937 V 1.7840346 H 0 V 19.15493 l 17.370895 -0.07044 v -8.521122 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
+                                                            <Rectangle x:Name="rttbOutputFolder" Fill="#FF007BC2" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <TextBox x:Name="tbOutputFolder" Height="28" Margin="6,6,11,0" Text="%SRP_Project%\Output" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                        </Grid>
+                                                        <Button x:Name="btOutputFolderBrowse" Content="Browse" Height="30" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
+                                                            <Button.Effect>
+                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                            </Button.Effect>
+                                                            <Button.Background>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                    <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Button.Background>
+                                                        </Button>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="The top output folder for this project. Subfolders will be created inside this one. If this folder doesn't exist, it will be created." HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Label Content="Folder options:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            </Canvas>
+                                                            <RadioButton x:Name="rbOutputFolderOptionOnePerVersion" GroupName="OutputFolderOption" Content="One per Version" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
+                                                            <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            </Canvas>
+                                                            <RadioButton Grid.Column="2" x:Name="rbOutputFolderOptionSingleFolder" GroupName="OutputFolderOption" Content="Single Folder" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Height="10" DockPanel.Dock="Top"></Grid>
+                                                </DockPanel>
                                             </Grid>
-                                            <Grid Margin="0,0,0,5">
-                                                <Label Content="Folder options:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
-                                                <RadioButton x:Name="rbOutputFolderOptionOnePerVersion" GroupName="OutputFolderOption" Content="One per Version" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
-                                                <RadioButton x:Name="rbOutputFolderOptionSingleFolder" GroupName="OutputFolderOption" Content="Single Folder" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="220,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
-                                            </Grid>
-                                        </StackPanel>
+                                        </DockPanel>
                                     </Grid>
                                 </ScrollViewer>
                             </Grid>
@@ -1931,10 +1946,414 @@
                             <Grid Background="#FF121212">
                                 <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                     <Grid Background="#FF121212">
-                                        <Rectangle Fill="#FF2E2E2E" Height="477" Margin="10,10,0,0" RadiusY="3" RadiusX="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="460"/>
-                                        <Rectangle Fill="#FF121212" HorizontalAlignment="Left" Height="1" Margin="10,55,0,0" VerticalAlignment="Top" Width="460"/>
-                                        <Label Content="Preferences" HorizontalAlignment="Left" Margin="20,13,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
-                                        <TextBlock HorizontalAlignment="Left" Margin="35,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFCCCCCC" Height="400" Width="373"><Run Text="License File:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Script File Option:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="LogRhythm Plug-In File Option (at Built time):"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+                                        <DockPanel Margin="10,10,40,0" LastChildFill="False" >
+                                            <Grid DockPanel.Dock="Top" Margin="0,0,0,25">
+                                                <Rectangle Fill="#FF2E2E2E" RadiusY="3" RadiusX="3"/>
+                                                <Rectangle Fill="#FF121212" Height="1" Margin="0,45,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="Preferences" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
+                                                <DockPanel Margin="15,50,0,0" LastChildFill="False">
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="30"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="License File:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.24999435" Data="M 2.2501676 4.3798459e-4 V 19.999988 H 9.069349 c -0.00175 -0.0032 -0.00412 -0.006 -0.00585 -0.0092 a 0.56341579 0.56341579 0 0 0 -4.999e-4 0 L 8.779803 19.462425 8.2578423 19.581572 C 7.7629409 19.694294 7.2111284 19.497449 6.8989854 19.097208 6.7639484 18.924062 6.6799753 18.716291 6.6431311 18.500046 H 3.7501313 V 1.5004292 h 6.2498593 v 4.1180823 c 0.030804 -0.01575 0.058518 -0.034449 0.090818 -0.048824 0.410055 -0.1836959 0.816121 -0.1936457 1.18503 -0.1567465 0.111003 -0.060424 0.22938 -0.1140974 0.351555 -0.1625963 H 11.499957 V 2.1254151 l 3.124929 3.1249297 h -1.444302 c 0.08629 0.034374 0.169629 0.071123 0.248529 0.1103475 0.335125 -0.028249 0.692277 -0.0165 1.050757 0.1220722 0.408928 0.1567715 0.702319 0.4309403 0.938944 0.7167839 0.355804 0.1007977 0.724858 0.2560942 1.034156 0.5654122 0.280091 0.2800437 0.431928 0.6039864 0.537586 0.9140545 0.257581 0.2177951 0.501218 0.4782642 0.657212 0.8281063 h 5e-4 c 0.04299 0.095973 0.07597 0.1915207 0.101561 0.2866186 V 5.4998641 L 11.499969 -1.2005276e-5 Z M 5.2501 7.2507747 V 8.2507522 H 7.3438029 C 7.4758299 8.0778311 7.626479 7.9289594 7.782758 7.7995873 7.8346318 7.6165915 7.9019603 7.4307706 7.9961307 7.2507747 Z m 0 1.999455 v 0.9999773 h 1.5092435 c 0.048984 -0.166221 0.1143125 -0.3194177 0.1845659 -0.4609145 -0.014725 -0.174696 -0.017325 -0.355417 0.002 -0.5390628 z m 7.09066 0.3071181 c -0.505143 0 -0.925661 0.2751688 -1.128392 0.6928592 h 2.256297 C 13.266089 9.8324916 12.845939 9.5573478 12.34076 9.5573478 Z M 5.2501 11.250685 v 0.999977 h 1.7304286 c 4.999e-4 -0.104823 0.0061 -0.20807 0.016125 -0.308093 -0.1141224 -0.209595 -0.2104003 -0.440365 -0.267574 -0.691884 z m 5.903187 0 c 0.170719 0.493564 0.628958 0.826631 1.187473 0.826631 0.558643 0 1.016962 -0.332842 1.187474 -0.826631 z m 6.596532 1.599089 c -0.0055 0.0155 -0.0082 0.0309 -0.01415 0.04637 -0.156769 0.40894 -0.430953 0.702309 -0.716782 0.938953 -0.0921 0.324868 -0.243194 0.654286 -0.503893 0.945779 l 1.234835 2.21675 z M 5.2501 13.25014 v 0.999977 H 7.9360745 C 7.8880581 14.152644 7.8454191 14.054871 7.8120548 13.957174 7.5862074 13.766478 7.3743722 13.538508 7.2192932 13.25014 Z m 0 1.999955 v 0.999977 h 2.2284648 l 0.5082886 -0.999977 z m 6.946134 3.249926 -0.751448 1.467267 c -0.0059 0.0115 -0.01383 0.0215 -0.02003 0.0327 h 2.037552 c -0.01838 -0.02767 -0.03805 -0.05437 -0.0542 -0.0835 L 12.62248 18.50002 Z m 5.553585 0.779283 c -0.296489 0.236269 -0.692805 0.349442 -1.067849 0.287118 l -0.641585 -0.106447 -0.309564 0.505838 c -0.0073 0.012 -0.0167 0.0225 -0.02442 0.03417 h 2.043412 z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.15056477" Data="m 12.400793 6.4362996 c -0.33124 0 -0.632053 0.1353682 -0.842842 0.3612182 -0.286075 -0.1204508 -0.61768 -0.135512 -0.918807 0 C 10.36812 6.9179685 10.15749 7.1285993 10.0521 7.384562 9.7810761 7.3996803 9.5099628 7.5050191 9.2991738 7.7158079 9.0582722 7.9567192 8.9528667 8.2579653 8.9679279 8.5741535 8.6818524 8.6795432 8.4408731 8.9054711 8.3204224 9.2216593 c -0.1053995 0.2710143 -0.1053995 0.5718937 0 0.8278567 -0.1806859 0.210789 -0.3007569 0.466784 -0.3007569 0.767912 0 0.331239 0.1353682 0.63257 0.3612181 0.843359 -0.1204603 0.286066 -0.1355119 0.617162 0 0.91829 0.120451 0.271014 0.3310816 0.481645 0.5870443 0.587044 0.015023 0.271014 0.1204571 0.542137 0.3312459 0.752926 0.2409018 0.240902 0.5421577 0.346307 0.8583452 0.331246 0.105399 0.286076 0.331318 0.527055 0.647506 0.647506 0.271015 0.105398 0.571894 0.105398 0.827857 0 0.210779 0.180676 0.466794 0.301273 0.767911 0.301273 0.331249 0 0.632561 -0.135885 0.84336 -0.361735 0.286066 0.12045 0.617154 0.135512 0.91829 0 0.271015 -0.120451 0.481645 -0.331081 0.587044 -0.587044 0.271014 -0.01512 0.542138 -0.120457 0.752926 -0.331246 0.240902 -0.240911 0.346297 -0.542158 0.331246 -0.858346 0.286066 -0.10539 0.527044 -0.330801 0.647505 -0.646989 0.105389 -0.271014 0.105389 -0.572411 0 -0.828373 0.180676 -0.195728 0.301274 -0.466785 0.301274 -0.767911 0 -0.331241 -0.135894 -0.632571 -0.361735 -0.8433598 0.120451 -0.2860662 0.135503 -0.6171631 0 -0.9182905 C 16.300252 8.7847635 16.089612 8.5741329 15.833659 8.4687335 15.81854 8.1977192 15.713212 7.926597 15.502413 7.7158079 15.261512 7.4749064 14.960255 7.3695009 14.644067 7.384562 14.538677 7.0984866 14.313266 6.8575073 13.997078 6.7370565 c -0.271015 -0.1053994 -0.57241 -0.1053994 -0.828373 0 C 12.957916 6.5563802 12.70193 6.4362996 12.400793 6.4362996 Z m -0.05994 1.7766358 c 1.430359 0 2.604492 1.1590726 2.604492 2.6044926 0 1.445419 -1.174133 2.605008 -2.604492 2.605008 -1.430368 0 -2.6050093 -1.159589 -2.6050093 -2.605008 0 -1.44542 1.1746413 -2.6044926 2.6050093 -2.6044926 z m -2.575037 6.5039956 -1.8066081 3.553271 1.5208375 -0.346232 0.7679116 1.430404 1.882056 -3.673678 c -0.210789 -0.03014 -0.42187 -0.120427 -0.602547 -0.225826 -0.105399 0.01512 -0.21087 0.02997 -0.31626 0.02997 -0.210789 0 -0.406302 -0.04513 -0.602031 -0.120406 -0.316188 -0.120451 -0.58716 -0.345937 -0.7828975 -0.632003 -0.015023 0 -0.045437 -0.0155 -0.060462 -0.0155 z m 5.225004 0.09043 c -0.165624 0.210789 -0.376566 0.376234 -0.63252 0.481624 v 5.29e-4 c -0.210799 0.09033 -0.436651 0.135392 -0.662491 0.135392 -0.120451 0 -0.225782 -0.01547 -0.346232 -0.03049 -0.22585 0.150565 -0.481911 0.256175 -0.752926 0.286288 l 1.987476 3.583244 0.782897 -1.279509 1.535824 0.255798 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
+                                                            <ComboBox x:Name="cbPreferencesLicenseFile" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                                <ComboBox.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </ComboBox.Effect>
+                                                                <ComboBoxItem Content="LogRhythm Code Sample" IsSelected="True"/>
+                                                                <ComboBoxItem Content="MIT License"/>
+                                                                <ComboBoxItem Content="Apache License 2.0"/>
+                                                                <ComboBoxItem Content="GNU GPLv3"/>
+                                                                <ComboBoxItem Content="GNU LGPLv3"/>
+                                                                <ComboBoxItem Content="GNU AGPLv3"/>
+                                                                <ComboBoxItem Content="Mozilla Public License 2.0"/>
+                                                                <ComboBoxItem Content="The Unlicense"/>
+                                                                <ComboBoxItem Content="** None **"/>
+                                                            </ComboBox>
+                                                        </Grid>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What license type do you want to apply to the SmartResponse PlugIn." HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Label Content="Script File Option:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="2.2859621" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 5.0980509 4.8963802 A 1.1430953 1.1430953 0 0 1 5.893774 6.8588989 L 2.7595067 9.9931662 5.8947645 13.128424 A 1.1432098 1.1432098 0 1 1 4.2775277 14.74467 L 0.33463944 10.801787 a 1.1430953 1.1430953 0 0 1 0 -1.6162512 L 4.2775277 5.2426526 A 1.1430953 1.1430953 0 0 1 5.0980509 4.8963802 Z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="2.2859621" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 14.901948 4.8963802 a 1.1430953 1.1430953 0 0 0 -0.795723 1.9625187 l 3.134272 3.1342673 -3.135263 3.1352578 a 1.1432097 1.1432097 0 1 0 1.617237 1.616246 l 3.942888 -3.942883 a 1.1430953 1.1430953 0 0 0 0 -1.6162512 L 15.722471 5.2426526 A 1.1430953 1.1430953 0 0 0 14.901948 4.8963802 Z"/>
+                                                                <Path Fill="#FFFFFFFF" StrokeThickness="2.24531913" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 11.582441 4.8966901 A 1.1227717 1.1227717 0 0 0 10.569435 5.6120438 L 7.3488447 13.546435 a 1.1227717 1.1227717 0 1 0 2.0805861 0.844338 L 12.650016 6.4563816 A 1.1227717 1.1227717 0 0 0 11.582441 4.8966901 Z"/>
+                                                            </Canvas>
+                                                            <RadioButton x:Name="rbPreferencesScriptFileOptionSingleFile" GroupName="PreferencesScriptFileOption" Content="Single File" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
+                                                            <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 5.3385883 1.810311e-4 A 1.0870041 1.0870041 0 0 1 6.0952656 1.8663997 l -2.9804701 2.9804701 2.981412 2.981412 A 1.087113 1.087113 0 1 1 4.5583278 9.3652193 L 0.80891546 5.6158119 a 1.0870041 1.0870041 0 0 1 0 -1.5369424 L 4.5583278 0.32946199 A 1.0870041 1.0870041 0 0 1 5.3385883 1.810311e-4 Z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 14.661412 1.810311e-4 A 1.0870041 1.0870041 0 0 0 13.904735 1.8663997 l 2.980475 2.9804701 -2.981417 2.981412 a 1.0871129 1.0871129 0 1 0 1.537879 1.5369375 l 3.749413 -3.7494074 a 1.0870041 1.0870041 0 0 0 0 -1.5369424 L 15.441672 0.32946199 A 1.0870041 1.0870041 0 0 0 14.661412 1.810311e-4 Z"/>
+                                                                <Path Fill="#FFFFFFFF" StrokeThickness="2.13514233" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 11.504792 4.7572444e-4 A 1.0676778 1.0676778 0 0 0 10.541494 0.68072731 L 7.4789365 8.2257812 A 1.0676778 1.0676778 0 1 0 9.4574291 9.0286879 L 12.519982 1.4836338 A 1.0676778 1.0676778 0 0 0 11.504792 4.7572444e-4 Z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 5.3385883 10.293447 a 1.0870041 1.0870041 0 0 1 0.7566773 1.866219 l -2.9804701 2.98047 2.981412 2.981412 A 1.087113 1.087113 0 1 1 4.5583278 19.658485 L 0.80891546 15.909078 a 1.0870041 1.0870041 0 0 1 0 -1.536942 L 4.5583278 10.622728 a 1.0870041 1.0870041 0 0 1 0.7802605 -0.329281 z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 14.661412 10.293447 a 1.0870041 1.0870041 0 0 0 -0.756677 1.866219 l 2.980475 2.98047 -2.981417 2.981412 a 1.0871129 1.0871129 0 1 0 1.537879 1.536937 l 3.749413 -3.749407 a 1.0870041 1.0870041 0 0 0 0 -1.536942 l -3.749413 -3.749408 a 1.0870041 1.0870041 0 0 0 -0.78026 -0.329281 z"/>
+                                                                <Path Fill="#FFFFFFFF" StrokeThickness="2.13514233" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 11.504792 10.293742 a 1.0676778 1.0676778 0 0 0 -0.963298 0.680252 l -3.0625575 7.545053 a 1.0676778 1.0676778 0 1 0 1.9784926 0.802907 L 12.519982 11.7769 a 1.0676778 1.0676778 0 0 0 -1.01519 -1.483158 z"/>
+                                                            </Canvas>
+                                                            <RadioButton Grid.Column="2" x:Name="rbPreferencesScriptFileOptionDualFile" GroupName="PreferencesScriptFileOption" Content="Dual File" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Label Content="LogRhythm Plug-In File Option (at Built time):" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.24815229" Data="M 8.7832278 0.07390855 6.360835 2.4754444 18.993822 12.296873 20 11.290686 15.781413 7.072094 c -0.670016 -0.6700065 0.471293 -1.7865934 1.414274 -1.7617766 1.637802 0.049615 2.18364 -2.1093992 1.017325 -3.3253376 L 18.039501 1.8109715 C 16.823564 0.64465726 14.714463 1.2404197 14.764085 2.8782249 14.788939 3.8212067 13.671833 4.9625072 13.001817 4.2924913 Z M 1.3478683 7.500057 0.1478188 8.7098053 4.3664081 12.928388 c 0.6700159 0.670016 -0.4717873 1.786603 -1.4147588 1.761786 -1.6378052 -0.04962 -2.18365079 2.10939 -1.0173272 3.325338 l 0.173997 0.173511 c 1.2159488 1.166314 3.3250488 0.571049 3.2754162 -1.066756 -0.024854 -0.942982 1.0917681 -2.08478 1.761785 -1.414764 l 4.2185887 4.218583 2.609478 -2.608999 z"/>
+                                                                <Path Fill="#FFFFFFFF" StrokeThickness="3.72810674" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 1.8167096 1.5753526 A 1.8642398 1.8642398 0 0 0 0.73958957 4.9257791 L 16.832238 17.439032 a 1.8647282 1.8647282 0 1 0 2.289795 -2.943753 L 3.0275553 1.9838543 A 1.8642398 1.8642398 0 0 0 1.8167096 1.5753526 Z"/>
+                                                            </Canvas>
+                                                            <RadioButton x:Name="rbPreferencesPlugInLPIFileOptionDoNotGenerate" GroupName="PreferencesPlugInLPIFileOption" Content="Do Not Generate" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
+                                                            <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.25000006" Data="M 8.6997156 -1.4125642e-6 5.824715 2.850094 C 5.4815347 3.1932657 5.6111546 3.6520438 5.9453226 4.0175715 7.3363649 3.1811713 9.0074231 2.5528435 10.980479 2.2807741 Z M 16.647473 1.1445438 18.748061 2.9072216 C 18.654517 2.5549222 18.476369 2.2132434 18.199719 1.9247992 L 18.024916 1.749996 C 17.625796 1.3671675 17.131318 1.1755927 16.647473 1.1445438 Z M 3.4414141 5.4492192 C 3.2937592 5.4608413 3.1514741 5.523298 3.0249119 5.6498933 L 7.62051e-6 8.6997179 1.0839906 9.7836962 C 1.2323882 9.4120929 1.3983407 9.0346219 1.5883858 8.6562439 2.126054 7.5857963 2.8945418 6.516492 3.9023522 5.5615185 3.7507146 5.4803531 3.5933795 5.4372948 3.4414141 5.4492192 Z M 18.5547 9.8544962 15.368666 12.528324 c 0.0052 0.06387 0.0084 0.129203 0.0063 0.196772 -0.02504 0.950003 1.099906 2.09983 1.774904 1.424806 l 2.850092 -2.850105 z m -7.499027 1.1533228 c -2.8570473 0.353027 -4.6990451 1.384555 -5.8554685 2.411633 -1.3907626 1.235169 -1.7812503 2.284649 -1.7812503 2.284649 a 1.7948134 1.7948134 0 0 1 -2.2343761 1.041997 c 0.049512 0.471147 0.2482904 0.946054 0.6152326 1.328628 l 0.1748051 0.175275 c 1.2250029 1.174999 3.350299 0.5748 3.3002968 -1.0752 -0.025039 -0.949975 1.0998977 -2.099802 1.7748998 -1.424797 l 4.2500016 4.249995 3.049806 -3.050278 c 0.674995 -0.675024 -0.4498 -1.799925 -1.424805 -1.774924 -1.160918 0.03515 -1.798656 -1.006025 -1.667481 -2.053201 a 1.7948134 1.7948134 0 0 1 -0.201661 -0.822274 z"/>
+                                                                <Path Fill="#FFFFFFFF" StrokeThickness="0.25000006" Data="m 19.99984 6.2998494 -7.15 -6.0000019 V 3.7998518 C 1.8998369 3.8998486 1.7498368 15.049855 1.7498368 15.049855 c 0 0 2.3249961 -5.9250063 11.1000032 -6.0000016 v 3.2499976 z"/>
+                                                            </Canvas>
+                                                            <RadioButton Grid.Column="2" x:Name="rbPreferencesPlugInLPIFileOptionGenerateLPI" GroupName="PreferencesPlugInLPIFileOption" Content="Generate LPI File" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Height="10" DockPanel.Dock="Top"></Grid>
+                                                </DockPanel>
+                                            </Grid>
+                                        </DockPanel>
+                                    </Grid>
+                                </ScrollViewer>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tiLanguage" Header="Language" Margin="-2,-2,-2,3" Background="#FF6E6D6D" >
+                            <Grid Background="#FF121212">
+                                <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                    <Grid Background="#FF121212">
+                                        <DockPanel Margin="10,10,40,0" LastChildFill="False" >
+                                            <Grid DockPanel.Dock="Top" Margin="0,0,0,25">
+                                                <Rectangle Fill="#FF2E2E2E" RadiusY="3" RadiusX="3"/>
+                                                <Rectangle Fill="#FF121212" Height="1" Margin="0,45,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="Language" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
+                                                <DockPanel Margin="15,50,0,0" LastChildFill="False">
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="30"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Language Selection:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.5114885" Data="m 20 4.7003028 q 0 2.0979048 -2.117883 3.4365686 -0.04995 0.3496508 -0.04995 0.6493484 0 0.8891137 0.539461 1.4985022 0.05994 0.06996 1.128871 0.95904 -1.768232 0.03999 -2.747253 -0.629369 -0.73926 -0.499503 -1.188811 -1.5784216 -0.709291 0.1398588 -1.438562 0.1398588 -0.80919 0 -1.708291 -0.2597379 Q 12.067929 7.6173883 10.929067 6.548456 9.7102861 5.4195843 8.3416548 5.3196851 q -0.08991 -0.3896105 -0.08991 -0.6193823 0 -1.8281661 1.7182813 -3.026971 1.6883119 -1.16883145 4.1558439 -1.16883145 2.467533 0 4.155845 1.16883145 1.718282 1.1988049 1.718282 3.026971 z m -1.678322 8.8012022 q 0 1.258745 -1.458542 2.237764 -1.458541 0.969026 -3.716284 1.268731 -0.4995 1.428569 -1.598401 1.997998 -0.929071 0.48951 -2.5874125 0.48951 Q 10.6993 18.776234 10.6993 17.097905 8.4915079 16.978026 6.843156 16.188819 5.2047946 15.399604 4.7352641 14.270733 q 0.01998 0 0.6193808 0.06996 0.6093902 0.06996 1.138861 0.06996 1.9380618 0 3.4065937 -0.889114 2.2177814 -1.358643 2.5174824 -3.6063934 2.227772 0 3.836164 0.7492474 2.067932 0.959047 2.067932 2.837166 z M 12.017981 9.5454609 q 0 1.8481531 -1.728272 3.1568431 -1.718281 1.308691 -4.1558431 1.308691 -1.1788214 0 -2.2477522 -0.339657 -0.329671 2.027971 -2.2977025 2.027971 -0.66933045 0 -1.58841174752364 -0.539463 Q 0.82917002 15.069934 1.3486509 14.460545 q 0.5194802 -0.619382 0.5194802 -1.568428 0 -0.149853 -0.00999 -0.289712 -1.59840164 -1.28871 -1.59840164 -3.0569441 0 -1.8381597 1.71828214 -3.0869105 1.6883116 -1.228771 4.1458535 -1.228771 2.4475528 0 4.1658339 1.2387573 1.728272 1.2387645 1.728272 3.0769242 z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.16813742" Data="M 9.0467701 12.169854 8.8070426 12.471975 Q 7.723345 11.779067 7.0731257 10.869415 6.4261911 9.9564823 6.1076495 8.6100676 5.7004411 10.971216 3.3589963 12.452271 L 3.1291214 12.146862 Q 3.7235133 11.769212 4.2752138 11.240497 4.826915 10.71179 5.188148 10.127244 5.5493803 9.539424 5.7464165 8.514835 H 3.2506269 V 8.1667373 H 5.8120952 Q 5.9171813 7.3391887 5.9270326 6.531337 H 6.311253 Q 6.2784129 7.4114297 6.1831795 8.1667373 H 8.9384 V 8.514835 H 6.4458944 q 0.3612323 1.4416473 0.9950316 2.259347 0.6337992 0.814413 1.6058441 1.395672 z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.19202077" Data="M 11.592622 7.5458164 13.7041 2.0477247 h 0.783835 l 2.250244 5.4980917 h -0.82884 L 15.26802 5.8806387 h -2.298999 l -0.603816 1.6651777 z m 1.586422 -2.2577435 h 1.863951 L 14.469183 3.7654103 Q 14.206655 3.0715808 14.079141 2.6252821 13.974129 3.1540911 13.782858 3.6753958 Z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.19202077" Data="m 14.282829 15.57049 q -0.262528 -0.397542 -0.600065 -0.690077 -0.337537 -0.296279 -0.911348 -0.637562 l -0.123764 0.116257 -0.442548 -0.337538 q -0.232525 -0.195015 -0.232525 -0.303776 0 -0.645074 0.315034 -1.012614 0.292532 -0.337538 1.008859 -0.607567 l 1.057615 -0.412544 v 0.648825 l -0.783835 0.262525 q -0.468801 0.153764 -0.757582 0.281278 -0.36754 0.161269 -0.36754 0.247531 0 0.08625 0.240026 0.266277 0.150017 0.112513 0.303783 0.225025 0.570062 0.431298 0.993857 0.903847 0.45755 0.506303 0.73508 1.050113 v 0.652571 h -4.481735 q -0.8963473 0 -1.2751383 -0.213769 -0.4050435 -0.228777 -0.4050435 -0.780084 0 -0.330042 0.1762689 -0.750083 0.048756 -0.116264 0.2062721 -0.431297 l 0.1275139 0.07501 q -0.1275139 0.292534 -0.1687683 0.450051 -0.037507 0.157516 -0.037507 0.300031 0 0.408792 0.4312967 0.573813 0.3225347 0.123761 0.9451025 0.123761 z m 0.07126 -4.909277 v 0.633817 q -0.810087 0.296279 -1.500162 0.630065 -0.611316 0.292535 -0.960104 0.528809 v -0.397543 q 0.120013 -0.135018 0.480052 -0.371292 0.360039 -0.236275 0.862593 -0.4988 0.562561 -0.296286 1.117621 -0.525056 z m -1.642678 -0.04877 -0.213772 0.360037 -0.487553 -0.135011 0.202522 -0.360044 z m 0.656322 0.183767 -0.213774 0.360043 -0.487552 -0.135018 0.202521 -0.360036 z m -0.813839 0.330034 -0.213772 0.360043 -0.487554 -0.135018 0.202523 -0.360036 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
+                                                            <ComboBox x:Name="cbLanguageLanguageSelection" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                                <ComboBox.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </ComboBox.Effect>
+                                                                <ComboBoxItem Content="PowerShell" IsSelected="True"/>
+                                                                <ComboBoxItem Content="Python"/>
+                                                            </ComboBox>
+                                                        </Grid>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What license type do you want to apply to the SmartResponse PlugIn." HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                    </Grid>
+                                                    <Grid Height="10" DockPanel.Dock="Top"></Grid>
+                                                </DockPanel>
+                                            </Grid>
+                                        </DockPanel>
+                                    </Grid>
+                                </ScrollViewer>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tiModulesExtensions" Header="Mod/Ext" Margin="-2,-2,-2,3" Background="#FF6E6D6D" >
+                            <Grid Background="#FF121212">
+                                <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                    <Grid Background="#FF121212">
+                                        <DockPanel Margin="10,10,40,0" LastChildFill="False" >
+                                            <Grid DockPanel.Dock="Top" Margin="0,0,0,25">
+                                                <Rectangle Fill="#FF2E2E2E" RadiusY="3" RadiusX="3"/>
+                                                <Rectangle Fill="#FF121212" Height="1" Margin="0,45,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="Modules/Extensions" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
+                                                <DockPanel Margin="15,50,0,0" LastChildFill="False">
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="40"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="API wrappers:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.35986239" Data="M 9.0393091 2.3963567 8.2478924 3.9798919 C 7.7440805 4.1238323 7.2761225 4.3036252 6.8442876 4.5555312 L 5.1532194 3.9798919 3.8937005 5.239408 4.4334941 6.9304735 C 4.1815868 7.3623084 4.0010907 7.8662563 3.8571489 8.3340797 L 2.2743197 9.1261669 v 1.7993161 l 1.5828292 0.791448 c 0.1439418 0.503812 0.3244379 0.971772 0.5763452 1.403607 l -0.5397936 1.691065 1.2595189 1.259516 1.6910682 -0.539787 c 0.4318349 0.251906 0.8997929 0.431686 1.4036048 0.575626 l 0.7914167 1.583549 H 10.83862 l 0.792123 -1.583549 c 0.50381 -0.14394 0.971063 -0.32372 1.402897 -0.575626 l 1.691776 0.575626 1.259512 -1.295355 -0.539787 -1.655226 c 0.251906 -0.431835 0.431685 -0.899836 0.575639 -1.403607 l 1.583536 -0.791407 V 9.1620466 L 16.02078 8.3699186 C 15.876826 7.8661203 15.697047 7.3988273 15.445141 6.9669924 L 16.02078 5.2752469 14.725416 3.9798919 13.03364 4.5555312 C 12.601806 4.3036252 12.098563 4.1238323 11.630743 3.9798919 L 10.83862 2.3963567 Z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.43972385" Data="M 0 1.9569865 V 18.042826 H 3.409611 V 16.763318 H 1.5461588 V 3.2364949 H 3.409611 V 1.9569865 Z m 16.590202 0 v 1.2795084 h 1.863969 V 16.763318 h -1.863969 v 1.279508 h 3.409611 V 1.9569865 Z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.17277743" Data="M 6.3251952 7.5700804 4.3981811 12.517065 h 1.0598835 l 0.4082439 -1.123962 h 1.977657 l 0.4314983 1.123962 H 9.3622192 L 7.3814616 7.5700804 Z m 3.5703248 0 v 4.9469846 h 0.998905 v -1.866036 h 0.651123 c 0.452191 0 0.797644 -0.02359 1.036113 -0.0708 0.175477 -0.03824 0.347519 -0.116074 0.516247 -0.233061 0.170977 -0.119237 0.311444 -0.282404 0.42168 -0.489376 0.110237 -0.2069717 0.165365 -0.4621377 0.165365 -0.7658447 0 -0.3937029 -0.09558 -0.7142345 -0.286805 -0.9616982 C 13.206923 7.880528 12.969511 7.7182114 12.686047 7.6439778 12.501572 7.5944517 12.105944 7.5700804 11.498523 7.5700804 Z m 4.585766 0 v 4.9469846 h 0.998906 V 7.5700804 Z M 10.894425 8.406722 h 0.482658 c 0.359953 -2e-7 0.599585 0.011605 0.718819 0.034106 0.16198 0.029241 0.29579 0.1021212 0.401526 0.2191081 0.105736 0.1169868 0.158647 0.2654702 0.158647 0.4454506 0 0.1462725 -0.03823 0.2742806 -0.114722 0.3844729 -0.07424 0.1102471 -0.177843 0.1916639 -0.310575 0.2433958 -0.132733 0.051732 -0.395917 0.077515 -0.789616 0.077515 H 10.894425 Z M 6.8414428 8.7240151 7.523055 10.559562 H 6.1732665 Z"/>
+                                                        </Canvas>
+                                                        <Grid MinHeight="135" Margin="25,20,0,0" MinWidth="355">
+                                                            <Rectangle Fill="#FF007BC2" Margin="5,5,10,5">
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <Grid Margin="6,6,11,0">
+                                                                <DataGrid x:Name="rtModulesExtensionsAPIWrappers" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
+                                                                    <DataGrid.Columns>
+                                                                        <DataGridCheckBoxColumn Binding="{Binding Checked}" Header="{x:Null}" MinWidth="20" MaxWidth="30" ClipboardContentBinding="{x:Null}"/>
+                                                                        <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="100" IsReadOnly="True"/>
+                                                                    </DataGrid.Columns>
+                                                                </DataGrid>
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="XXXXXX." HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="40"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Simplifiers / Prebuilt functions:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="M 3.0577667e-6 18.235298 H 20.000003 v 1.764706 H 3.0577667e-6 Z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.29411763" Data="M 3.0577667e-6 -4.3702667e-6 H 2.3529441 V 17.058818 H 3.0577667e-6 Z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="m 14.705873 14.705866 h 5.294117 v 2.352941 h -5.294117 z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="M 14.705873 4.7058821 H 19.99999 V 13.529411 H 14.705873 Z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="M 14.705873 1.1764842 H 19.99999 V 3.5294253 H 14.705873 Z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.29411763" Data="m 11.176475 6.4705813 c -0.323527 0 -0.588239 -0.2647114 -0.588239 -0.588239 0 -0.3235275 0.264712 -0.5882278 0.588239 -0.5882278 0.323528 0 0.588228 0.2647003 0.588228 0.5882278 0 0.3235276 -0.2647 0.588239 -0.588228 0.588239 z m 0 9.4117677 c -0.323527 0 -0.588239 -0.264711 -0.588239 -0.588239 0 -0.323527 0.264712 -0.588239 0.588239 -0.588239 0.323528 0 0.588228 0.264712 0.588228 0.588239 0 0.323528 -0.2647 0.588239 -0.588228 0.588239 z M 13.529409 4.1176365 H 8.8235306 V 17.058816 h 4.7058784 z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.29411763" Data="M 6.4705858 4.7058755 H 4.70588 V 2.9411697 H 6.4705858 Z M 7.6470638 1.7647029 H 3.5294132 V 17.058816 h 4.1176506 z"/>
+                                                        </Canvas>
+                                                        <Grid MinHeight="135" Margin="25,20,0,0" MinWidth="355">
+                                                            <Rectangle Fill="#FF007BC2" Margin="5,5,10,5">
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <Grid Margin="6,6,11,0">
+                                                                <DataGrid x:Name="rtModulesExtensionsSimplifiersPrebuiltFunctions" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
+                                                                    <DataGrid.Columns>
+                                                                        <DataGridCheckBoxColumn Binding="{Binding Checked}" Header="{x:Null}" MinWidth="20" MaxWidth="30" ClipboardContentBinding="{x:Null}"/>
+                                                                        <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="100" IsReadOnly="True"/>
+                                                                    </DataGrid.Columns>
+                                                                </DataGrid>
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="XXXXXX." HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                    </Grid>
+                                                    <Grid Height="10" DockPanel.Dock="Top"></Grid>
+                                                </DockPanel>
+                                            </Grid>
+                                        </DockPanel>
+                                    </Grid>
+                                </ScrollViewer>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tiSign" Header="Sign" Margin="-2,-2,-2,3" Background="#FF6E6D6D" >
+                            <Grid Background="#FF121212">
+                                <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                    <Grid Background="#FF121212">
+                                        <DockPanel Margin="10,10,40,0" LastChildFill="False" >
+                                            <Grid DockPanel.Dock="Top" Margin="0,0,0,25">
+                                                <Rectangle Fill="#FF2E2E2E" RadiusY="3" RadiusX="3"/>
+                                                <Rectangle Fill="#FF121212" Height="1" Margin="0,45,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="Sign" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
+                                                <DockPanel Margin="15,50,0,0" LastChildFill="False">
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Label Content="Signing Process:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path Fill="#FFFFFFFF" StrokeThickness="0.28417033" Data="m 10.272791 7.0645277 v 0 l 1.599885 0.6621178 c 0.05714 -1.0499498 0.95464 -1.8547847 2.004622 -1.7976356 0.731425 0.039847 1.375156 0.4957077 1.655488 1.1724645 0.271246 0.677573 0.143082 1.4497466 -0.332477 2.0033981 l 1.92667 0.7985195 0.03415 0.014177 2.838864 -6.8683978 -6.888288 -2.84169971 -1.071323 2.63425091 v 0 l -0.08238 0.1960856 -0.02277 -0.09097 C 11.622459 2.1955434 10.761109 1.8385467 10.008569 2.1483184 9.6786481 2.2907669 9.4098185 2.545473 9.2498311 2.8672738 8.9837402 3.6354412 9.3907223 4.4739146 10.158922 4.7400055 c 0.340725 0.1180466 0.71293 0.1068659 1.046008 -0.031362 l 0.09097 -0.036947 -0.05402 0.1307201 v 0 z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.28417033" Data="M 9.5538459 17.144049 C 10.298825 16.897537 10.702939 16.093755 10.456428 15.348776 10.209906 14.603797 9.4061346 14.199704 8.6611554 14.446194 8.3781164 14.539849 8.1316803 14.720168 7.9568068 14.96162 v -2.557533 h -1.724913 c 0.012459 0.09419 0.019118 0.189116 0.01987 0.284167 0 1.255551 -1.0178149 2.273366 -2.2733663 2.273366 -1.2555406 0 -2.2733555 -1.017815 -2.2733555 -2.273366 7.626e-4 -0.09505 0.00752 -0.189931 0.01987 -0.284167 H -1.843432e-6 V 19.79252 H 7.9567639 v -3.125878 c 0.031684 0.04361 0.065838 0.08539 0.1022476 0.125039 0.015359 0.02911 0.033402 0.05671 0.054024 0.08238 0.335892 0.32165 0.8148877 0.445464 1.2645624 0.326795 0.048331 0 0.093763 -0.02846 0.1392372 -0.04264 z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.28417033" Data="m 13.071873 12.398406 c 0.04414 -0.03211 0.08592 -0.06723 0.125038 -0.105148 0.03104 -0.01181 0.05918 -0.03029 0.08238 -0.05402 0.349296 -0.374343 0.464959 -0.910165 0.301223 -1.395283 v -0.04264 c -0.264061 -0.738954 -1.077155 -1.1239183 -1.816109 -0.8598681 -0.738954 0.2640501 -1.123918 1.0771441 -0.859868 1.8161091 0.09043 0.25302 0.250689 0.475215 0.462284 0.640798 H 8.8092856 v 1.165107 c 0.0943 -0.01138 0.1892011 -0.01708 0.2841667 -0.01708 1.2555517 0 2.2733667 1.017815 2.2733667 2.273367 0 1.255551 -1.017815 2.273355 -2.2733667 2.273355 -0.095052 -8.81e-4 -0.1899313 -0.0075 -0.2841667 -0.01987 v 1.71355 h 7.3884324 v -7.388421 z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.28417033" Data="M 7.9568068 6.5388117 V 3.5891291 H 4.1117752e-5 V 11.545895 H 3.1259076 c -0.35777 0.268346 -0.5683335 0.689452 -0.5683335 1.136678 0 0.784707 0.636137 1.420855 1.4208445 1.420855 0.7847075 0 1.4208552 -0.636148 1.4208552 -1.420855 0 -0.447226 -0.2105742 -0.868332 -0.5683442 -1.136678 H 7.9568068 V 8.6246202 C 7.345641 9.198109 6.3940723 9.198109 5.7829065 8.6246202 5.2069151 8.0620757 5.1960352 7.1391191 5.7586334 6.5631385 c 0.00752 -0.00859 0.01611 -0.016325 0.024273 -0.024273 0.6111658 -0.5734781 1.5627345 -0.5734781 2.1739003 0 z"/>
+                                                            </Canvas>
+                                                            <RadioButton x:Name="rbSignSigningProcessBuiltIn" GroupName="SignSigningProcess" Content="Built-In" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
+                                                            <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            </Canvas>
+                                                            <RadioButton Grid.Column="2" x:Name="rbSignSigningProcessCustom" GroupName="SignSigningProcess" Content="Custom / 3rd Party" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Label Content="Workflow:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.29411757" Data="M 17.985294 18.235292 H 3.2794229 V 1.7647034 H 17.985294 Z M 1.5147174 -2.0329151e-6 V 1.7647034 H 1.1323627 C 0.66176716 1.7941615 0.33823968 2.1764718 0.33823968 2.6470562 0.3087816 3.1176517 0.66176716 3.5000064 1.1323627 3.5294089 H 1.5147174 V 4.7058867 H 1.1323627 c -0.49999803 0 -0.88235274 0.3823547 -0.88235274 0.8823527 0 0.499998 0.38235471 0.8823527 0.88235274 0.8823527 H 1.5147174 V 7.6470588 H 1.1323627 c -0.49999803 0 -0.88235274 0.3823547 -0.88235274 0.8823527 0 0.499998 0.38235471 0.8823527 0.88235274 0.8823527 H 1.5147174 V 10.588231 H 1.1323627 c -0.49999803 0 -0.88235274 0.382355 -0.88235274 0.882353 0 0.500009 0.38235471 0.882352 0.88235274 0.882352 h 0.3823547 v 1.176478 H 1.1323627 c -0.49999803 0 -0.88235274 0.382355 -0.88235274 0.882353 0 0.499998 0.38235471 0.882353 0.88235274 0.882353 h 0.3823547 v 1.176466 H 1.1323627 c -0.49999803 0 -0.88235274 0.382355 -0.88235274 0.882353 0 0.499998 0.38235471 0.882353 0.88235274 0.882353 h 0.3823547 v 1.764705 H 19.75 V -2.0329145e-6 Z"/>
+                                                                <Path Fill="#FFFFFFFF" StrokeThickness="0.29411757" Data="m 7.3970616 12.941175 c 0.6470661 0 1.1764777 0.529412 1.1764777 1.176467 0 0.647066 -0.5294116 1.176478 -1.1764777 1.176478 -0.647055 0 -1.1764666 -0.529412 -1.1764666 -1.176478 0 -0.647055 0.5294116 -1.176467 1.1764666 -1.176467 z m 0 3.529411 c 1.1764777 0 2.1764738 -0.882353 2.3235307 -2.058819 0.147057 -1.176478 -0.5882388 -2.264704 -1.7352918 -2.558829 V 11.17647 c 0 -0.323528 0.2647002 -0.588239 0.5882388 -0.588239 h 4.1176387 c 0.970594 0 1.764706 -0.7941121 1.764706 -1.7647056 V 5.5294122 l 0.764709 0.7647094 c 0.235298 0.2352866 0.588239 0.2352866 0.823525 0 0.235298 -0.2352978 0.235298 -0.5882389 0 -0.8235366 L 14.279413 3.7058795 c -0.117643 -0.1176433 -0.2647 -0.1764706 -0.411757 -0.1764706 -0.147068 0 -0.294125 0.058805 -0.411769 0.1764706 L 11.691182 5.470585 c -0.235298 0.2352977 -0.235298 0.5882388 0 0.8235366 0.235298 0.2352866 0.588239 0.2352866 0.823525 0 l 0.76471 -0.7647094 v 3.2941132 c 0 0.3235386 -0.264711 0.5882388 -0.588239 0.5882388 H 8.5735393 c -0.9705935 0 -1.7647054 0.7941228 -1.7647054 1.7647058 v 0.676468 c -1.1470642 0.294125 -1.88236 1.411765 -1.735303 2.558829 0.147068 1.176466 1.1470641 2.058819 2.3235307 2.058819 z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.29411757" Data="m 16.044118 11.941179 c -0.117643 -0.117654 -0.2647 -0.17647 -0.411757 -0.17647 -0.147068 0 -0.294125 0.0588 -0.411768 0.17647 l -1.352937 1.352937 -1.352949 -1.352937 c -0.235286 -0.235298 -0.588227 -0.235298 -0.823525 0 -0.235298 0.235287 -0.235298 0.588228 0 0.823526 l 1.352937 1.352937 -1.352937 1.352948 c -0.235298 0.235287 -0.235298 0.588228 0 0.823526 0.235298 0.235297 0.588239 0.235297 0.823525 0 l 1.352949 -1.352938 1.352937 1.352938 c 0.235298 0.235297 0.588239 0.235297 0.823525 0 0.235298 -0.235298 0.235298 -0.588239 0 -0.823526 l -1.352937 -1.352948 1.352937 -1.352937 c 0.235298 -0.235298 0.235298 -0.588239 0 -0.823526 z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.29411757" Data="m 5.2205989 8.0588271 c 0.1176433 0.1176433 0.2647003 0.1764705 0.4117572 0.1764705 0.147057 0 0.294125 -0.058805 0.4117683 -0.1764705 L 7.3970616 6.7058788 8.7500099 8.0588271 c 0.2352866 0.2352866 0.5882277 0.2352866 0.8235255 0 0.2352978 -0.2352978 0.2352978 -0.5882389 0 -0.8235367 L 8.2205982 5.8823533 9.5735354 4.5294161 c 0.2352978 -0.2352978 0.2352978 -0.5882389 0 -0.8235366 -0.2352978 -0.2352867 -0.5882389 -0.2352867 -0.8235255 0 L 7.3970616 5.0588278 6.0441244 3.7058795 c -0.2352977 -0.2352867 -0.5882388 -0.2352867 -0.8235255 0 -0.2352977 0.2352977 -0.2352977 0.5882388 0 0.8235366 L 6.5735361 5.8823533 5.2205989 7.2352904 c -0.2352977 0.2352978 -0.2352977 0.5882389 0 0.8235367 z"/>
+                                                            </Canvas>
+                                                            <RadioButton x:Name="rbSignWorkflowAuto" GroupName="SignWorkflow" Content="Auto: Sign Every Build" Height="30" VerticalAlignment="Top" Width="180" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
+                                                            <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            </Canvas>
+                                                            <RadioButton Grid.Column="2" x:Name="rbSignWorkflowManual" GroupName="SignWorkflow" Content="Manual: On Demand" Height="30" VerticalAlignment="Top" Width="170" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Content="Built-in Signing Process" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontWeight="Bold" Background="#FF2E2E2E"/>
+                                                            <Rectangle Fill="#FF007BC2" Height="1" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Column="1"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Label Content="Certificate Source:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.23310064" Data="m 8.11188 14.00935 c -0.3263438 0 -0.6293673 -0.06995 -0.9323996 -0.186483 -0.4895158 -0.186484 -0.909097 -0.53613 -1.2121293 -0.979023 -0.023347 0 -0.069952 -0.02335 -0.093237 -0.02335 l -2.797208 5.501182 2.354315 -0.53613 L 6.6200388 20 9.5337954 14.312339 c -0.3263438 -0.04661 -0.6526789 -0.186475 -0.9323996 -0.349647 -0.163172 0.02335 -0.3263439 0.0466 -0.4895158 0.0466 z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.23310064" Data="m 12.983682 13.706318 c -0.326335 0.13986 -0.67599 0.209786 -1.025637 0.209786 -0.186483 0 -0.349655 -0.02335 -0.536139 -0.04661 -0.349646 0.233106 -0.745916 0.396278 -1.165497 0.442892 l 3.076928 5.547802 1.212121 -1.981357 2.377626 0.396269 -2.960379 -5.314694 c -0.25641 0.326343 -0.582753 0.582753 -0.979023 0.745925 z"/>
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="0.23310064" Data="m 9.8601392 10.815873 c -2.2144634 0 -4.0326485 -1.7948824 -4.0326485 -4.0326485 0 -2.2377662 1.8181851 -4.0326397 4.0326485 -4.0326397 2.2144548 0 4.0326398 1.7948735 4.0326398 4.0326397 0 2.2377661 -1.818185 4.0326485 -4.0326398 4.0326485 z M 16.736601 6.7832245 c 0 -0.5128185 -0.209786 -0.9790227 -0.559442 -1.3053578 0.186484 -0.4428927 0.209795 -0.9557111 0 -1.4219154 C 15.990685 3.6363702 15.664341 3.3100263 15.268071 3.1468544 15.244724 2.7272732 15.081588 2.3076921 14.755253 1.9813571 14.382286 1.6083902 13.91609 1.445227 13.426575 1.4685298 13.263403 1.0256459 12.913756 0.65267898 12.42424 0.46620434 c -0.419581 -0.16317192 -0.885776 -0.16317192 -1.282055 0 C 10.81585 0.18648356 10.419581 1.1018483e-7 9.9533766 1.1018483e-7 9.4405581 1.1018483e-7 8.9743538 0.20978629 8.64801 0.55944166 8.2051173 0.3729582 7.6922988 0.34964667 7.2260946 0.55944166 6.8065134 0.74592511 6.4801784 1.0722601 6.3170065 1.4685298 5.8974253 1.4918765 5.4778442 1.6550132 5.1515003 1.9813571 4.7785422 2.3543152 4.6153703 2.8205194 4.6386819 3.3100263 4.1957892 3.4731982 3.8228311 3.8228536 3.6363476 4.3123606 c -0.1631719 0.4195811 -0.1631719 0.8857854 0 1.282055 -0.2797208 0.3263438 -0.4662042 0.7226134 -0.4662042 1.1888089 0 0.5128273 0.209795 0.9790227 0.5594415 1.3053665 -0.1864746 0.4428927 -0.2097861 0.9557112 0 1.4219154 0.1864835 0.4195812 0.5128273 0.7459246 0.909097 0.9090886 0.023347 0.419581 0.1864834 0.839162 0.5128184 1.165506 0.3729669 0.372958 0.8391624 0.53613 1.3286781 0.512818 0.1631719 0.442893 0.5128185 0.81586 1.0023343 1.002334 0.4195811 0.163172 0.8857765 0.163172 1.2820462 0 0.3263438 0.279721 0.7226134 0.466205 1.1888177 0.466205 0.5128184 0 0.9790224 -0.209795 1.3053664 -0.559442 0.442884 0.186484 0.955711 0.209786 1.421907 0 0.419581 -0.186483 0.745925 -0.512818 0.909097 -0.909097 0.419581 -0.02335 0.839162 -0.186474 1.165506 -0.512818 0.372958 -0.372958 0.53613 -0.839163 0.512818 -1.32867 0.442893 -0.163172 0.815851 -0.5128269 1.002334 -1.0023338 0.163172 -0.4195812 0.163172 -0.8857854 0 -1.282055 0.279721 -0.3030324 0.466196 -0.7226135 0.466196 -1.1888177 z"/>
+                                                            </Canvas>
+                                                            <RadioButton x:Name="rbSignCertificateSourceLocalCertificateStore" GroupName="SignCertificateSource" Content="Local Certificate Store" Height="30" VerticalAlignment="Top" Width="170" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
+                                                            <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            </Canvas>
+                                                            <RadioButton Grid.Column="2" x:Name="rbSignCertificateSourcePBXFile" GroupName="SignCertificateSource" Content="PBF File" Height="30" VerticalAlignment="Top" Width="170" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="90"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Certificate Path:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.24310073" Data="m 14.409209 17.824147 c -0.127218 1.19e-4 -0.249401 -0.04962 -0.340344 -0.138566 -0.967273 -0.920524 -1.811344 -1.962358 -2.511235 -3.099536 -0.699616 -1.186914 -1.058777 -2.543614 -1.038039 -3.921216 0.01681 -0.267997 0.247774 -0.471596 0.515762 -0.454717 6.8e-4 1.8e-5 9.19e-4 7.3e-5 0.0018 1.19e-4 0.267997 0.01681 0.471595 0.247765 0.454726 0.515763 -2.7e-5 6.8e-4 -7.3e-5 9.19e-4 -1.29e-4 0.0018 -0.0046 1.184773 0.308526 2.34913 0.90677 3.371807 0.653216 1.06055 1.440908 2.032105 2.343488 2.890462 0.192031 0.187703 0.195531 0.49554 0.0074 0.687543 -0.08986 0.09189 -0.212373 0.144501 -0.34085 0.146301 z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.24310073" Data="m 13.157235 18.988595 c -0.128376 1.01e-4 -0.251606 -0.05063 -0.34277 -0.141 C 11.763783 17.833509 10.846419 16.689862 10.084444 15.444191 9.2128281 13.963563 8.7740339 12.268127 8.8178885 10.550575 8.8956195 9.3447161 9.936103 8.4301734 11.141953 8.5078676 c 0.0037 2.205e-4 0.0064 4.41e-4 0.0097 6.615e-4 1.201551 0.078098 2.114155 1.1123984 2.042047 2.3143159 0.017 0.854958 0.25122 1.69154 0.680688 2.431005 0.52201 0.846845 1.14486 1.627242 1.854858 2.324046 0.189301 0.190643 0.188208 0.498672 -0.0028 0.687974 -0.190643 0.189302 -0.498672 0.188208 -0.687974 -0.0028 -0.77165 -0.753734 -1.445484 -1.601525 -2.005588 -2.523391 -0.527183 -0.898932 -0.807309 -1.921296 -0.811949 -2.963397 0.04511 -0.669791 -0.461286 -1.2493188 -1.13105 -1.2944322 -0.321821 -0.021684 -0.639039 0.085449 -0.881824 0.2977207 -0.245312 0.2118674 -0.39584 0.5129235 -0.4181394 0.8362695 -0.034731 1.52305 0.3577284 3.025417 1.1328514 4.33692 0.719581 1.171597 1.5846 2.247363 2.574439 3.201635 0.189981 0.189761 0.190156 0.497598 3.86e-4 0.687588 -1.47e-4 1.38e-4 -2.67e-4 2.67e-4 -3.86e-4 3.86e-4 -0.08977 0.0916 -0.212107 0.144032 -0.340344 0.145861 z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.24310073" Data="m 8.4337909 19.999897 c -0.055588 -3.4e-4 -0.110661 -0.0102 -0.1628767 -0.02922 -0.2529014 -0.09023 -0.3847592 -0.368422 -0.2945141 -0.621315 1.194e-4 -3.4e-4 2.389e-4 -6.79e-4 3.583e-4 -9.18e-4 0.3670814 -1.016163 1.1206952 -1.648228 1.9666858 -1.648228 0.8459908 0 1.5679978 0.610188 1.9448088 1.592309 0.09535 0.251027 -0.03087 0.531814 -0.28188 0.627159 -4.6e-5 1.8e-5 -7.4e-5 1.8e-5 -1.2e-4 4.6e-5 -0.251027 0.09534 -0.531805 -0.03087 -0.627149 -0.281881 -2.8e-5 -4.6e-5 -2.8e-5 -7.3e-5 -4.6e-5 -1.19e-4 -0.226091 -0.595598 -0.622344 -0.9724 -1.0331789 -0.9724 -0.4108441 0 -0.8338348 0.403549 -1.0526301 1.025883 -0.073872 0.188576 -0.2569533 0.311558 -0.4594581 0.308738 z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.24310073" Data="M 6.7296539 19.080972 C 6.5998634 19.078216 6.4764402 19.02419 6.3868842 18.930251 6.1942197 18.74321 6.1896533 18.435401 6.3766854 18.242736 c 0.00368 -0.0037 0.00643 -0.0064 0.010199 -0.0102 C 7.1161866 17.544562 8.2271516 16.100548 7.5780795 14.153314 7.1845917 12.970213 7.0276505 11.72128 7.1161866 10.47763 V 10.43628 C 7.254724 8.292573 9.1048408 6.6670766 11.248553 6.8056233 c 0.0055 3.859e-4 0.01158 7.718e-4 0.01736 9.189e-4 2.115615 0.1469722 3.727027 1.9558898 3.629495 4.0743618 -0.01277 0.268531 -0.240764 0.475878 -0.509294 0.463115 -0.26853 -0.01277 -0.475868 -0.240773 -0.463106 -0.509303 C 14.014977 9.2235899 12.783455 7.8429553 11.172329 7.7509828 9.5612026 7.6590195 8.1805588 8.8905411 8.0885955 10.501667 v 0.04373 c -0.07819 1.120576 0.064684 2.245599 0.4205651 3.311037 0.8192441 2.460177 -0.5518441 4.246969 -1.4440231 5.09296 -0.09087 0.08508 -0.2109578 0.132078 -0.3354744 0.13127 z m 9.4809291 -4.266411 c -0.130526 -0.0037 -0.254041 -0.05981 -0.34277 -0.155591 -0.517637 -0.540892 -0.975689 -1.135864 -1.366228 -1.774627 -0.144059 -0.226624 -0.07718 -0.527092 0.149481 -0.671161 0.226596 -0.144059 0.527091 -0.07718 0.671151 0.14949 0.0074 0.01149 0.01415 0.02334 0.02049 0.03547 0.351646 0.5778 0.764897 1.115752 1.232523 1.604465 0.182613 0.196863 0.171073 0.504479 -0.02582 0.687101 -2.94e-4 2.85e-4 -6.06e-4 5.79e-4 -9.19e-4 8.73e-4 -0.09078 0.08132 -0.208771 0.125537 -0.330614 0.123984 z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.24310073" Data="m 4.9866239 17.488663 c -0.1392726 4.41e-4 -0.2720309 -0.0589 -0.3646557 -0.162877 -0.1786251 -0.200483 -0.1608829 -0.507833 0.0396 -0.68644 5.881e-4 -5.14e-4 9.188e-4 -9.19e-4 0.00184 -0.0018 0.6004562 -0.53243 1.2738491 -1.43433 1.0842259 -2.715476 C 5.7208969 13.747037 5.6916788 13.569579 5.6649416 13.394546 5.4679312 12.394261 5.3863412 11.374671 5.4218347 10.355789 v -0.034 C 5.6281801 7.2407055 8.2931952 4.9102737 11.374282 5.1166191 c 0.0018 1.47e-4 0.0037 2.665e-4 0.0055 4.135e-4 2.841849 0.189614 5.175616 2.5258159 5.216944 5.2047874 0.01746 0.487657 0.237796 0.945874 0.607744 1.264121 0.192609 0.185608 0.199124 0.49191 0.01461 0.685549 -0.184947 0.194667 -0.492691 0.202551 -0.687368 0.01764 -1.93e-4 -2.02e-4 -4.13e-4 -3.95e-4 -6.06e-4 -5.88e-4 C 15.976046 11.791201 15.648473 11.08859 15.624327 10.343733 15.600082 8.1558271 13.679539 6.2572064 11.326321 6.0991902 8.781954 5.9158976 6.5707556 7.829899 6.3874355 10.374266 c -3.124e-4 0.0046 -6.065e-4 0.0092 -9.189e-4 0.01323 v 0.034 c -0.026921 0.947004 0.054669 1.893953 0.2431069 2.822398 0.029126 0.177467 0.055863 0.354934 0.082601 0.534827 0.2698441 1.801375 -0.7609 3.019307 -1.4002603 3.585733 -0.089492 0.08021 -0.2055828 0.124351 -0.3257535 0.123983 z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.24310073" Data="M 16.560648 7.1495875 C 16.406325 7.1497897 16.261071 7.0767262 16.169255 6.9526782 15.043993 5.44161 13.30937 4.5040236 11.428795 4.3903949 9.8259749 4.2801014 8.2415675 4.7862165 6.999498 5.8052458 6.8055749 5.9910008 6.4978116 5.9843578 6.3120566 5.790453 6.1263292 5.5965298 6.1329354 5.2887574 6.3268494 5.1030116 c 0.018652 -0.017917 0.038774 -0.034272 0.059998 -0.048972 1.4303788 -1.1769996 3.257158 -1.7615807 5.1051156 -1.633637 2.166002 0.1330983 4.163367 1.2135773 5.460041 2.9536672 0.154681 0.2177478 0.104753 0.5195112 -0.111828 0.6758185 -0.08049 0.06156 -0.178266 0.096392 -0.279565 0.099672 z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.24310073" Data="M 3.1293311 7.9542594 C 3.0667605 7.9539379 3.0048605 7.9415799 2.9470033 7.9177828 2.7029592 7.8167509 2.5842219 7.5393175 2.679594 7.2930132 4.1492333 3.7109195 7.7427018 1.4679488 11.606253 1.7211441 c 1.018037 0.070197 2.017174 0.310143 2.956102 0.7098511 0.251101 0.095152 0.377519 0.3758376 0.282368 0.6269289 -0.09512 0.2511005 -0.375838 0.3775374 -0.626938 0.2823858 -0.01176 -0.00459 -0.02334 -0.00937 -0.03464 -0.014701 C 13.343918 2.9722363 12.451693 2.7611038 11.543076 2.7008393 8.0977284 2.4675821 4.889699 4.4652408 3.5790958 7.6600945 3.5019161 7.8396016 3.3247612 7.9554814 3.1293587 7.9542502 Z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.24310073" Data="M 5.6891797 2.4626113 C 5.420677 2.4644489 5.2015969 2.2480518 5.1998696 1.9795399 5.1989508 1.8084766 5.2876155 1.6494129 5.4339262 1.5607022 7.0840925 0.55293747 8.9774851 0.01340542 10.910984 3.9731674e-8 c 0.264983 0 0.539688 0 0.809532 0.02434836026833 0.268521 0.01810048 0.471513 0.25049407 0.453376 0.51901511 -0.0181 0.26853023 -0.250485 0.47152199 -0.519015 0.4533848 C 11.41177 0.9797504 11.168672 0.97239995 10.925574 0.97488073 9.1688816 0.98654956 7.4485277 1.476512 5.9493028 2.3921573 c -0.077639 0.049248 -0.1682793 0.07378 -0.2601231 0.070472 z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.24310073" Data="M 3.4234869 15.833149 C 3.1549566 15.833122 2.9373099 15.615401 2.9373558 15.34688 2.9373834 15.186503 3.016465 15.036462 3.1487823 14.945831 3.6836008 14.576324 4.0263706 14.262717 3.921838 13.266005 3.9023593 13.081252 3.8781029 12.894063 3.8562353 12.70444 3.7318198 11.888237 3.6886451 11.061689 3.7274003 10.236969 v -0.02674 C 3.8185459 8.78916 4.325837 7.426286 5.1860048 6.2914503 5.332683 6.0665266 5.6339411 6.003129 5.8588556 6.149844 6.0837701 6.2965222 6.1471677 6.5977803 6.0004619 6.8226948 5.9879662 6.8418978 5.9740922 6.8600902 5.9590238 6.8773637 5.2134863 7.8633803 4.7746829 9.0470413 4.6973286 10.280777 v 0.02435 c -0.031883 0.765549 0.00965 1.532384 0.1239837 2.290004 0.024348 0.192049 0.046216 0.384098 0.065603 0.573721 0.1628767 1.519374 -0.5275325 2.129562 -1.1887604 2.581725 -0.08113 0.05458 -0.1769069 0.08334 -0.2747046 0.08269 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
+                                                            <Rectangle Fill="#FF007BC2" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <TextBox x:Name="tbSignCertificatePath" Height="28" Margin="6,6,11,0" Text="Cert:\CurrentUser\My" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                        </Grid>
+                                                        <Button x:Name="btSignCertificatePathBrowse" Content="Browse" Height="30" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
+                                                            <Button.Effect>
+                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                            </Button.Effect>
+                                                            <Button.Background>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                    <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Button.Background>
+                                                        </Button>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Path to your certificate store (ie. Cert:\) or PBF file." HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Content="Custom / 3rd Party Signing Script/Tool" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontWeight="Bold" Background="#FF2E2E2E"/>
+                                                            <Rectangle Fill="#FF007BC2" Height="1" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Column="1"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="90"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Command Line:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="2.99100471" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 1.4939771 5.3714608e-7 A 1.4956519 1.4956519 0 0 0 0.45283499 2.5678047 L 4.5537816 6.6687519 0.45153888 10.770995 A 1.4958016 1.4958016 0 1 0 2.5675684 12.885729 L 7.726533 7.72677 a 1.4956519 1.4956519 0 0 0 0 -2.1147407 L 2.5675684 0.45307128 A 1.4956519 1.4956519 0 0 0 1.4939771 5.3714608e-7 Z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="2.99100471" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 10.191772 10.347787 a 1.4956519 1.4956519 0 1 0 0 2.991006 h 8.291471 a 1.4956519 1.4956519 0 1 0 0 -2.991006 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
+                                                            <Rectangle Fill="Red" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <TextBox x:Name="tbSignCustomScriptCommand" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                        </Grid>
+                                                        <Button x:Name="btSignCustomScriptBrowse" Content="Browse" Height="30" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
+                                                            <Button.Effect>
+                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                            </Button.Effect>
+                                                            <Button.Background>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                    <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Button.Background>
+                                                        </Button>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Path to your certificate store (ie. Cert:\) or PBF file." HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Label Content="Note:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="2.47214246" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 10.00001 0 A 9.9999953 9.9999953 0 0 0 0 9.999996 9.9999953 9.9999953 0 0 0 10.00001 19.999991 9.9999953 9.9999953 0 0 0 20 9.999996 9.9999953 9.9999953 0 0 0 10.00001 0 Z M 8.47029 1.974371 h 3.01215 V 4.637382 H 8.47029 Z M 6.68113 6.601083 h 4.9759 v 2.433481 4.593924 h 1.57118 v 2.706419 H 6.85571 V 13.628488 H 8.60147 V 9.35091 H 6.68113 Z"/>
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.05223501" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 8.4702839 1.9745564 V 4.637443 H 11.482503 V 1.9745564 Z m -1.7890381 4.626591 v 2.7497029 h 1.9202963 v 4.2777747 h -1.74563 V 16.33492 H 13.228133 V 13.628625 H 11.65717 V 9.0345904 6.6011474 Z"/>
+                                                        </Canvas>
+                                                        <Grid Margin="25,20,0,0">
+                                                            <TextBlock Margin="6,10,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFCCCCCC"><Run FontWeight="Bold" Text="%SRP"/><Run Text=" will be replaced by the script name, including full path and extension."/></TextBlock>
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Button x:Name="btSignSign" Content="Sign" Height="30" VerticalAlignment="Top" HorizontalContentAlignment="Center" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,10,10,0"  Style="{DynamicResource BlueButtonStyle}" Grid.Column="1">
+                                                            <Button.Effect>
+                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                            </Button.Effect>
+                                                            <Button.Background>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF007DC3" Offset="0"/>
+                                                                    <GradientStop Color="#FF006DAA" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Button.Background>
+                                                        </Button>
+                                                    </Grid>
+                                                    <Grid Height="10" DockPanel.Dock="Top"></Grid>
+                                                </DockPanel>
+                                            </Grid>
+                                        </DockPanel>
                                     </Grid>
                                 </ScrollViewer>
                             </Grid>

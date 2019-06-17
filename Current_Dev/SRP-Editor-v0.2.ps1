@@ -290,7 +290,9 @@ $ListViewToTab=@{
     2 = 2; # Action_X
     3 = 3; # Output
     4 = 4; # Preferences
-    5 = 5; # 
+    5 = 5; # Language
+    6 = 6; # Modules / Extensions
+    7 = 7; # Sign
   }
 
 ############################

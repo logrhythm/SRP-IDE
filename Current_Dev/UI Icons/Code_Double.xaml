@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is compatible with Silverlight-->
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="svg5774" Width="210" Height="297">
+  <Canvas.RenderTransform>
+    <TranslateTransform X="0" Y="0"/>
+  </Canvas.RenderTransform>
+  <Canvas.Resources/>
+  <!--Unknown tag: sodipodi:namedview-->
+  <!--Unknown tag: metadata-->
+  <Canvas Name="layer1">
+    <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 5.3385883 1.810311e-4 A 1.0870041 1.0870041 0 0 1 6.0952656 1.8663997 l -2.9804701 2.9804701 2.981412 2.981412 A 1.087113 1.087113 0 1 1 4.5583278 9.3652193 L 0.80891546 5.6158119 a 1.0870041 1.0870041 0 0 1 0 -1.5369424 L 4.5583278 0.32946199 A 1.0870041 1.0870041 0 0 1 5.3385883 1.810311e-4 Z"/>
+    <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 14.661412 1.810311e-4 A 1.0870041 1.0870041 0 0 0 13.904735 1.8663997 l 2.980475 2.9804701 -2.981417 2.981412 a 1.0871129 1.0871129 0 1 0 1.537879 1.5369375 l 3.749413 -3.7494074 a 1.0870041 1.0870041 0 0 0 0 -1.5369424 L 15.441672 0.32946199 A 1.0870041 1.0870041 0 0 0 14.661412 1.810311e-4 Z"/>
+    <Path Fill="#FFFFFFFF" StrokeThickness="2.13514233" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 11.504792 4.7572444e-4 A 1.0676778 1.0676778 0 0 0 10.541494 0.68072731 L 7.4789365 8.2257812 A 1.0676778 1.0676778 0 1 0 9.4574291 9.0286879 L 12.519982 1.4836338 A 1.0676778 1.0676778 0 0 0 11.504792 4.7572444e-4 Z"/>
+    <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 5.3385883 10.293447 a 1.0870041 1.0870041 0 0 1 0.7566773 1.866219 l -2.9804701 2.98047 2.981412 2.981412 A 1.087113 1.087113 0 1 1 4.5583278 19.658485 L 0.80891546 15.909078 a 1.0870041 1.0870041 0 0 1 0 -1.536942 L 4.5583278 10.622728 a 1.0870041 1.0870041 0 0 1 0.7802605 -0.329281 z"/>
+    <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 14.661412 10.293447 a 1.0870041 1.0870041 0 0 0 -0.756677 1.866219 l 2.980475 2.98047 -2.981417 2.981412 a 1.0871129 1.0871129 0 1 0 1.537879 1.536937 l 3.749413 -3.749407 a 1.0870041 1.0870041 0 0 0 0 -1.536942 l -3.749413 -3.749408 a 1.0870041 1.0870041 0 0 0 -0.78026 -0.329281 z"/>
+    <Path Fill="#FFFFFFFF" StrokeThickness="2.13514233" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 11.504792 10.293742 a 1.0676778 1.0676778 0 0 0 -0.963298 0.680252 l -3.0625575 7.545053 a 1.0676778 1.0676778 0 1 0 1.9784926 0.802907 L 12.519982 11.7769 a 1.0676778 1.0676778 0 0 0 -1.01519 -1.483158 z"/>
+  </Canvas>
+</Canvas>
