@@ -2529,13 +2529,6 @@
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
                                                             <Grid Margin="6,6,11,0">
-                                                                <!--
-                                                                <DataGrid x:Name="dgActonsdddsOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
-                                                                    <DataGrid.Columns>
-                                                                        <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="320" IsReadOnly="True"/>
-                                                                    </DataGrid.Columns>
-                                                                </DataGrid>
-                                                                -->
                                                                 <ScrollViewer Margin="0,0,0,6" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                                                     <TextBlock x:Name="tbBuildOutput" Background="#FF1F2121" Foreground="#FF989898" FontFamily="Courier New" FontSize="10"></TextBlock>
                                                                 </ScrollViewer>
