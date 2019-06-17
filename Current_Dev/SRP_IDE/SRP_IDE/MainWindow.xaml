@@ -2362,12 +2362,12 @@
                             <Grid Background="#FF121212">
                                 <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                     <Grid Background="#FF121212">
-                                        <DockPanel Margin="10,10,40,0" LastChildFill="False" >
+                                        <DockPanel Margin="10,10,40,0" LastChildFill="True" >
                                             <Grid DockPanel.Dock="Top" Margin="0,0,0,25">
                                                 <Rectangle Fill="#FF2E2E2E" RadiusY="3" RadiusX="3"/>
                                                 <Rectangle Fill="#FF121212" Height="1" Margin="0,45,0,0" VerticalAlignment="Top"/>
                                                 <Label Content="Build" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
-                                                <DockPanel Margin="15,50,0,0" LastChildFill="False">
+                                                <DockPanel Margin="15,50,0,0" LastChildFill="True">
                                                     <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
                                                         <Label Content="Function creation:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
                                                         <Grid>
@@ -2474,6 +2474,33 @@
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                     </Grid>
+                                                    <Grid Height="10" DockPanel.Dock="Bottom"></Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Bottom">
+                                                        <Button x:Name="btBuildBuildAndProduceLPIPackage" Content="Build &amp; Produce LPI Package" Height="30" VerticalAlignment="Top" HorizontalContentAlignment="Center" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,10,10,0"  Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
+                                                            <Button.Effect>
+                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                            </Button.Effect>
+                                                            <Button.Background>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                    <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Button.Background>
+                                                        </Button>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Bottom">
+                                                        <Button x:Name="btBuildBuild" Content="Build" Height="30" VerticalAlignment="Top" HorizontalContentAlignment="Center" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,10,10,0"  Style="{DynamicResource BlueButtonStyle}" Grid.Column="1">
+                                                            <Button.Effect>
+                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                            </Button.Effect>
+                                                            <Button.Background>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF007DC3" Offset="0"/>
+                                                                    <GradientStop Color="#FF006DAA" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Button.Background>
+                                                        </Button>
+                                                    </Grid>
                                                     <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition/>
@@ -2509,8 +2536,8 @@
                                                                     </DataGrid.Columns>
                                                                 </DataGrid>
                                                                 -->
-                                                                <ScrollViewer Margin="0,0,0,6" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                                                    <TextBlock x:Name="tbBuildOutput" Background="#FF1F2121" Foreground="#FF989898" FontFamily="Courier New" FontSize="10"><Run Text="Blabla igiaytqew9y9 c1y9yt 972y t9y t308y g0t98erw gy97egy 9034y t983401 yt43180 t0y1438g y1308 gy397 yg0q3r8hgoeirwu g9oregh 028e9rygh 02er8y0e2 ug02e8ty he20r hy2e0h u2e098 hu"/><LineBreak/><Run Text="khbjjfw"/><LineBreak/><Run Text="gqrgqgru h igi qyt g iwuhouhto uyhoiwqupitu ht ow er ghi ow eq guy 93 tgohoyhoyuhgiuqorh giuh98yh0 8qwey gfi uow  hiu"/><LineBreak/><Run Text="j v09 uoihjoiuergjvoiehrgiuhopih"/></TextBlock>
+                                                                <ScrollViewer Margin="0,0,0,6" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                                                    <TextBlock x:Name="tbBuildOutput" Background="#FF1F2121" Foreground="#FF989898" FontFamily="Courier New" FontSize="10"></TextBlock>
                                                                 </ScrollViewer>
                                                             </Grid>
                                                         </Grid>
@@ -2535,33 +2562,6 @@
                                                             </Canvas>
                                                         </Button>
                                                     </Grid>
-                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
-                                                        <Button x:Name="btBuildBuild" Content="Build" Height="30" VerticalAlignment="Top" HorizontalContentAlignment="Center" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,10,10,0"  Style="{DynamicResource BlueButtonStyle}" Grid.Column="1">
-                                                            <Button.Effect>
-                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
-                                                            </Button.Effect>
-                                                            <Button.Background>
-                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                                    <GradientStop Color="#FF007DC3" Offset="0"/>
-                                                                    <GradientStop Color="#FF006DAA" Offset="1"/>
-                                                                </LinearGradientBrush>
-                                                            </Button.Background>
-                                                        </Button>
-                                                    </Grid>
-                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
-                                                        <Button x:Name="btBuildBuildAndProduceLPIPackage" Content="Build &amp; Produce LPI Package" Height="30" VerticalAlignment="Top" HorizontalContentAlignment="Center" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,10,10,0"  Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
-                                                            <Button.Effect>
-                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
-                                                            </Button.Effect>
-                                                            <Button.Background>
-                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                                    <GradientStop Color="#FF484B4D" Offset="0"/>
-                                                                    <GradientStop Color="#FF3B3C3E" Offset="1"/>
-                                                                </LinearGradientBrush>
-                                                            </Button.Background>
-                                                        </Button>
-                                                    </Grid>
-                                                    <Grid Height="10" DockPanel.Dock="Top"></Grid>
                                                 </DockPanel>
                                             </Grid>
                                         </DockPanel>
