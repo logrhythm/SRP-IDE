@@ -2068,7 +2068,7 @@
                                                                 <ComboBoxItem Content="Python"/>
                                                             </ComboBox>
                                                         </Grid>
-                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What license type do you want to apply to the SmartResponse PlugIn." HorizontalAlignment="Right" Width="15">
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What scripting language shall we use to build script of the SmartResponse PlugIn." HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                     </Grid>
@@ -2116,7 +2116,7 @@
                                                                 </DataGrid>
                                                             </Grid>
                                                         </Grid>
-                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="XXXXXX." HorizontalAlignment="Right" Width="15">
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Select the API Wrapper you would like added to code of this project." HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                     </Grid>
@@ -2150,7 +2150,7 @@
                                                                 </DataGrid>
                                                             </Grid>
                                                         </Grid>
-                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="XXXXXX." HorizontalAlignment="Right" Width="15">
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Select the Simplifier or Pre-built functions you would like added to code of this project." HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                     </Grid>
@@ -2323,7 +2323,7 @@
                                                                 </LinearGradientBrush>
                                                             </Button.Background>
                                                         </Button>
-                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Path to your certificate store (ie. Cert:\) or PBF file." HorizontalAlignment="Right" Width="15">
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Path to the custom or 3rd party script or tool to run to sign the Plug-In." HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                     </Grid>
@@ -2675,7 +2675,7 @@
                                                             </Button>
                                                         </StackPanel>
                                                         <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What action from this Plug-In shall we add to the Test Plan." HorizontalAlignment="Right" Width="15">
-                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip="Action to add to the Test Plan."/>
                                                         </Canvas>
                                                     </Grid>
                                                     <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
@@ -2752,7 +2752,7 @@
                                                             </Grid>
                                                         </Grid>
                                                         <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Use this table below to re-order or select the Actions." HorizontalAlignment="Right" Width="15" >
-                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip="Use the table below to set the order of the Actions in the Test Plan."/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,30,0,0">
                                                             <Button x:Name="btTestTestsOrderTop" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Action to the top of the list." Margin="0,0,0,10">
@@ -2952,7 +2952,7 @@
                                                             </Grid>
                                                         </Grid>
                                                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,10,0,0">
-                                                            <Button x:Name="btTestParametersAdd" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Action to the top of the list." Margin="0,0,0,10">
+                                                            <Button x:Name="btTestParametersAdd" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Add the Parameter selected just above." Margin="0,0,0,10">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -2969,7 +2969,7 @@
                                                                 </Canvas>
                                                             </Button>
                                                         </StackPanel>
-                                                        <Button x:Name="btTestParametersDelete" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,0,0,10" Style="{DynamicResource GreyButtonStyle}" ToolTip="Delete the selected Action." Grid.Column="1">
+                                                        <Button x:Name="btTestParametersDelete" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,0,0,10" Style="{DynamicResource GreyButtonStyle}" ToolTip="Delete the selected Parameter." Grid.Column="1">
                                                             <Button.Effect>
                                                                 <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                             </Button.Effect>
