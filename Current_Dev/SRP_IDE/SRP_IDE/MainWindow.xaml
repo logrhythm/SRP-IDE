@@ -969,6 +969,9 @@
                                                         </Canvas>
                                                         <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
                                                             <ComboBox x:Name="cbActionsImportFromTemplate" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                                <ComboBox.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </ComboBox.Effect>
                                                                 <ComboBoxItem Content="** No template loaded **"/>
                                                             </ComboBox>
                                                         </Grid>
@@ -1213,8 +1216,396 @@
                                             <Grid DockPanel.Dock="Top" Margin="0,0,0,25">
                                                 <Rectangle Fill="#FF2E2E2E" RadiusY="3" RadiusX="3"/>
                                                 <Rectangle Fill="#FF121212" Height="1" Margin="0,45,0,0" VerticalAlignment="Top"/>
-                                                <Label Content="Tab XYZ" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
-                                                <DockPanel Margin="15,50,0,0" LastChildFill="False">
+                                                <Label Content="Action XYZ" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
+                                                <DockPanel Margin="15,50,0,0">
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="30"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Command:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="2.99100471" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 1.4939771 5.3714608e-7 A 1.4956519 1.4956519 0 0 0 0.45283499 2.5678047 L 4.5537816 6.6687519 0.45153888 10.770995 A 1.4958016 1.4958016 0 1 0 2.5675684 12.885729 L 7.726533 7.72677 a 1.4956519 1.4956519 0 0 0 0 -2.1147407 L 2.5675684 0.45307128 A 1.4956519 1.4956519 0 0 0 1.4939771 5.3714608e-7 Z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="2.99100471" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 10.191772 10.347787 a 1.4956519 1.4956519 0 1 0 0 2.991006 h 8.291471 a 1.4956519 1.4956519 0 1 0 0 -2.991006 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
+                                                            <Rectangle Fill="Red" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <TextBox x:Name="tbActionXCommand" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                        </Grid>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Name for the Action." HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="70"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Parameters:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.34290621" Data="M 10.424342 16.540524 9.464208 15.580389 15.979423 9.0651741 16.939558 10.025309 Z M 7.0638563 13.180048 13.579082 6.6648225 14.539227 7.6249672 8.0240011 14.140193 Z M 4.6635149 10.779707 11.17874 4.2644811 12.138875 5.2246258 5.6236597 11.739841 Z M 2.7432561 3.71584 c -0.7543878 0 -1.3716179 -0.61723 -1.3716179 -1.3716178 0 -0.7543878 0.6172301 -1.37161783 1.3716179 -1.37161783 0.7543877 0 1.3716178 0.61723003 1.3716178 1.37161783 0 0.7543878 -0.6172301 1.3716178 -1.3716178 1.3716178 z M 19.614225 9.6138253 10.012859 0.01244944 C 9.7385234 -0.26186596 9.3956291 -0.39903387 9.0527246 -0.39903387 H 2.7432561 C 1.2344601 -0.39903387 0 0.83542626 0 2.3442222 V 8.6193963 C 0 8.9965952 0.13716791 9.3394895 0.41148331 9.5795308 L 10.012859 19.180896 c 0.548641 0.548662 1.405913 0.548662 1.954574 0 l 7.646792 -7.646802 c 0.514367 -0.514356 0.514367 -1.405922 0 -1.9202687 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110">
+                                                            <ComboBox x:Name="cbActionXParamType" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                                <ComboBox.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </ComboBox.Effect>
+                                                                <ComboBoxItem Content="Constant"/>
+                                                                <ComboBoxItem Content="String" IsSelected="True"/>
+                                                                <ComboBoxItem Content="Encrypted"/>
+                                                            </ComboBox>
+                                                        </Grid>
+                                                        <Canvas ToolTip="Import an Action's details from the current template(s)." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="0,20,0,0" VerticalAlignment="Top" MinWidth="110" Grid.Column="1">
+                                                            <Rectangle Fill="Red" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <TextBox x:Name="rttbActionXParamName" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                        </Grid>
+                                                        <Canvas ToolTip="Import an Action's details from the current template(s)." Grid.Column="1" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
+                                                        </Canvas>
+                                                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                                            <Button x:Name="btActionXParamRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
+                                                                </Canvas>
+                                                            </Button>
+                                                            <Button x:Name="btActionXParamAdd" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Create a new Action with this name.">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path StrokeThickness="1.82824755" Stroke="#FF00B922" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 19.085876 10 A 9.0858765 9.0858765 0 0 1 10 19.085876 9.0858765 9.0858765 0 0 1 0.91412354 10 9.0858765 9.0858765 0 0 1 10 0.91412354 9.0858765 9.0858765 0 0 1 19.085876 10 Z"/>
+                                                                    <Path StrokeThickness="1.82824755" Stroke="#FF00B922" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M 4.8940254 9.9462601 H 14.890985"/>
+                                                                    <Path StrokeThickness="1.82824755" Stroke="#FF00B922" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M 9.8925052 4.9477787 V 14.944742"/>
+                                                                </Canvas>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="50"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="40"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Field Mapping:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.23663045" Data="M 6.5751364 19.274972 C 4.3300913 18.258967 3.3150854 15.573651 4.306337 13.272506 L 9.1209976 2.0955338 C 9.8479113 0.40802054 11.789702 -0.36305493 13.436084 0.38203164 15.082466 1.1270978 15.834756 3.1173762 15.107822 4.8048894 L 10.670791 15.105239 C 10.198767 16.201017 8.9659009 16.690602 7.8968051 16.206782 6.8277399 15.722962 6.3500931 14.459281 6.8221075 13.363503 L 9.0878355 8.1037451 10.37073 8.6843374 8.1050122 13.944074 c -0.1604842 0.372569 -0.0051 0.783269 0.3582326 0.947754 0.3634874 0.164504 0.7641675 0.0051 0.924662 -0.367161 L 13.824927 4.2243176 C 14.240321 3.2600243 13.810438 2.1227166 12.869664 1.6969557 11.92887 1.2711949 10.819276 1.7117511 10.403882 2.6761158 L 5.5892418 13.853088 c -0.6797215 1.577925 0.012857 3.41026 1.552324 4.10694 1.5394776 0.6967 3.3271612 -0.01316 4.0068722 -1.591088 l 1.982513 -4.60229 1.282885 0.580571 -1.982493 4.602291 c -0.991252 2.301125 -3.6111309 3.341476 -5.8562066 2.32546 z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.34290826" Data="M 2.7429725 3.98899e-6 C 1.2341674 3.98899e-6 -4.3905201e-6 1.2346961 -4.3905201e-6 2.7435013 V 9.018285 c 0 0.3772115 0.1369646705201 0.7201589 0.4112817405201 0.9601914 L 2.6343436 12.201543 C 4.8115645 8.8136186 5.2866604 3.027165 8.1108079 3.98899e-6 Z m 0 1.37149351101 c 0.7543924 0 1.3714834 0.6176216 1.3714834 1.3720038 0 0.7543924 -0.617091 1.3714935 -1.3714834 1.3714935 -0.7543924 0 -1.3714935 -0.6171011 -1.3714935 -1.3714935 0 -0.7543822 0.6171011 -1.3720038 1.3714935 -1.3720038 z m 13.6341935 5.404222 c -0.525421 1.1783777 -0.999598 2.2685136 -0.839981 3.1305349 l 0.441872 -0.4418929 0.960202 0.9602115 -0.683375 0.683365 c 0.542074 1.29873 -0.211166 3.45488 -1.2887 5.47226 l 4.647034 -4.647034 c 0.51437 -0.51438 0.51437 -1.406053 0 -1.920403 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110">
+                                                            <ComboBox x:Name="cbActionXFieldMappingField" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                                <ComboBox.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </ComboBox.Effect>
+                                                                <ComboBoxItem Content="User (Origin)"/>
+                                                                <ComboBoxItem Content="User (Impacted)" IsSelected="True"/>
+                                                                <ComboBoxItem Content="Vendor Message ID"/>
+                                                            </ComboBox>
+                                                        </Grid>
+                                                        <Canvas ToolTip="Use this table below to re-order or select the Actions." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                            <Button x:Name="btActionXFieldMapFieldRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
+                                                                </Canvas>
+                                                            </Button>
+                                                        </StackPanel>
+                                                        <Label Content="Value:" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.34290829" Data="M 2.7429762 9.5098773e-4 C 1.2341688 9.5098773e-4 0 1.2356514 0 2.7444465 V 9.0192309 C 0 9.3964424 0.1369708 9.7393898 0.41128893 9.979453 l 9.60146607 9.601446 c 0.548643 0.548675 1.406008 0.548675 1.954673 0 l 7.646794 -7.646789 c 0.51437 -0.514349 0.51437 -1.406043 0 -1.920403 L 18.507435 8.9069286 v 3.2333684 a 1.9145552 1.9145552 0 0 1 -1.915126 1.915108 h -3.28292 l -2.885345 2.885339 -0.9601998 -0.960181 2.0422028 -2.042215 a 1.9145552 1.9145552 0 0 1 -0.397579 -0.199841 1.9145552 1.9145552 0 0 1 -1.054585 0.316898 H 8.5089178 L 8.0238079 14.540521 7.5387001 14.055405 H 5.6241006 A 1.9145552 1.9145552 0 0 1 3.7084481 12.140297 V 8.3516926 c 0 -2.1979041 0.1900853 -3.905325 0.9549263 -5.3451735 5.398e-4 0 0.00163 0 0.00214 -0.00306 C 5.311445 1.7742656 6.2816841 0.75733112 7.468073 0 Z m 0 1.37149161227 c 0.7543873 0 1.3714855 0.6176217 1.3714855 1.3720039 0 0.7543925 -0.6170982 1.3714937 -1.3714855 1.3714937 -0.7543935 0 -1.3714886 -0.6171012 -1.3714886 -1.3714937 0 -0.7543822 0.6170951 -1.3720039 1.3714886 -1.3720039 z m 7.7997088 3.4854211 c -0.133293 0.1173225 -0.230839 0.2454507 -0.315322 0.394915 a 1.9145552 1.9145552 0 0 1 -0.008 0.015918 c -0.01117 0.019489 -0.01965 0.1385259 -0.03163 0.1634638 a 1.9145552 1.9145552 0 0 1 0.198261 0.024795 l 0.05009 -0.0501 c 0.03027 -0.1878813 0.06712 -0.3693852 0.106514 -0.5489097 z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="1.17550397" Data="M 9.4121693 1.1194418 C 8.0193193 1.7469916 6.9998927 2.6727398 6.3570372 3.8972182 5.8672479 4.8155845 5.6241007 6.3007733 5.6241007 8.3517844 V 12.139853 H 10.053884 V 7.3409648 H 7.8956765 C 7.9415931 6.0093373 8.163691 4.9988602 8.5616468 4.3100882 8.9596024 3.6060102 9.5811504 3.0797224 10.422989 2.7276837 Z m 6.5384257 0 c -1.39285 0.6275498 -2.412277 1.553298 -3.055132 2.7777764 -0.489789 0.9183663 -0.733464 2.4035551 -0.733464 4.4545662 V 12.139853 H 16.59231 V 7.3409648 h -2.158208 c 0.04592 -1.3316275 0.267488 -2.3421046 0.665443 -3.0308766 0.397956 -0.704078 1.019504 -1.2303658 1.861342 -1.5824045 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110" Grid.Column="2">
+                                                            <Rectangle Fill="Red" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <TextBox x:Name="rttbActionXFieldMappingValue" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                        </Grid>
+                                                        <Canvas ToolTip="Use this table below to re-order or select the Actions." Grid.Column="2" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
+                                                        </Canvas>
+                                                        <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                                            <Button x:Name="btActionXFieldMapValueRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
+                                                                </Canvas>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="50"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="40"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Switch:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="2.2859621" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 5.0980509 4.8963802 A 1.1430953 1.1430953 0 0 1 5.893774 6.8588989 L 2.7595067 9.9931662 5.8947645 13.128424 A 1.1432098 1.1432098 0 1 1 4.2775277 14.74467 L 0.33463944 10.801787 a 1.1430953 1.1430953 0 0 1 0 -1.6162512 L 4.2775277 5.2426526 A 1.1430953 1.1430953 0 0 1 5.0980509 4.8963802 Z"/>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="2.2859621" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 14.901948 4.8963802 a 1.1430953 1.1430953 0 0 0 -0.795723 1.9625187 l 3.134272 3.1342673 -3.135263 3.1352578 a 1.1432097 1.1432097 0 1 0 1.617237 1.616246 l 3.942888 -3.942883 a 1.1430953 1.1430953 0 0 0 0 -1.6162512 L 15.722471 5.2426526 A 1.1430953 1.1430953 0 0 0 14.901948 4.8963802 Z"/>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="2.24531913" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 11.582441 4.8966901 A 1.1227717 1.1227717 0 0 0 10.569435 5.6120438 L 7.3488447 13.546435 a 1.1227717 1.1227717 0 1 0 2.0805861 0.844338 L 12.650016 6.4563816 A 1.1227717 1.1227717 0 0 0 11.582441 4.8966901 Z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110">
+                                                            <Rectangle Fill="Red" Height="30" Margin="5,5,10,0" VerticalAlignment="Top" >
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <TextBox x:Name="tbActionXFieldSwitch" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                        </Grid>
+                                                        <Canvas ToolTip="XXXXXX" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                            <Button x:Name="btActionXFieldSwitchRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
+                                                                </Canvas>
+                                                            </Button>
+                                                        </StackPanel>
+                                                        <Label Content="Vaidation:" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.34301111" Data="M 2.7437977 1.56002e-6 C 1.23454 1.56002e-6 -1.8256201e-6 1.235064 -1.8256201e-6 2.7443216 v 6.2766655 c 0 0.3773144 0.1370057456201 0.7203646 0.4114050856201 0.9604794 L 10.015748 19.585821 c 0.548819 0.548829 1.406434 0.548829 1.955263 0 l 7.649091 -7.649081 c 0.293762 -0.293771 0.413528 -0.709943 0.371854 -1.109253 a 7.9335429 7.9335429 0 0 1 -6.635863 3.59775 7.9335429 7.9335429 0 0 1 -0.389787 -0.01949 L 10.427163 16.944906 9.4666734 15.984427 11.305365 14.145735 A 7.9335429 7.9335429 0 0 1 9.2820734 13.288099 L 8.0262096 14.543963 7.06572 13.583453 8.1643993 12.484794 A 7.9335429 7.9335429 0 0 1 6.8093867 10.958338 L 5.6252561 12.142468 4.6647666 11.181989 6.1221125 9.7246432 A 7.9335429 7.9335429 0 0 1 5.4227126 6.4918977 7.9335429 7.9335429 0 0 1 8.812112 3.218039e-5 Z m 0 1.37190483998 c 0.7546186 0 1.3718946 0.6177966 1.3718946 1.3724152 0 0.7546186 -0.617276 1.3719049 -1.3718946 1.3719049 -0.7546186 0 -1.3719049 -0.6172863 -1.3719049 -1.3719049 0 -0.7546186 0.6172863 -1.3724152 1.3719049 -1.3724152 z"/>
+                                                            <Path Fill="#FF30FF29" StrokeThickness="1.12176454" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 16.079551 4.1612486 A 0.56093832 0.56093832 0 0 0 15.692968 4.328742 L 12.513666 7.4681159 11.019443 5.954898 a 0.56101186 0.56101186 0 1 0 -0.798488 0.7882602 l 1.888593 1.9124564 a 0.56093832 0.56093832 0 0 0 0.793129 0.0051 L 16.481229 5.126964 A 0.56093832 0.56093832 0 0 0 16.079551 4.1614936 Z"/>
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.12176454" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 13.356889 0.24082056 c -3.4455057 0 -6.2516585 2.80614254 -6.2516585 6.25165884 0 3.4455061 2.8061528 6.2496586 6.2516585 6.2496586 3.445506 0 6.249669 -2.8041525 6.249669 -6.2496586 0 -3.4455163 -2.804163 -6.25165884 -6.249669 -6.25165884 z m 0 1.12233864 c 2.839264 0 5.12732 2.2900566 5.12732 5.1293202 0 2.8392534 -2.288056 5.1273096 -5.12732 5.1273096 -2.839263 0 -5.1293097 -2.2880562 -5.1293097 -5.1273096 0 -2.8392636 2.2900467 -5.1293202 5.1293097 -5.1293202 z"/>
+                                                        </Canvas>
+                                                        <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110" Grid.Column="2">
+                                                            <ComboBox x:Name="cbActionXFieldValidation" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                                <ComboBox.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </ComboBox.Effect>
+                                                                <ComboBoxItem Content="String | Empty or not"/>
+                                                                <ComboBoxItem Content="String | Non empty" IsSelected="True"/>
+                                                                <ComboBoxItem Content="Number | Empty or not"/>
+                                                                <ComboBoxItem Content="Number | Non empty"/>
+                                                                <ComboBoxItem Content="Date (ISO) | Empty or not"/>
+                                                                <ComboBoxItem Content="Date (ISO) | Non empty"/>
+                                                                <ComboBoxItem Content="Date (US) | Empty or not"/>
+                                                                <ComboBoxItem Content="Date (US) | Non empty"/>
+                                                                <ComboBoxItem Content="Date (EU) | Empty or not"/>
+                                                                <ComboBoxItem Content="Date (EU) | Non empty"/>
+                                                            </ComboBox>
+                                                        </Grid>
+                                                        <Canvas ToolTip="XXXXXX" Grid.Column="2" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
+                                                        </Canvas>
+                                                        <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                                            <Button x:Name="btActionXFieldMapValue" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
+                                                                </Canvas>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                    <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="10"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="40"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Content="Order:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                        <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="M 4.7058833 -17.647057 A 2.3529413 2.3529413 0 0 1 2.352942 -15.294115 2.3529413 2.3529413 0 0 1 7.1525574e-7 -17.647057 2.3529413 2.3529413 0 0 1 2.352942 -19.999998 a 2.3529413 2.3529413 0 0 1 2.3529413 2.352941 z">
+                                                                <Path.RenderTransform>
+                                                                    <RotateTransform Angle="90"/>
+                                                                </Path.RenderTransform>
+                                                            </Path>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="M 4.7058833 -2.3529394 A 2.3529413 2.3529413 0 0 1 2.352942 1.9073486e-6 2.3529413 2.3529413 0 0 1 7.1525574e-7 -2.3529394 2.3529413 2.3529413 0 0 1 2.352942 -4.7058806 2.3529413 2.3529413 0 0 1 4.7058833 -2.3529394 Z">
+                                                                <Path.RenderTransform>
+                                                                    <RotateTransform Angle="90"/>
+                                                                </Path.RenderTransform>
+                                                            </Path>
+                                                            <Path Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="m 12.352959 -17.647057 a 2.3529413 2.3529413 0 0 1 -2.352941 2.352942 2.3529413 2.3529413 0 0 1 -2.3529412 -2.352942 2.3529413 2.3529413 0 0 1 2.3529412 -2.352941 2.3529413 2.3529413 0 0 1 2.352941 2.352941 z">
+                                                                <Path.RenderTransform>
+                                                                    <RotateTransform Angle="90"/>
+                                                                </Path.RenderTransform>
+                                                            </Path>
+                                                            <Path Fill="#FF2D7AC7" StrokeThickness="0.29411766" Data="M 13.883652 9.7319172 H 10.354251 V 2.9672068 h 3.582348 c -0.07059 -0.3889691 -0.07059 -0.7874981 0 -1.1764671 H 10.354251 9.1777729 5.5954251 c 0.070588 0.388969 0.070588 0.787498 0 1.1764671 h 3.5823478 v 7.9411772 h 4.8205881 c -0.07437 -0.2883 -0.112819 -0.584648 -0.114709 -0.882353 z"/>
+                                                        </Canvas>
+                                                        <Grid MinHeight="135" Margin="25,20,0,0" MinWidth="355">
+                                                            <Rectangle Fill="#FF007BC2" Margin="5,5,10,5">
+                                                                <Rectangle.Effect>
+                                                                    <BlurEffect/>
+                                                                </Rectangle.Effect>
+                                                            </Rectangle>
+                                                            <Grid Margin="6,6,11,0">
+                                                                <DataGrid x:Name="rttbActonXOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
+                                                                    <DataGrid.Columns>
+                                                                        <DataGridTextColumn Binding="{Binding Types}" Header="Types" MinWidth="100" IsReadOnly="True"/>
+                                                                        <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="100" IsReadOnly="True"/>
+                                                                        <DataGridTextColumn Binding="{Binding Field_Value}" Header="Field/Value" MinWidth="100" IsReadOnly="True"/>
+                                                                        <DataGridTextColumn Binding="{Binding Switch}" Header="Switch" MinWidth="50" IsReadOnly="True"/>
+                                                                        <DataGridTextColumn Binding="{Binding Validation}" Header="Validation" MinWidth="50" IsReadOnly="True"/>
+                                                                    </DataGrid.Columns>
+                                                                </DataGrid>
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Use this table below to re-order or select the Actions." HorizontalAlignment="Right" Width="15" >
+                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                        </Canvas>
+                                                        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,30,0,0">
+                                                            <Button x:Name="btActionXOrderTop" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Action to the top of the list." Margin="0,0,0,10">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="2.10521436" Data="M 0.3984375 0 L 0.3984375 14.736328 L 35.113281 14.736328 L 69.871094 14.736328 L 69.871094 0 L 0.3984375 0 z M 35.113281 14.736328 L 0 75.589844 L 70.269531 75.589844 L 35.113281 14.736328 z ">
+                                                                        <Path.RenderTransform>
+                                                                            <ScaleTransform ScaleX="0.26458333" ScaleY="0.26458333"/>
+                                                                        </Path.RenderTransform>
+                                                                    </Path>
+                                                                </Canvas>
+                                                            </Button>
+                                                            <Button x:Name="btActionXOrderUp" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Move this Action up in the list." Margin="0,0,0,10">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="17" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="0.55700606" Data="M 0 16.100957 9.3015661 0 18.592253 16.100957 Z"/>
+                                                                </Canvas>
+                                                            </Button>
+                                                            <Button x:Name="btActionXOrderDown" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Move this Action down in the list." Margin="0,0,0,10">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="17" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="0.55700606" Data="M 18.592253 -8.3446503e-7 9.2906872 16.100956 -5.9604645e-8 -8.3446503e-7 Z"/>
+                                                                </Canvas>
+                                                            </Button>
+                                                            <Button x:Name="btActionXOrderBottom" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Action to the bottom of the list." Margin="0,0,0,10">
+                                                                <Button.Effect>
+                                                                    <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                                </Button.Effect>
+                                                                <Button.Background>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                        <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Button.Background>
+                                                                <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                    <Path Fill="#FFCCCCCC" StrokeThickness="10.34375763" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 0 0 L 35.115234 60.853516 L 70.269531 0 L 0 0 z M 35.115234 60.853516 L 0.3984375 60.853516 L 0.3984375 75.589844 L 69.871094 75.589844 L 69.871094 60.853516 L 35.115234 60.853516 z ">
+                                                                        <Path.RenderTransform>
+                                                                            <ScaleTransform ScaleX="0.26458333" ScaleY="0.26458333"/>
+                                                                        </Path.RenderTransform>
+                                                                    </Path>
+                                                                </Canvas>
+                                                            </Button>
+                                                        </StackPanel>
+                                                        <Button x:Name="btActionXDelete" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,0,0,10" Style="{DynamicResource GreyButtonStyle}" ToolTip="Delete the selected Action." Grid.Column="1">
+                                                            <Button.Effect>
+                                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
+                                                            </Button.Effect>
+                                                            <Button.Background>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF484B4D" Offset="0"/>
+                                                                    <GradientStop Color="#FF3B3C3E" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Button.Background>
+                                                            <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path StrokeThickness="1.82824755" Stroke="#FFD50000" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 19.085876 9.999999 A 9.0858765 9.0858765 0 0 1 10 19.085876 9.0858765 9.0858765 0 0 1 0.91412354 9.999999 9.0858765 9.0858765 0 0 1 10 0.91412258 9.0858765 9.0858765 0 0 1 19.085876 9.999999 Z"/>
+                                                                <Path StrokeThickness="1.82824755" Stroke="#FFD50000" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="m 4.894024 9.9462695 h 9.99696"/>
+                                                            </Canvas>
+                                                        </Button>
+                                                        <Grid Grid.Row="1">
+                                                            <Label Content="Note:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC"/>
+                                                            <Canvas Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                                                <Path Fill="#FF2D7AC7" StrokeThickness="2.47214246" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 10.00001 0 A 9.9999953 9.9999953 0 0 0 0 9.999996 9.9999953 9.9999953 0 0 0 10.00001 19.999991 9.9999953 9.9999953 0 0 0 20 9.999996 9.9999953 9.9999953 0 0 0 10.00001 0 Z M 8.47029 1.974371 h 3.01215 V 4.637382 H 8.47029 Z M 6.68113 6.601083 h 4.9759 v 2.433481 4.593924 h 1.57118 v 2.706419 H 6.85571 V 13.628488 H 8.60147 V 9.35091 H 6.68113 Z"/>
+                                                                <Path Fill="#FFCCCCCC" StrokeThickness="1.05223501" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 8.4702839 1.9745564 V 4.637443 H 11.482503 V 1.9745564 Z m -1.7890381 4.626591 v 2.7497029 h 1.9202963 v 4.2777747 h -1.74563 V 16.33492 H 13.228133 V 13.628625 H 11.65717 V 9.0345904 6.6011474 Z"/>
+                                                            </Canvas>
+                                                            <Grid Margin="25,20,0,0">
+                                                                <TextBlock Margin="6,10,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFCCCCCC"><Run FontWeight="Bold" Text="%SRP"/><Run Text=" in any Constant Parameter will be replaced by the script name."/></TextBlock>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </Grid>
                                                 </DockPanel>
                                             </Grid>
                                         </DockPanel>
@@ -1223,7 +1614,7 @@
                                     <Rectangle Fill="#FF121212" HorizontalAlignment="Left" Height="1" Margin="10,55,0,0" VerticalAlignment="Top" Width="460"/>
                                     <Label Content="Action XYZ" HorizontalAlignment="Left" Margin="20,13,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
                                     -->
-                                        <TextBlock HorizontalAlignment="Left" Margin="35,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFCCCCCC" Height="499" Width="405"><Run Text="Command:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Parameters:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Field Mapping:                                    Value:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Switch:                                                 Validation:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Order:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Note:"/><LineBreak/><Run Text="%SRP in any Constant Parameter will be replaced by the script name."/><LineBreak/><Run/></TextBlock>
+                                        <!--
                                         <Canvas Width="20" Height="14" Margin="26,92,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                             <Path Fill="#FF2D7AC7" StrokeThickness="2.99100471" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 1.4939771 5.3714608e-7 A 1.4956519 1.4956519 0 0 0 0.45283499 2.5678047 L 4.5537816 6.6687519 0.45153888 10.770995 A 1.4958016 1.4958016 0 1 0 2.5675684 12.885729 L 7.726533 7.72677 a 1.4956519 1.4956519 0 0 0 0 -2.1147407 L 2.5675684 0.45307128 A 1.4956519 1.4956519 0 0 0 1.4939771 5.3714608e-7 Z"/>
                                             <Path Fill="#FFFFFFFF" StrokeThickness="2.99100471" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 10.191772 10.347787 a 1.4956519 1.4956519 0 1 0 0 2.991006 h 8.291471 a 1.4956519 1.4956519 0 1 0 0 -2.991006 z"/>
@@ -1234,7 +1625,7 @@
                                                     <BlurEffect/>
                                                 </Rectangle.Effect>
                                             </Rectangle>
-                                            <TextBox x:Name="tbActionXCommand" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="" VerticalAlignment="Top" Width="358" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                            <TextBox x:Name="tbActionXCommandd" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="" VerticalAlignment="Top" Width="358" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                         </Grid>
                                         <Canvas Width="20" Height="20" Margin="26,155,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                             <Path Fill="#FF2D7AC7" StrokeThickness="0.34290621" Data="M 10.424342 16.540524 9.464208 15.580389 15.979423 9.0651741 16.939558 10.025309 Z M 7.0638563 13.180048 13.579082 6.6648225 14.539227 7.6249672 8.0240011 14.140193 Z M 4.6635149 10.779707 11.17874 4.2644811 12.138875 5.2246258 5.6236597 11.739841 Z M 2.7432561 3.71584 c -0.7543878 0 -1.3716179 -0.61723 -1.3716179 -1.3716178 0 -0.7543878 0.6172301 -1.37161783 1.3716179 -1.37161783 0.7543877 0 1.3716178 0.61723003 1.3716178 1.37161783 0 0.7543878 -0.6172301 1.3716178 -1.3716178 1.3716178 z M 19.614225 9.6138253 10.012859 0.01244944 C 9.7385234 -0.26186596 9.3956291 -0.39903387 9.0527246 -0.39903387 H 2.7432561 C 1.2344601 -0.39903387 0 0.83542626 0 2.3442222 V 8.6193963 C 0 8.9965952 0.13716791 9.3394895 0.41148331 9.5795308 L 10.012859 19.180896 c 0.548641 0.548662 1.405913 0.548662 1.954574 0 l 7.646792 -7.646802 c 0.514367 -0.514356 0.514367 -1.405922 0 -1.9202687 z"/>
@@ -1255,36 +1646,6 @@
                                             </Rectangle>
                                             <TextBox x:Name="tbActionXParamName" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" VerticalAlignment="Top" Width="173" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
                                         </Grid>
-                                        <Button x:Name="btActionXParamRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="370,149,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
-                                            <Button.Effect>
-                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
-                                            </Button.Effect>
-                                            <Button.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="#FF484B4D" Offset="0"/>
-                                                    <GradientStop Color="#FF3B3C3E" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </Button.Background>
-                                            <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                                <Path Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
-                                            </Canvas>
-                                        </Button>
-                                        <Button x:Name="btActionXParamAdd" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="410,149,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Create a new Action with this name.">
-                                            <Button.Effect>
-                                                <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
-                                            </Button.Effect>
-                                            <Button.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="#FF484B4D" Offset="0"/>
-                                                    <GradientStop Color="#FF3B3C3E" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </Button.Background>
-                                            <Canvas Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                                <Path StrokeThickness="1.82824755" Stroke="#FF00B922" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 19.085876 10 A 9.0858765 9.0858765 0 0 1 10 19.085876 9.0858765 9.0858765 0 0 1 0.91412354 10 9.0858765 9.0858765 0 0 1 10 0.91412354 9.0858765 9.0858765 0 0 1 19.085876 10 Z"/>
-                                                <Path StrokeThickness="1.82824755" Stroke="#FF00B922" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M 4.8940254 9.9462601 H 14.890985"/>
-                                                <Path StrokeThickness="1.82824755" Stroke="#FF00B922" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M 9.8925052 4.9477787 V 14.944742"/>
-                                            </Canvas>
-                                        </Button>
                                         <Canvas Width="20" Height="20" Margin="26,218,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                             <Path Fill="#FFFFFFFF" StrokeThickness="0.23663045" Data="M 6.5751364 19.274972 C 4.3300913 18.258967 3.3150854 15.573651 4.306337 13.272506 L 9.1209976 2.0955338 C 9.8479113 0.40802054 11.789702 -0.36305493 13.436084 0.38203164 15.082466 1.1270978 15.834756 3.1173762 15.107822 4.8048894 L 10.670791 15.105239 C 10.198767 16.201017 8.9659009 16.690602 7.8968051 16.206782 6.8277399 15.722962 6.3500931 14.459281 6.8221075 13.363503 L 9.0878355 8.1037451 10.37073 8.6843374 8.1050122 13.944074 c -0.1604842 0.372569 -0.0051 0.783269 0.3582326 0.947754 0.3634874 0.164504 0.7641675 0.0051 0.924662 -0.367161 L 13.824927 4.2243176 C 14.240321 3.2600243 13.810438 2.1227166 12.869664 1.6969557 11.92887 1.2711949 10.819276 1.7117511 10.403882 2.6761158 L 5.5892418 13.853088 c -0.6797215 1.577925 0.012857 3.41026 1.552324 4.10694 1.5394776 0.6967 3.3271612 -0.01316 4.0068722 -1.591088 l 1.982513 -4.60229 1.282885 0.580571 -1.982493 4.602291 c -0.991252 2.301125 -3.6111309 3.341476 -5.8562066 2.32546 z"/>
                                             <Path Fill="#FF2D7AC7" StrokeThickness="0.34290826" Data="M 2.7429725 3.98899e-6 C 1.2341674 3.98899e-6 -4.3905201e-6 1.2346961 -4.3905201e-6 2.7435013 V 9.018285 c 0 0.3772115 0.1369646705201 0.7201589 0.4112817405201 0.9601914 L 2.6343436 12.201543 C 4.8115645 8.8136186 5.2866604 3.027165 8.1108079 3.98899e-6 Z m 0 1.37149351101 c 0.7543924 0 1.3714834 0.6176216 1.3714834 1.3720038 0 0.7543924 -0.617091 1.3714935 -1.3714834 1.3714935 -0.7543924 0 -1.3714935 -0.6171011 -1.3714935 -1.3714935 0 -0.7543822 0.6171011 -1.3720038 1.3714935 -1.3720038 z m 13.6341935 5.404222 c -0.525421 1.1783777 -0.999598 2.2685136 -0.839981 3.1305349 l 0.441872 -0.4418929 0.960202 0.9602115 -0.683375 0.683365 c 0.542074 1.29873 -0.211166 3.45488 -1.2887 5.47226 l 4.647034 -4.647034 c 0.51437 -0.51438 0.51437 -1.406053 0 -1.920403 z"/>
@@ -1320,7 +1681,7 @@
                                             </Rectangle>
                                             <TextBox x:Name="tbActionXFieldMappingValue" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="" VerticalAlignment="Top" Width="148" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
                                         </Grid>
-                                        <Button x:Name="btActionXFieldMapValueRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="410,213,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Import this Action's details from the current template(s).">
+                                        <Button x:Name="btActionXFieldMapValueRefreshXX" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="410,213,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Import this Action's details from the current template(s).">
                                             <Button.Effect>
                                                 <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                             </Button.Effect>
@@ -1347,7 +1708,7 @@
                                             </Rectangle>
                                             <TextBox x:Name="tbActionXFieldSwitch" HorizontalAlignment="Left" Height="28" Width="123" Margin="6,6,0,0" Text="" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
                                         </Grid>
-                                        <Button x:Name="btActionXFieldSwitchRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="185,276,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Import this Action's details from the current template(s).">
+                                       <Button x:Name="btActionXFieldSwitchRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="185,276,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Import this Action's details from the current template(s).">
                                             <Button.Effect>
                                                 <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                             </Button.Effect>
@@ -1366,7 +1727,7 @@
                                             <Path Fill="#FF30FF29" StrokeThickness="1.12176454" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 16.079551 4.1612486 A 0.56093832 0.56093832 0 0 0 15.692968 4.328742 L 12.513666 7.4681159 11.019443 5.954898 a 0.56101186 0.56101186 0 1 0 -0.798488 0.7882602 l 1.888593 1.9124564 a 0.56093832 0.56093832 0 0 0 0.793129 0.0051 L 16.481229 5.126964 A 0.56093832 0.56093832 0 0 0 16.079551 4.1614936 Z"/>
                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.12176454" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 13.356889 0.24082056 c -3.4455057 0 -6.2516585 2.80614254 -6.2516585 6.25165884 0 3.4455061 2.8061528 6.2496586 6.2516585 6.2496586 3.445506 0 6.249669 -2.8041525 6.249669 -6.2496586 0 -3.4455163 -2.804163 -6.25165884 -6.249669 -6.25165884 z m 0 1.12233864 c 2.839264 0 5.12732 2.2900566 5.12732 5.1293202 0 2.8392534 -2.288056 5.1273096 -5.12732 5.1273096 -2.839263 0 -5.1293097 -2.2880562 -5.1293097 -5.1273096 0 -2.8392636 2.2900467 -5.1293202 5.1293097 -5.1293202 z"/>
                                         </Canvas>
-                                        <ComboBox x:Name="cbActionXFieldValidation" HorizontalAlignment="Left" Height="28" Width="148" Margin="256,277,0,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121" SelectedIndex="1">
+                                       <ComboBox x:Name="cbActionXFieldValidation" HorizontalAlignment="Left" Height="28" Width="148" Margin="256,277,0,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121" SelectedIndex="1">
                                             <ComboBoxItem Content="String | Empty or not"/>
                                             <ComboBoxItem Content="String | Non empty" IsSelected="True"/>
                                             <ComboBoxItem Content="Number | Empty or not"/>
@@ -1392,7 +1753,7 @@
                                                 <Path Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
                                             </Canvas>
                                         </Button>
-                                        <Canvas Width="20" Height="20" Margin="26,345,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                       <Canvas Width="20" Height="20" Margin="26,345,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                             <Path Fill="#FFFFFFFF" StrokeThickness="0.29411766" Data="M 4.7058833 -17.647057 A 2.3529413 2.3529413 0 0 1 2.352942 -15.294115 2.3529413 2.3529413 0 0 1 7.1525574e-7 -17.647057 2.3529413 2.3529413 0 0 1 2.352942 -19.999998 a 2.3529413 2.3529413 0 0 1 2.3529413 2.352941 z">
                                                 <Path.RenderTransform>
                                                     <RotateTransform Angle="90"/>
@@ -1510,21 +1871,7 @@
                                                 <Path StrokeThickness="1.82824755" Stroke="#FFD50000" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="m 4.894024 9.9462695 h 9.99696"/>
                                             </Canvas>
                                         </Button>
-                                        <Canvas Width="15" Height="15" Margin="400,66,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Name for the Action.">
-                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
-                                        </Canvas>
-                                        <Canvas Width="15" Height="15" Margin="154,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Import an Action's details from the current template(s).">
-                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
-                                        </Canvas>
-                                        <Canvas Width="15" Height="15" Margin="345,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Import an Action's details from the current template(s).">
-                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
-                                        </Canvas>
-                                        <Canvas Width="15" Height="15" Margin="163,194,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Use this table below to re-order or select the Actions.">
-                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip="" Canvas.Left="1"/>
-                                        </Canvas>
-                                        <Canvas Width="15" Height="15" Margin="389,194,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Use this table below to re-order or select the Actions.">
-                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
-                                        </Canvas>
+                                           -->
                                     </Grid>
                                 </ScrollViewer>
                             </Grid>
