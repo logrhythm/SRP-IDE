@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8875"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="TestChevrons.svg">
+  <defs
+     id="defs8869" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="132.95835"
+     inkscape:cy="1023.8609"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3840"
+     inkscape:window-height="2097"
+     inkscape:window-x="1912"
+     inkscape:window-y="1072"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata8872">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path6787"
+       d="M 8.9570572,3.1288401 H 5.8895738 l 5.1533742,6.8711629 -5.1533742,6.871163 h 3.0674834 l 5.1533748,-6.871163 z"
+       inkscape:connector-curvature="0"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.24539877;stroke-dasharray:none;stroke-dashoffset:1" />
+    <path
+       id="path6789"
+       d="M 2.80808e-6,16.871166 H 3.0674862 L 8.2208608,10.000003 3.0674862,3.1288401 H 2.80808e-6 L 5.1533775,10.000003 Z"
+       inkscape:connector-curvature="0"
+       style="fill:#2d7ac7;fill-opacity:1;stroke:none;stroke-width:0.24539877;stroke-dasharray:none;stroke-dashoffset:1" />
+    <path
+       id="path6791"
+       d="m 14.846628,3.1288401 h -3.067483 l 5.153375,6.8711629 -5.153375,6.871163 h 3.067483 l 5.153375,-6.871163 z"
+       inkscape:connector-curvature="0"
+       style="fill:#2d7ac7;fill-opacity:1;stroke:none;stroke-width:0.24539877;stroke-dasharray:none;stroke-dashoffset:1" />
+  </g>
+</svg>
