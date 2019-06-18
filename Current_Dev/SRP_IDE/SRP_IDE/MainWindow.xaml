@@ -881,18 +881,25 @@
                                                             </Rectangle>
                                                             <TextBox x:Name="tbPlugInVersionBuild" HorizontalAlignment="Left" Height="28" Margin="6,6,0,0" Text="0" VerticalAlignment="Top" Width="58" Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" ToolTip="Build number" Tag="ValidIf__RegEx:\d+" TextAlignment="Right"/>
                                                         </Grid>
-                                                        <Grid HorizontalAlignment="Left" Height="40" Margin="260,20,0,0" VerticalAlignment="Top" Width="155">
-                                                            <Rectangle Fill="#FF007BC2" HorizontalAlignment="Left" Height="15" Margin="5,12,0,0" VerticalAlignment="Top" Width="16">
-                                                                <Rectangle.Effect>
-                                                                    <BlurEffect/>
-                                                                </Rectangle.Effect>
-                                                            </Rectangle>
-                                                            <CheckBox Content="" HorizontalAlignment="Left" Margin="5,12,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" IsChecked="True" BorderBrush="#FF1F2121"/>
-                                                            <TextBlock HorizontalAlignment="Left" Margin="25,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFCCCCCC" Height="35" Width="100"><Run Text="Auto increment"/><LineBreak/><Run Text="build number"/></TextBlock>
+                                                        <Grid  Height="40" Margin="260,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="20"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid Margin="5,12,10,0">
+                                                                <Rectangle Fill="#FF007BC2" HorizontalAlignment="Left" Height="15" VerticalAlignment="Top" Width="16">
+                                                                    <Rectangle.Effect>
+                                                                        <BlurEffect/>
+                                                                    </Rectangle.Effect>
+                                                                </Rectangle>
+                                                                <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFCCCCCC" IsChecked="True" BorderBrush="#FF1F2121"/>
+                                                            </Grid>
+                                                            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FFCCCCCC" Height="35" Width="100"><Run Text="Auto increment build number"/></TextBlock>
+                                                            <Canvas Grid.Column="2" Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="Enabling this will automatically increment the very last part of the version number (the Build number).">
+                                                                <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
+                                                            </Canvas>
                                                         </Grid>
-                                                        <Canvas Width="15" Height="15" Margin="375,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Enabling this will automatically increment the very last part of the version number (the Build number).">
-                                                            <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
-                                                        </Canvas>
                                                         <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What's your name again?" HorizontalAlignment="Right" Width="15"/>
                                                     </Grid>
                                                     <Grid Height="10"></Grid>
