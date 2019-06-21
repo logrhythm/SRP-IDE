@@ -105,6 +105,9 @@ if (-Not (Test-Path $cachePath))
 # Local copy of the Plug-In Cloud Template List JSON
 $PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "PlugInCloudTemplateListLocal.json"
 
+# Local copy of the LogRhythm Fields List JSON
+$LogRhythmFieldsListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "LogRhythmFieldsListLocal.json"
+
 <#
 
 function SimpleQueryGet([string] $SimpleQuery_)
@@ -509,6 +512,42 @@ $btPlugInDownloadCloudTemplate.Add_Click({
 
 $SRPEditorForm.AddHandler([System.Windows.Controls.TextBox]::TextChangedEvent, $textChangedHandler)
 
+# ########
+# Build the list of Parameter fields (LogRhythm MDI fields)
+
+function ParameterFieldArray()
+{
+    param
+    (
+        [Switch] $DownloadFromCloud = $False
+    )
+
+}
+
+function ParameterFieldUpdate()
+{
+    param
+    (
+        #[Parameter(Mandatory)] [System.Windows.Controls.ComboBox] $ComboBox,
+        [Switch] $DownloadFromCloud = $False
+    )
+
+    # Start with a fresh Array
+    $ParameterFieldListArray = @()
+
+    $ParameterFieldListArray = Get-Content -Raw -Path $LogRhythmFieldsListJSONLocalFile  | ConvertFrom-Json
+    $ListView = $ParameterFieldListArray | select Name
+    $cbActionXFieldMappingField.ItemsSource = $ListView
+    $cbTestParameters.ItemsSource = $ListView
+    # Look for Tag="NeedList:LRFields"
+    #$SRPEditorForm.
+    #$ListView = [System.Windows.Data.ListCollectionView]$ParameterFieldListArray
+    #$ListView.GroupDescriptions.Add((new-object System.Windows.Data.PropertyGroupDescription "Family"))
+    #$cbTestParameters.ItemsSource = $ListView
+    #$ComboBox.ItemsSource = $ListView
+    #return $ListView
+}
+
 ########################################################################################################################
 ##################################################### Execution!!  #####################################################
 ########################################################################################################################
@@ -516,6 +555,12 @@ $SRPEditorForm.AddHandler([System.Windows.Controls.TextBox]::TextChangedEvent, $
 
 # Pre-populate the Cloud Template List from the local cashed copy
 PlugInDownloadCloudRefresh
+
+ParameterFieldUpdate
+
+#$cbTestParameters.ItemsSource = ParameterFieldUpdate
+#ParameterFieldUpdate -ComboBox $cbTestParameters
+#$cbTestParameters.GetType()
 
 
 # Run the UI

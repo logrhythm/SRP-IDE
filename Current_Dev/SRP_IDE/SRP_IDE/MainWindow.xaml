@@ -1489,13 +1489,24 @@
                                                             <Path Fill="#FF2D7AC7" StrokeThickness="0.34290826" Data="M 2.7429725 3.98899e-6 C 1.2341674 3.98899e-6 -4.3905201e-6 1.2346961 -4.3905201e-6 2.7435013 V 9.018285 c 0 0.3772115 0.1369646705201 0.7201589 0.4112817405201 0.9601914 L 2.6343436 12.201543 C 4.8115645 8.8136186 5.2866604 3.027165 8.1108079 3.98899e-6 Z m 0 1.37149351101 c 0.7543924 0 1.3714834 0.6176216 1.3714834 1.3720038 0 0.7543924 -0.617091 1.3714935 -1.3714834 1.3714935 -0.7543924 0 -1.3714935 -0.6171011 -1.3714935 -1.3714935 0 -0.7543822 0.6171011 -1.3720038 1.3714935 -1.3720038 z m 13.6341935 5.404222 c -0.525421 1.1783777 -0.999598 2.2685136 -0.839981 3.1305349 l 0.441872 -0.4418929 0.960202 0.9602115 -0.683375 0.683365 c 0.542074 1.29873 -0.211166 3.45488 -1.2887 5.47226 l 4.647034 -4.647034 c 0.51437 -0.51438 0.51437 -1.406053 0 -1.920403 z"/>
                                                         </Canvas>
                                                         <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110">
-                                                            <ComboBox x:Name="cbActionXFieldMappingField" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                            <ComboBox x:Name="cbActionXFieldMappingField" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121" Tag="NeedList:LRFields">
                                                                 <ComboBox.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </ComboBox.Effect>
-                                                                <ComboBoxItem Content="User (Origin)"/>
-                                                                <ComboBoxItem Content="User (Impacted)" IsSelected="True"/>
-                                                                <ComboBoxItem Content="Vendor Message ID"/>
+                                                                <ComboBox.GroupStyle>
+                                                                    <GroupStyle>
+                                                                        <GroupStyle.HeaderTemplate>
+                                                                            <DataTemplate>
+                                                                                <TextBlock Text="{Binding Name}"/>
+                                                                            </DataTemplate>
+                                                                        </GroupStyle.HeaderTemplate>
+                                                                    </GroupStyle>
+                                                                </ComboBox.GroupStyle>
+                                                                <ComboBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                    </DataTemplate>
+                                                                </ComboBox.ItemTemplate>
                                                             </ComboBox>
                                                         </Grid>
                                                         <Canvas ToolTip="Use this table below to re-order or select the Actions." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
@@ -2165,7 +2176,7 @@
                                                                 <Path Fill="#FF2D7AC7" StrokeThickness="2.2859621" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 14.901948 4.8963802 a 1.1430953 1.1430953 0 0 0 -0.795723 1.9625187 l 3.134272 3.1342673 -3.135263 3.1352578 a 1.1432097 1.1432097 0 1 0 1.617237 1.616246 l 3.942888 -3.942883 a 1.1430953 1.1430953 0 0 0 0 -1.6162512 L 15.722471 5.2426526 A 1.1430953 1.1430953 0 0 0 14.901948 4.8963802 Z"/>
                                                                 <Path Fill="#FFFFFFFF" StrokeThickness="2.24531913" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 11.582441 4.8966901 A 1.1227717 1.1227717 0 0 0 10.569435 5.6120438 L 7.3488447 13.546435 a 1.1227717 1.1227717 0 1 0 2.0805861 0.844338 L 12.650016 6.4563816 A 1.1227717 1.1227717 0 0 0 11.582441 4.8966901 Z"/>
                                                             </Canvas>
-                                                            <RadioButton x:Name="rbPreferencesScriptFileOptionSingleFile" GroupName="PreferencesScriptFileOption" Content="Single File" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
+                                                            <RadioButton x:Name="rbPreferencesScriptFileOptionSingleFile" GroupName="PreferencesScriptFileOption" Content="Single File" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
                                                             <Canvas Grid.Column="2" Width="20" Height="20" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                                                 <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 5.3385883 1.810311e-4 A 1.0870041 1.0870041 0 0 1 6.0952656 1.8663997 l -2.9804701 2.9804701 2.981412 2.981412 A 1.087113 1.087113 0 1 1 4.5583278 9.3652193 L 0.80891546 5.6158119 a 1.0870041 1.0870041 0 0 1 0 -1.5369424 L 4.5583278 0.32946199 A 1.0870041 1.0870041 0 0 1 5.3385883 1.810311e-4 Z"/>
                                                                 <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 14.661412 1.810311e-4 A 1.0870041 1.0870041 0 0 0 13.904735 1.8663997 l 2.980475 2.9804701 -2.981417 2.981412 a 1.0871129 1.0871129 0 1 0 1.537879 1.5369375 l 3.749413 -3.7494074 a 1.0870041 1.0870041 0 0 0 0 -1.5369424 L 15.441672 0.32946199 A 1.0870041 1.0870041 0 0 0 14.661412 1.810311e-4 Z"/>
@@ -2174,7 +2185,7 @@
                                                                 <Path Fill="#FF2D7AC7" StrokeThickness="2.17379093" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 14.661412 10.293447 a 1.0870041 1.0870041 0 0 0 -0.756677 1.866219 l 2.980475 2.98047 -2.981417 2.981412 a 1.0871129 1.0871129 0 1 0 1.537879 1.536937 l 3.749413 -3.749407 a 1.0870041 1.0870041 0 0 0 0 -1.536942 l -3.749413 -3.749408 a 1.0870041 1.0870041 0 0 0 -0.78026 -0.329281 z"/>
                                                                 <Path Fill="#FFFFFFFF" StrokeThickness="2.13514233" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="m 11.504792 10.293742 a 1.0676778 1.0676778 0 0 0 -0.963298 0.680252 l -3.0625575 7.545053 a 1.0676778 1.0676778 0 1 0 1.9784926 0.802907 L 12.519982 11.7769 a 1.0676778 1.0676778 0 0 0 -1.01519 -1.483158 z"/>
                                                             </Canvas>
-                                                            <RadioButton Grid.Column="2" x:Name="rbPreferencesScriptFileOptionDualFile" GroupName="PreferencesScriptFileOption" Content="Dual File" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" FontSize="16"/>
+                                                            <RadioButton Grid.Column="2" x:Name="rbPreferencesScriptFileOptionDualFile" GroupName="PreferencesScriptFileOption" Content="Dual File" Height="30" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="#FF414345" Margin="30,25,0,0" VerticalContentAlignment="Center" IsChecked="True" FontSize="16"/>
                                                         </Grid>
                                                     </Grid>
                                                     <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
@@ -3017,13 +3028,24 @@
                                                             <Path Fill="#FF2D7AC7" StrokeThickness="0.34290621" Data="M 10.424342 16.540524 9.464208 15.580389 15.979423 9.0651741 16.939558 10.025309 Z M 7.0638563 13.180048 13.579082 6.6648225 14.539227 7.6249672 8.0240011 14.140193 Z M 4.6635149 10.779707 11.17874 4.2644811 12.138875 5.2246258 5.6236597 11.739841 Z M 2.7432561 3.71584 c -0.7543878 0 -1.3716179 -0.61723 -1.3716179 -1.3716178 0 -0.7543878 0.6172301 -1.37161783 1.3716179 -1.37161783 0.7543877 0 1.3716178 0.61723003 1.3716178 1.37161783 0 0.7543878 -0.6172301 1.3716178 -1.3716178 1.3716178 z M 19.614225 9.6138253 10.012859 0.01244944 C 9.7385234 -0.26186596 9.3956291 -0.39903387 9.0527246 -0.39903387 H 2.7432561 C 1.2344601 -0.39903387 0 0.83542626 0 2.3442222 V 8.6193963 C 0 8.9965952 0.13716791 9.3394895 0.41148331 9.5795308 L 10.012859 19.180896 c 0.548641 0.548662 1.405913 0.548662 1.954574 0 l 7.646792 -7.646802 c 0.514367 -0.514356 0.514367 -1.405922 0 -1.9202687 z"/>
                                                         </Canvas>
                                                         <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="110">
-                                                            <ComboBox x:Name="cbTestParameters" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                            <ComboBox x:Name="cbTestParameters" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121" Tag="NeedList:LRFields">
                                                                 <ComboBox.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </ComboBox.Effect>
-                                                                <ComboBoxItem Content="User (Origin)"/>
-                                                                <ComboBoxItem Content="User (Impacted)" IsSelected="True"/>
-                                                                <ComboBoxItem Content="Vendor Message ID"/>
+                                                                <ComboBox.GroupStyle>
+                                                                    <GroupStyle>
+                                                                        <GroupStyle.HeaderTemplate>
+                                                                            <DataTemplate>
+                                                                                <TextBlock Text="{Binding Name}"/>
+                                                                            </DataTemplate>
+                                                                        </GroupStyle.HeaderTemplate>
+                                                                    </GroupStyle>
+                                                                </ComboBox.GroupStyle>
+                                                                <ComboBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                    </DataTemplate>
+                                                                </ComboBox.ItemTemplate>
                                                             </ComboBox>
                                                         </Grid>
                                                         <Canvas ToolTip="Set the parameter for the selected Action." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">

@@ -1,0 +1,326 @@
+[
+    {
+        "Name":  "Severity"
+    },
+    {
+        "Name":  "Vendor Message ID"
+    },
+    {
+        "Name":  "Vendor Info"
+    },
+    {
+        "Name":  "Threat Name"
+    },
+    {
+        "Name":  "Threat ID"
+    },
+    {
+        "Name":  "CVE"
+    },
+    {
+        "Name":  "User (Origin)"
+    },
+    {
+        "Name":  "User (Impacted)"
+    },
+    {
+        "Name":  "Sender"
+    },
+    {
+        "Name":  "Recipient"
+    },
+    {
+        "Name":  "Group"
+    },
+    {
+        "Name":  "MAC Address (Origin)"
+    },
+    {
+        "Name":  "MAC Address (Impacted)"
+    },
+    {
+        "Name":  "Interface (Origin)"
+    },
+    {
+        "Name":  "Interface (Impacted)"
+    },
+    {
+        "Name":  "IP Address (Origin)"
+    },
+    {
+        "Name":  "IP Address (Impacted)"
+    },
+    {
+        "Name":  "NAT IP Address (Origin)"
+    },
+    {
+        "Name":  "NAT IP Address (Impacted)"
+    },
+    {
+        "Name":  "Hostname (Origin)"
+    },
+    {
+        "Name":  "Hostname (Impacted)"
+    },
+    {
+        "Name":  "Serial Number"
+    },
+    {
+        "Name":  "Domain (Impacted)"
+    },
+    {
+        "Name":  "Domain (Origin)"
+    },
+    {
+        "Name":  "Protocol (Number)"
+    },
+    {
+        "Name":  "Protocol (Name)"
+    },
+    {
+        "Name":  "TCP/UDP Port (Origin)"
+    },
+    {
+        "Name":  "TCP/UDP Port (Impacted)"
+    },
+    {
+        "Name":  "NAT TCP/UDP Port (Origin)"
+    },
+    {
+        "Name":  "NAT TCP/UDP Port (Impacted)"
+    },
+    {
+        "Name":  "Object"
+    },
+    {
+        "Name":  "Object Name"
+    },
+    {
+        "Name":  "Object Type"
+    },
+    {
+        "Name":  "Hash"
+    },
+    {
+        "Name":  "Policy"
+    },
+    {
+        "Name":  "Result"
+    },
+    {
+        "Name":  "URL"
+    },
+    {
+        "Name":  "User Agent"
+    },
+    {
+        "Name":  "Response Code"
+    },
+    {
+        "Name":  "Subject"
+    },
+    {
+        "Name":  "Version"
+    },
+    {
+        "Name":  "Command"
+    },
+    {
+        "Name":  "Reason"
+    },
+    {
+        "Name":  "Action"
+    },
+    {
+        "Name":  "Status"
+    },
+    {
+        "Name":  "Session Type"
+    },
+    {
+        "Name":  "Process Name"
+    },
+    {
+        "Name":  "Process ID"
+    },
+    {
+        "Name":  "Parent Process ID"
+    },
+    {
+        "Name":  "Parent Process Name"
+    },
+    {
+        "Name":  "Parent Process Path"
+    },
+    {
+        "Name":  "Quantity "
+    },
+    {
+        "Name":  "Amount"
+    },
+    {
+        "Name":  "Size"
+    },
+    {
+        "Name":  "Rate"
+    },
+    {
+        "Name":  "Session"
+    },
+    {
+        "Name":  "Time Start"
+    },
+    {
+        "Name":  "Time End"
+    },
+    {
+        "Name":  "Duration in Days"
+    },
+    {
+        "Name":  "Duration in Hours"
+    },
+    {
+        "Name":  "Duration in Minutes"
+    },
+    {
+        "Name":  "Duration in Seconds"
+    },
+    {
+        "Name":  "Duration in Milliseconds"
+    },
+    {
+        "Name":  "Duration in Microsecond"
+    },
+    {
+        "Name":  "Duration in Nanosecond"
+    },
+    {
+        "Name":  "Bits received"
+    },
+    {
+        "Name":  "Bytes received"
+    },
+    {
+        "Name":  "Kilobits received"
+    },
+    {
+        "Name":  "KiloBytes received"
+    },
+    {
+        "Name":  "Megabits received"
+    },
+    {
+        "Name":  "MegaBytes received"
+    },
+    {
+        "Name":  "Gigabits received"
+    },
+    {
+        "Name":  "GigaBytes received"
+    },
+    {
+        "Name":  "Terabits received"
+    },
+    {
+        "Name":  "TeraBytes received"
+    },
+    {
+        "Name":  "Petabits received"
+    },
+    {
+        "Name":  "PetaBytes received"
+    },
+    {
+        "Name":  "Bits"
+    },
+    {
+        "Name":  "Bytes"
+    },
+    {
+        "Name":  "Kbits"
+    },
+    {
+        "Name":  "KBytes"
+    },
+    {
+        "Name":  "Megabits"
+    },
+    {
+        "Name":  "MegaBytes"
+    },
+    {
+        "Name":  "Gigabits"
+    },
+    {
+        "Name":  "GigaBytes"
+    },
+    {
+        "Name":  "Terabits"
+    },
+    {
+        "Name":  "TeraBytes"
+    },
+    {
+        "Name":  "Petabits"
+    },
+    {
+        "Name":  "PetaBytes"
+    },
+    {
+        "Name":  "Bits sent"
+    },
+    {
+        "Name":  "Bytes sent"
+    },
+    {
+        "Name":  "Kbits sent"
+    },
+    {
+        "Name":  "KBytes sent"
+    },
+    {
+        "Name":  "Megabits sent"
+    },
+    {
+        "Name":  "MegaBytes sent"
+    },
+    {
+        "Name":  "Gigabits sent"
+    },
+    {
+        "Name":  "GigaBytes sent"
+    },
+    {
+        "Name":  "Terabits sent"
+    },
+    {
+        "Name":  "TeraBytes sent"
+    },
+    {
+        "Name":  "Petabits sent"
+    },
+    {
+        "Name":  "PetaBytes sent"
+    },
+    {
+        "Name":  "Packet Received"
+    },
+    {
+        "Name":  "Packet Sent"
+    },
+    {
+        "Name":  "\u003ctag1\u003e "
+    },
+    {
+        "Name":  "\u003ctag2\u003e "
+    },
+    {
+        "Name":  "\u003ctag3\u003e "
+    },
+    {
+        "Name":  "\u003ctag4\u003e "
+    },
+    {
+        "Name":  "\u003ctag5\u003e "
+    }
+]
