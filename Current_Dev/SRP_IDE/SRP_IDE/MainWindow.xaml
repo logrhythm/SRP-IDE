@@ -17,6 +17,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- Definition of the Radio Button override. This way, i can get my Radio Buttons to look rectangular just like in the LogRhythm Web UI -->
         <SolidColorBrush x:Key="RadioButton.Static.Background" Color="#FF414345"/>
         <SolidColorBrush x:Key="RadioButton.Static.Border" Color="#FF6C6C6C"/>
         <Style x:Key="OptionMarkFocusVisual">
@@ -86,6 +87,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- End of Definition for the Radio Button override. -->
+        <!-- Definition of the Grey Buttons override. This way, the Buttons look just like in the LogRhythm Web UI -->
+        <!-- See below for the Blue ones -->
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF6C6C6C"/>
@@ -132,6 +136,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- End of Definition for the Grey Buttons override. -->
+        <!-- Definition of the Blue Buttons override. This way, the Buttons look just like in the LogRhythm Web UI -->
+        <!-- See above for the Grey ones -->
         <SolidColorBrush x:Key="Button.MouseOver.Background2" Color="#FF3395CD"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border2" Color="#FF3C7FB1"/>
         <SolidColorBrush x:Key="Button.Pressed.Background2" Color="#FF6CB4DC"/>
@@ -176,6 +183,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- End of Definition for the Blue Buttons override. -->
+        <!-- Definition of the ListView override. This way, the Left panel looks like the panels in the LogRhythm Web UI -->
         <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#1F26A0DA"/>
         <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#1F26A0DA"/>
         <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#3D646464"/>
@@ -229,6 +238,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- End of Definition for the ListView override. -->
+        <!-- Definition of the ComboBox override. This way, they look like the ones in the LogRhythm Web UI -->
         <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -404,7 +415,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!-- DataGrid style -->
+        <!-- End of Definition for the ComboBox override. -->
+        <!-- Definition of the DataGrid override. This way, they look a bit more like the ones in the LogRhythm Web UI -->
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="ColumnHeaderStyle" Value="{DynamicResource ColumnHeaderStyle1}"/>
             <Setter Property="Background" Value="#FFdddddd"/>
@@ -429,6 +441,7 @@
             <Setter Property="FontWeight" Value="Bold" />
             <!-- <Setter Property="" Value=""/> -->
         </Style>
+        <!-- End of Definition for the DataGrid override. -->
     </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="False" Margin="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinHeight="50" MaxHeight="50" Height="50" VerticalAlignment="Top">
