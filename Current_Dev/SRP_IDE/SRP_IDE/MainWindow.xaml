@@ -357,7 +357,9 @@
                                         </Border.Background>
                                     </Border>
                                     <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        <!--<StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />-->
+                                        <!-- Replaced the StackPanel by the Item Presenter to be able to show the Family if required (we use it to display Fields) -->
+                                        <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                     </ScrollViewer>
                                 </Grid>
                             </Popup>

@@ -528,7 +528,6 @@ function ParameterFieldUpdate()
 {
     param
     (
-        #[Parameter(Mandatory)] [System.Windows.Controls.ComboBox] $ComboBox,
         [Switch] $DownloadFromCloud = $False
     )
 
@@ -536,16 +535,16 @@ function ParameterFieldUpdate()
     $ParameterFieldListArray = @()
 
     $ParameterFieldListArray = Get-Content -Raw -Path $LogRhythmFieldsListJSONLocalFile  | ConvertFrom-Json
-    $ListView = $ParameterFieldListArray | select Name
+
+    $ListView = [System.Windows.Data.ListCollectionView]$ParameterFieldListArray
+    $ListView.GroupDescriptions.Add((new-object System.Windows.Data.PropertyGroupDescription "Family"))
+
+    # Look for ComboBoxes that have Tag="NeedList:LRFields"
+    # Then assign them $ListView to the ItemsSource property
+    #$SRPEditorForm.
+    # Gave up, and did it by naming them by hand. Lazy and bad...
     $cbActionXFieldMappingField.ItemsSource = $ListView
     $cbTestParameters.ItemsSource = $ListView
-    # Look for Tag="NeedList:LRFields"
-    #$SRPEditorForm.
-    #$ListView = [System.Windows.Data.ListCollectionView]$ParameterFieldListArray
-    #$ListView.GroupDescriptions.Add((new-object System.Windows.Data.PropertyGroupDescription "Family"))
-    #$cbTestParameters.ItemsSource = $ListView
-    #$ComboBox.ItemsSource = $ListView
-    #return $ListView
 }
 
 ########################################################################################################################
@@ -557,6 +556,8 @@ function ParameterFieldUpdate()
 PlugInDownloadCloudRefresh
 
 ParameterFieldUpdate
+
+
 
 #$cbTestParameters.ItemsSource = ParameterFieldUpdate
 #ParameterFieldUpdate -ComboBox $cbTestParameters
