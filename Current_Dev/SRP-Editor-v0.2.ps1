@@ -45,10 +45,38 @@ $Version       = "v$VersionNumber - $VersionDate - $VersionAuthor"
 $TimeStampFormatForJSON = "yyyy-MM-ddTHH:mm:ss.fffZ"
 $TimeStampFormatForLogs = "yyyy.MM.dd HH:mm:ss"
 
+# Project image object
+$ProjectMemoryObject = @{"File" = 
+                           @{"Type" = "SmartResponse PlugIn Project"
+                           ; "TypeVersion" = $VersionNumber
+                           }
+                       ; "Generated" = 
+                           @{"By" = "LogRhythm SmartResponse Plug-In Editor - " + $Version 
+                           ; "Automatically" = $true
+                           ; "At" = (Get-Date).tostring($TimeStampFormatForJSON)
+                           }
+                       ; "PlugIn" =
+                           @{"Name" = ""
+                           ; "ProjectFolder" = ""
+                           ; "FileName" = ""
+                           ; "Author" = ""
+                           ; "Version" =
+                               @{"Major" = ""
+                               ; "Minor" = ""
+                               ; "Build" = ""
+                               ; "BuildAutoIncrment" = $true
+                               }
+                           }
+                       }
+
+
 # Directories and files information
 # Base directory
 $basePath = Split-Path (Get-Variable MyInvocation).Value.MyCommand.Path
 cd $basePath
+
+# Last Browse directory
+$LastBrowsePath = $basePath
 
 # Config directory and file
 $configPath = Join-Path -Path $basePath -ChildPath "config"
@@ -108,22 +136,6 @@ $PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "P
 # Local copy of the LogRhythm Fields List JSON
 $LogRhythmFieldsListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "LogRhythmFieldsListLocal.json"
 
-<#
-
-function SimpleQueryGet([string] $SimpleQuery_)
-{
-    $SimpleQuery_
-	$response = Invoke-RestMethod -Uri ($url + $SimpleQuery_) -Method Get -Headers $headers
-    $response  | Format-Table -wrap
-}
-function SimpleQueryPost([string] $SimpleQuery_)
-{
-    $SimpleQuery_
-	$response = Invoke-RestMethod -Uri ($url + $SimpleQuery_) -Method Post -Headers $headers
-    $response  | Format-Table -wrap
-}
-
-#>
 
 # ########
 # Functions used to decompress/decode compressed/encoded UI XAML:
@@ -303,10 +315,45 @@ $ListViewToTab=@{
 ############################
 # Add events to Form Objects
 
+function SaveProjectMemoryObectToDisk()
+{
+    if (($script:ProjectMemoryObject.PlugIn.ProjectFolder -ne "") -and ($script:ProjectMemoryObject.PlugIn.FileName -ne ""))
+    {
+        try
+        {
+        $SaveToFile = Join-Path -Path $script:ProjectMemoryObject.PlugIn.ProjectFolder -ChildPath ($script:ProjectMemoryObject.PlugIn.FileName)
+        if (-Not (Test-Path $SaveToFile))
+        {
+	        New-Item $SaveToFile -type file | out-null
+        }
+            try
+            {
+                $script:ProjectMemoryObject.PlugIn.Name = $tbPlugInName.Text.Trim()
+                $script:ProjectMemoryObject.PlugIn.ProjectFolder = $tbPlugInProjectFolder.Text.Trim()
+                $script:ProjectMemoryObject.PlugIn.Author = $tbPlugInAuthor.Text.Trim()
+                $script:ProjectMemoryObject.PlugIn.Version.Major = $tbPlugInVersionMajor.Text.ToDecimal($Null)
+                $script:ProjectMemoryObject.PlugIn.Version.Minor = $tbPlugInVersionMinor.Text.ToDecimal($Null)
+                $script:ProjectMemoryObject.PlugIn.Version.Build = $tbPlugInVersionBuild.Text.ToDecimal($Null)
+
+                $script:ProjectMemoryObject.Generated.At = (Get-Date).tostring($TimeStampFormatForJSON)
+                $ProjectMemoryObject | Export-Clixml -Path $SaveToFile
+            }
+            catch
+            {
+                LogError ("Failed to save the Project File ""{0}"". Exception: {0}" -f $SaveToFile)
+            }
+        }
+        catch
+        {
+            LogError ("Failed to save the Project File. Exception: {0}" -f $SaveToFile)
+        }
+    }
+}
+
 #######
 # Save button
 $btSave.Add_Click({
-
+    SaveProjectMemoryObectToDisk
 })
 
 ############
@@ -439,6 +486,75 @@ function PlugInDownloadCloudRefresh()
     $dgPlugInCloudTemplateList.ItemsSource=$PlugInCloudTemplateListArray
 }
 
+# Function to Browse for a folder
+Function Get-DirectoryName()
+{   
+    param
+    (
+        [string] $InitialDirectory = "",
+        [string] $Description = $null,
+        [Switch] $ShowNewFolderButton = $False
+    )
+    try
+    {
+        [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+
+        $OpenFolderDialog = New-Object System.Windows.Forms.FolderBrowserDialog
+        $OpenFolderDialog.ShowNewFolderButton = $ShowNewFolderButton
+        $OpenFolderDialog.SelectedPath = $InitialDirectory
+        $OpenFolderDialog.Description = $Description
+        $DialogResult = $OpenFolderDialog.ShowDialog() #| Out-Null
+        if ($DialogResult -eq "OK")
+        {
+            return $OpenFolderDialog.SelectedPath
+        }
+        else
+        {
+            return $null
+        }
+    }
+    catch
+    {
+        LogError "Impossible to browse for directory."
+        return $null
+    }
+}
+
+# Function to Browse for a file
+Function Get-FileName()
+{   
+    param
+    (
+        [string] $Filter = "All files (*.*)| *.*",
+        [string] $InitialDirectory = "",
+        [string] $Title = "",
+        [Switch] $CheckFileExists = $false,
+        [Switch] $ReadOnlyChecked = $false,
+        [Switch] $ShowReadOnly = $false,
+        [Switch] $Multiselect = $false
+    )
+    try
+    {
+        [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+
+        $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+        $OpenFileDialog.initialDirectory = $InitialDirectory
+        $OpenFileDialog.filter = $Filter
+        $OpenFileDialog.CheckFileExists = $CheckFileExists
+        $OpenFileDialog.ReadOnlyChecked = $ReadOnlyChecked
+        $OpenFileDialog.ShowReadOnly = $ShowReadOnly
+        $OpenFileDialog.Multiselect = $Multiselect
+        $OpenFileDialog.Title = $Title
+        $OpenFileDialog.ShowDialog() | Out-Null
+        return $OpenFileDialog.filename
+    }
+    catch
+    {
+        LogError "Impossible to browse for files."
+        return $null
+    }
+}
+
 $btPlugInDownloadCloudRefresh.Add_Click({
 #    $rttbPlugInCloudTemplateList.Fill = "#FFFF661E"
     PlugInDownloadCloudRefresh -DownloadFromCloud
@@ -462,7 +578,7 @@ $btPlugInDownloadCloudTemplate.Add_Click({
         {
             if ($matches.Count -gt 0)
             {
-                LogDebug $matches[1]
+                #LogDebug $matches[1]
                 $TextBoxValidated = $false
                 $TextBoxText = $_.OriginalSource.Text # Doing this as using $_.OriginalSource.Text in the Switch seems to provide weird results...
 
@@ -512,8 +628,11 @@ $btPlugInDownloadCloudTemplate.Add_Click({
 
 $SRPEditorForm.AddHandler([System.Windows.Controls.TextBox]::TextChangedEvent, $textChangedHandler)
 
+
 # ########
 # Build the list of Parameter fields (LogRhythm MDI fields)
+
+$ComboBoxList = $null
 
 function ParameterFieldArray()
 {
@@ -528,6 +647,8 @@ function ParameterFieldUpdate()
 {
     param
     (
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [System.Windows.Controls.ComboBox[]] $ComboBoxes = $(Throw("-ComboBoxes is required")),
         [Switch] $DownloadFromCloud = $False
     )
 
@@ -536,16 +657,138 @@ function ParameterFieldUpdate()
 
     $ParameterFieldListArray = Get-Content -Raw -Path $LogRhythmFieldsListJSONLocalFile  | ConvertFrom-Json
 
-    $ListView = [System.Windows.Data.ListCollectionView]$ParameterFieldListArray
-    $ListView.GroupDescriptions.Add((new-object System.Windows.Data.PropertyGroupDescription "Family"))
-
     # Look for ComboBoxes that have Tag="NeedList:LRFields"
     # Then assign them $ListView to the ItemsSource property
-    #$SRPEditorForm.
-    # Gave up, and did it by naming them by hand. Lazy and bad...
-    $cbActionXFieldMappingField.ItemsSource = $ListView
-    $cbTestParameters.ItemsSource = $ListView
+    # ...
+    # Gave up, and did it by sending them by hand in a parameter.
+    foreach ($ComboBox in $ComboBoxes)
+    {
+        $ListView = [System.Windows.Data.ListCollectionView]$ParameterFieldListArray
+        $ListView.GroupDescriptions.Add((new-object System.Windows.Data.PropertyGroupDescription "Family"))
+        $ComboBox.ItemsSource = $ListView
+    }
 }
+
+# ########
+# UI : PlugIn tab : Browse button
+
+$btPlugInProjectFolderBrowse.Add_Click({
+    
+    # No folder, no file name, no author name, then I guess we never ran, so let's grab the user info and store them as the Author name
+    if ([string]::IsNullOrEmpty($script:ProjectMemoryObject.PlugIn.ProjectFolder) -and [string]::IsNullOrEmpty($script:ProjectMemoryObject.PlugIn.FileName) -and [string]::IsNullOrEmpty($script:ProjectMemoryObject.PlugIn.Author))
+    {
+        $script:ProjectMemoryObject.PlugIn.Author = $env:USERNAME.Trim()
+        $tbPlugInAuthor.Text = $script:ProjectMemoryObject.PlugIn.Author
+    }
+    
+    # If no folder already specified, use the $LastBrowsePath, otherwise, use the Path of the project
+    if ($script:ProjectMemoryObject.PlugIn.ProjectFolder -ne "")
+    {
+        $BrowseFrom = $script:ProjectMemoryObject.PlugIn.ProjectFolder
+    }
+    else
+    {
+        $BrowseFrom = $script:LastBrowsePath
+    }
+
+    # Browse for a directory
+    $NewProjectDirectory = Get-DirectoryName -ShowNewFolderButton -Description "Select the root of the SmartResponse Project." -InitialDirectory $BrowseFrom
+    
+    # Check user clicked on OK and everything was fine
+    if (-not [string]::IsNullOrEmpty($NewProjectDirectory))
+    {
+        # Doing this so next time we Browse, we are pointed straight to where we were last time (well, this time)
+        $script:LastBrowsePath = $NewProjectDirectory
+
+        LogInfo ("Setting new project folder to: ""{0}""." -f $NewProjectDirectory)
+        try
+        {
+            if (-Not (Test-Path $NewProjectDirectory))
+            {
+	            New-Item -ItemType directory -Path $NewProjectDirectory | out-null
+            }
+            try
+            {
+                # Check if there is already some FileName in the Memory Object. If not, create a new one.
+                if ([string]::IsNullOrEmpty($script:ProjectMemoryObject.PlugIn.FileName))
+                {
+                    $NewProjectName = $tbPlugInName.Text.Trim()
+                    if ($NewProjectName.Length -le 0)
+                    {
+                        $NewProjectName = "SmartResponse Project"
+                    }
+                    # Assign back to the UI (so if there was nothing before, now it's going to revert back to the default "SmartResponse Project")
+                    $tbPlugInName.Text = $NewProjectName
+                    $script:ProjectMemoryObject.PlugIn.FileName = $NewProjectName + ".SRPx"
+                }
+
+                $NewProjectFile = Join-Path -Path $NewProjectDirectory -ChildPath ($script:ProjectMemoryObject.PlugIn.FileName)
+                if (-Not (Test-Path $NewProjectFile))
+                {
+	                New-Item $NewProjectFile -type file | out-null
+                }
+            
+
+                # Assign the value to the memory object
+                $script:ProjectMemoryObject.PlugIn.ProjectFolder = $NewProjectDirectory
+                # Assign new path to the UI
+                $tbPlugInProjectFolder.Text = $NewProjectDirectory
+
+                # Save what we have to disk
+                SaveProjectMemoryObectToDisk
+
+            }
+            catch
+            {
+                LogError ("Failed to create the new project file: {0}." -f $NewProjectFile)
+            }
+        }
+        catch
+        {
+            LogError ("Failed to open or create the new project folder: {0}." -f $NewProjectDirectory)
+        }
+    } # if (-not [string]::IsNullOrEmpty($NewProjectDirectory)
+
+})
+
+# ########
+# UI : PlugIn tab : Open button
+
+$btPlugInOpen.Add_Click({
+    Get-FileName -Filter "SmartResponse Project files (*.srpx)|*.srpx|All files (*.*)| *.*" -Title "Open a SmartResponse Project files" -CheckFileExists
+})
+
+# ########
+# UI : PlugIn tab : Import XML button
+
+$btPlugInImportXML.Add_Click({
+    Get-FileName -Filter "XML SmartResponse Config files (*.xml)|*.xml|All files (*.*)| *.*" -Title "Open an XML SmartResponse Configuraion file" -CheckFileExists -ReadOnlyChecked -ShowReadOnly
+})
+
+# ########
+# UI : PlugIn tab : Import LPI button
+
+$btPlugInImportLPI.Add_Click({
+    Get-FileName -Filter "LPI Compiled SmartResponse files (*.lpi)|*.lpi|All files (*.*)| *.*" -Title "Open an LPI Compiled SmartResponse file" -CheckFileExists -ReadOnlyChecked -ShowReadOnly
+})
+
+
+# ########
+# UI : ActionX tab : Field mapping drop down
+
+$cbActionXFieldMappingField.Add_SelectionChanged({
+    #LogDebug ("cbActionXFieldMappingField::SelectionChanged // Index: {0} / Value: ""{1}"" / Entry: ""{2}""" -f $cbActionXFieldMappingField.SelectedIndex, $cbActionXFieldMappingField.SelectedValue, $cbActionXFieldMappingField.SelectedValue.Name)
+})
+
+# ########
+# UI : Test tab : Field drop down
+
+$cbTestParameters.Add_SelectionChanged({
+    #LogDebug "cbTestParameters::SelectionChanged"
+})
+
+
+
 
 ########################################################################################################################
 ##################################################### Execution!!  #####################################################
@@ -555,14 +798,14 @@ function ParameterFieldUpdate()
 # Pre-populate the Cloud Template List from the local cashed copy
 PlugInDownloadCloudRefresh
 
-ParameterFieldUpdate
+# Populate the List of Fields in the right ComboBoxes
+ParameterFieldUpdate -ComboBoxes ($cbActionXFieldMappingField, $cbTestParameters)
 
 
 
 #$cbTestParameters.ItemsSource = ParameterFieldUpdate
 #ParameterFieldUpdate -ComboBox $cbTestParameters
 #$cbTestParameters.GetType()
-
 
 # Run the UI
 $SRPEditorForm.ShowDialog() | out-null
