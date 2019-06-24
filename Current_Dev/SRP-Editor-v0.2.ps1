@@ -46,6 +46,37 @@ $TimeStampFormatForJSON = "yyyy-MM-ddTHH:mm:ss.fffZ"
 $TimeStampFormatForLogs = "yyyy.MM.dd HH:mm:ss"
 
 # Project image object
+# The types we need for it
+class SRPActionParameter
+{
+    [ValidateNotNullOrEmpty()][string]$Type
+    [ValidateNotNullOrEmpty()][string]$Name
+    [ValidateNotNullOrEmpty()][string]$MapToField
+    [ValidateNotNullOrEmpty()][string]$Switch
+    [ValidateNotNullOrEmpty()][string]$ValidationRule
+}
+
+class SRPAction
+{
+    [ValidateNotNullOrEmpty()][string]$Name
+    [ValidateNotNullOrEmpty()][string]$Command
+    [ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters
+}
+
+class SRPTestParameter
+{
+    [ValidateNotNullOrEmpty()][string]$Name
+    [ValidateNotNullOrEmpty()][string]$Value
+}
+
+class SRPTest
+{
+    [ValidateNotNullOrEmpty()][bool]$Enable
+    [ValidateNotNullOrEmpty()][string]$Action
+    [ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters
+}
+
+# The memory object itself
 $ProjectMemoryObject = @{"File" = 
                            @{"Type" = "SmartResponse PlugIn Project"
                            ; "TypeVersion" = $VersionNumber
@@ -67,6 +98,37 @@ $ProjectMemoryObject = @{"File" =
                                ; "BuildAutoIncrment" = $true
                                }
                            }
+                       ; "Actions" = @()
+                       ; "Output" =
+                           @{"Folder" = ""
+                           ; "OneFolderPerVersion" = $true
+                           }
+                       ; "Preferences" =
+                           @{"LicenseFile" = "LogRhythm Code Sample"
+                           ; "GenerateSignleScriptFile" = $false
+                           ; "GenerateLPIAtBuildTime" = $false
+                           }
+                       ; "Language" =
+                           @{"ScriptingLanguage" = "PowerShell"
+                           }
+                       ; "ModulesExtensions" = 
+                           @{"APIWrappers" = @()
+                           ; "Simplifiers" = @()
+                           }
+                       ; "Signature" =
+                           @{"BuiltInProcess" = $true
+                           ; "AutoSignEveryBuild" = $false
+                           ; "UseCertificateStore" = $true
+                           ; "CertificatePath" = "Cert:\CurrentUser\My"
+                           ; "CustomSigningScriptPath" = ""
+                           }
+                       ; "Build" =
+                           @{"CreateOneFunctionPerAction" = $true
+                           ; "ParameterValidation" = "Hard Validation"
+                           ; "PreBuildExternalScriptPath" = ""
+                           ; "PostBuildExternalScriptPath" = ""
+                           }
+                       ; "Tests" = @()
                        }
 
 
@@ -755,7 +817,59 @@ $btPlugInProjectFolderBrowse.Add_Click({
 # UI : PlugIn tab : Open button
 
 $btPlugInOpen.Add_Click({
-    Get-FileName -Filter "SmartResponse Project files (*.srpx)|*.srpx|All files (*.*)| *.*" -Title "Open a SmartResponse Project files" -CheckFileExists
+    # Browse for a File
+    $ProjectFileToOpen = Get-FileName -Filter "SmartResponse Project files (*.srpx)|*.srpx|All files (*.*)| *.*" -Title "Open a SmartResponse Project files" -CheckFileExists -InitialDirectory $script:LastBrowsePath
+    
+    # Check user clicked on OK and everything was fine
+    if (-not [string]::IsNullOrEmpty($ProjectFileToOpen))
+    {
+        LogInfo ("Loading ""{0}"" project file..." -f $ProjectFileToOpen)
+        try
+        {
+            $TempProjectObject = Import-Clixml -Path $ProjectFileToOpen
+            LogInfo "Loaded from disk."
+        }
+        catch
+        {
+            LogError ("Failed to load or parse Project File: ""{0}"". Exception: {1}." -f $ProjectFileToOpen, $_.Exception.Message)
+        }
+
+        # Check we are in the right format
+        # We should check the version too, but so far all tool versions can open files of all version
+        try
+        {
+            if ($TempProjectObject.File.Type -eq "SmartResponse PlugIn Project")
+            {
+                $script:ProjectMemoryObject = $TempProjectObject
+            }
+            else
+            {
+                LogError "Project File format is not supported."
+            }
+        }
+        catch
+        {
+            LogError ("Project File format is not supported. Exception: {0}." -f $_.Exception.Message)
+        }
+
+
+        # Refresh the UI
+        try
+        {
+            $tbPlugInName.Text          = $script:ProjectMemoryObject.PlugIn.Name
+            $tbPlugInProjectFolder.Text = $script:ProjectMemoryObject.PlugIn.ProjectFolder
+            $tbPlugInAuthor.Text        = $script:ProjectMemoryObject.PlugIn.Author
+            $tbPlugInVersionMajor.Text  = $script:ProjectMemoryObject.PlugIn.Version.Major.ToString()
+            $tbPlugInVersionMinor.Text  = $script:ProjectMemoryObject.PlugIn.Version.Minor.ToString()
+            $tbPlugInVersionBuild.Text  = $script:ProjectMemoryObject.PlugIn.Version.Build.ToString()
+        }
+        catch
+        {
+            LogError ("Failed to update UI from the Project File. Exception: {0}" -f $_.Exception.Message)
+        }
+
+    }
+    
 })
 
 # ########
@@ -763,6 +877,7 @@ $btPlugInOpen.Add_Click({
 
 $btPlugInImportXML.Add_Click({
     Get-FileName -Filter "XML SmartResponse Config files (*.xml)|*.xml|All files (*.*)| *.*" -Title "Open an XML SmartResponse Configuraion file" -CheckFileExists -ReadOnlyChecked -ShowReadOnly
+    LogError "NOT IMPLEMENTED YET"
 })
 
 # ########
@@ -770,15 +885,115 @@ $btPlugInImportXML.Add_Click({
 
 $btPlugInImportLPI.Add_Click({
     Get-FileName -Filter "LPI Compiled SmartResponse files (*.lpi)|*.lpi|All files (*.*)| *.*" -Title "Open an LPI Compiled SmartResponse file" -CheckFileExists -ReadOnlyChecked -ShowReadOnly
+    LogError "NOT IMPLEMENTED YET"
 })
 
+
+# ########
+# UI : Actions tab
+##########################################################
+
+# ########
+# UI : Actions tab : Adding an action to the list
+
+$btActionsNameAdd.Add_Click({
+    #LogError "NOT IMPLEMENTED YET"
+    $ActionNameToAdd = $tbActionsName.Text.Trim()
+    if (-not [string]::IsNullOrEmpty($ActionNameToAdd))
+    {
+        $GoodToAdd = $true
+        foreach ($Action in $script:ProjectMemoryObject.Actions)
+        {
+            if ($Action.Name -eq $ActionNameToAdd)
+            {
+                $GoodToAdd = $false
+            }
+        }
+        if ($GoodToAdd)
+        {
+            $ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd"}
+            $script:ProjectMemoryObject.Actions += $ActionToAdd
+            $dgActonsOrder.items.Add($ActionToAdd)
+        }
+    }
+
+    for ($i = 0 ; $i -lt $lvStep.Items.Count ; $i++)
+    {
+        $lvStep.Items[$i].Content.Children | where { -not [string]::IsNullOrEmpty($_.Text)} | select Text
+    }
+
+    $a = $lvStep.Items.Add("Tony")
+    LogDebug "Added $a"
+
+})
+
+# ########
+# UI : Actions tab : Adding an action to the list
+
+$btActionsNameRefresh.Add_Click({
+    LogError "NOT IMPLEMENTED YET"
+})
+
+# ########
+# UI : Actions tab : Import from Template drop down list
+
+$cbActionsImportFromTemplate.Add_SelectionChanged({
+    LogError "NOT IMPLEMENTED YET"
+})
+
+# ########
+# UI : Actions tab : Deleting an action from the list
+
+$btActonsDelete.Add_Click({
+    LogError "NOT IMPLEMENTED YET"
+})
+
+# ########
+# UI : Actions tab : Move action to the top of the list
+
+$btActonsOrderTop.Add_Click({
+    LogError "NOT IMPLEMENTED YET"
+})
+
+# ########
+# UI : Actions tab : Move action one level up in the list
+
+$btActonsOrderUp.Add_Click({
+    LogError "NOT IMPLEMENTED YET"
+})
+
+# ########
+# UI : Actions tab : Move action one level down in the list
+
+$btActonsOrderDown.Add_Click({
+    LogError "NOT IMPLEMENTED YET"
+})
+
+# ########
+# UI : Actions tab : Move action to the bottom of the list
+
+$btActonsOrderBottom.Add_Click({
+    LogError "NOT IMPLEMENTED YET"
+})
+
+
+
+
+# ########
+# UI : ActionX tab
+##########################################################
 
 # ########
 # UI : ActionX tab : Field mapping drop down
 
 $cbActionXFieldMappingField.Add_SelectionChanged({
     #LogDebug ("cbActionXFieldMappingField::SelectionChanged // Index: {0} / Value: ""{1}"" / Entry: ""{2}""" -f $cbActionXFieldMappingField.SelectedIndex, $cbActionXFieldMappingField.SelectedValue, $cbActionXFieldMappingField.SelectedValue.Name)
+    LogError "NOT IMPLEMENTED YET"
 })
+
+# ########
+# UI : Test tab
+##########################################################
 
 # ########
 # UI : Test tab : Field drop down
@@ -786,7 +1001,6 @@ $cbActionXFieldMappingField.Add_SelectionChanged({
 $cbTestParameters.Add_SelectionChanged({
     #LogDebug "cbTestParameters::SelectionChanged"
 })
-
 
 
 
