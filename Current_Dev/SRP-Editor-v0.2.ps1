@@ -922,8 +922,16 @@ $btActionsNameAdd.Add_Click({
         $lvStep.Items[$i].Content.Children | where { -not [string]::IsNullOrEmpty($_.Text)} | select Text
     }
 
-    $a = $lvStep.Items.Add("Tony")
-    LogDebug "Added $a"
+    $WhereToInsert = 2
+    for ($i = 0 ; $i -lt $lvStep.Items.Count ; $i++)
+    {
+        if ($lvStep.Items.Item($i).Name -eq "Output")
+        {
+            $WhereToInsert = $i
+            Break
+        }
+    }
+    $InsertedAt = $lvStep.Items.Insert($WhereToInsert, [PSCustomObject]@{Name = "Action: $ActionNameToAdd" ; LaMarge = $script:MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconRocket") ; Tag = "Panel:ActionX"})
 
 })
 
@@ -1015,6 +1023,19 @@ PlugInDownloadCloudRefresh
 # Populate the List of Fields in the right ComboBoxes
 ParameterFieldUpdate -ComboBoxes ($cbActionXFieldMappingField, $cbTestParameters)
 
+$MarginLevel = @("0,0,0,0", "20,0,0,0", "40,0,0,0", "60,0,0,0", "80,0,0,0")
+
+$lvStep.Items.Add([PSCustomObject]@{Name = "Plug in" ; LaMarge = $MarginLevel[0] ; IconName = $ConfigReaderForm.FindResource("IconPlugIn") ; Tag = "Panel:PlugIn"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Actions" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconOrder") ; Tag = "Panel:Actions"}) | Out-Null
+#$lvStep.Items.Add([PSCustomObject]@{Name = "Action: ABC" ; LaMarge = $MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconRocket") ; Tag = "Panel:ActionX"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Action: XYZ" ; LaMarge = $MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconRocket") ; Tag = "Panel:ActionX"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Output" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconOutput") ; Tag = "Panel:Output"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Preferences" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconPreferenceCogs") ; Tag = "Panel:Pref"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Language" ; LaMarge = $MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconLanguage") ; Tag = "Panel:Language"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Modules/Extensions" ; LaMarge = $MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconPrebuiltFunctions") ; Tag = "Panel:Mod/Ext"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Sign" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconFingerPrint") ; Tag = "Panel:Sign"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Build" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconBuild") ; Tag = "Panel:Build"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Test" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconTest") ; Tag = "Panel:Test"}) | Out-Null
 
 
 #$cbTestParameters.ItemsSource = ParameterFieldUpdate
