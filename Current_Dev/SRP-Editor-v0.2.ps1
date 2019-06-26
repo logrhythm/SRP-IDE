@@ -399,16 +399,18 @@ function SaveProjectMemoryObectToDisk()
                 $script:ProjectMemoryObject.PlugIn.Version.Build = $tbPlugInVersionBuild.Text.ToDecimal($Null)
 
                 $script:ProjectMemoryObject.Generated.At = (Get-Date).tostring($TimeStampFormatForJSON)
+                LogInfo "Saving project to file..."
                 $ProjectMemoryObject | Export-Clixml -Path $SaveToFile
+                LogInfo ("Project saved to file ""{0}""." -f $SaveToFile)
             }
             catch
             {
-                LogError ("Failed to save the Project File ""{0}"". Exception: {0}" -f $SaveToFile)
+                LogError ("Failed to save the Project File ""{0}"". Exception: {0}" -f $SaveToFile, $_.Exception.Message)
             }
         }
         catch
         {
-            LogError ("Failed to save the Project File. Exception: {0}" -f $SaveToFile)
+            LogError ("Failed to save the Project File. Exception: {0}" -f $_.Exception.Message)
         }
     }
 }
@@ -477,7 +479,7 @@ function PlugInDownloadCloudRefresh()
     $PlugInCloudTemplateListArray = @()
 
     # Clean any error info on the UI
-    $caPlugInDownloadCloudRefreshStatus.ToolTip = ""
+    $caPlugInDownloadCloudRefreshStatus.ToolTip = $null
     $caPlugInDownloadCloudRefreshStatus.Visibility = "Hidden"
 
     # Download the JSON template list TO the local disk
@@ -513,7 +515,8 @@ function PlugInDownloadCloudRefresh()
                 LogError $TmpMsg
                 $caPlugInDownloadCloudRefreshStatus.ToolTip = $TmpMsg
                 $caPlugInDownloadCloudRefreshStatus.Visibility = "Visible"
-                $rttbPlugInCloudTemplateList.Fill = "#FFFF661E"
+                $sbPlugInDownloadCloudRefreshStatusAlert.Begin($caPlugInDownloadCloudRefreshStatus)
+                #$rttbPlugInCloudTemplateList.Fill = "#FFFF661E"
             }
         }
         catch
@@ -522,7 +525,8 @@ function PlugInDownloadCloudRefresh()
             LogError $TmpMsg
             $caPlugInDownloadCloudRefreshStatus.ToolTip = $TmpMsg
             $caPlugInDownloadCloudRefreshStatus.Visibility = "Visible"
-            $rttbPlugInCloudTemplateList.Fill = "#FFFF661E"
+            $sbPlugInDownloadCloudRefreshStatusAlert.Begin($caPlugInDownloadCloudRefreshStatus)
+            #$rttbPlugInCloudTemplateList.Fill = "#FFFF661E"
         }
     }
 
@@ -647,10 +651,15 @@ $btPlugInDownloadCloudRefresh.Add_Click({
 })
 
 $btPlugInDownloadCloudTemplate.Add_Click({
+    LogDebug "NOT IMPLEMENTED YET"
     # Goofing around, trying to find a nice visual way to show that there was an issue
-    $rttbPlugInCloudTemplateList.Fill = "#FFFF661E" ## This is a test
-    $caPlugInDownloadCloudRefreshStatus.Visibility = "Visible" ## This is a test
+    #$rttbPlugInCloudTemplateList.Fill = "#FFFF661E" ## This is a test
+    #$caPlugInDownloadCloudRefreshStatus.Visibility = "Hidden" ## This is a test
+    #$caPlugInDownloadCloudRefreshStatus.Visibility = "Visible" ## This is a test
+    #$sbPlugInDownloadCloudRefreshStatusAlert.Begin($caPlugInDownloadCloudRefreshStatus)
+    
 })
+
 
 # Setting up the TextBox validation function
 
@@ -1080,8 +1089,11 @@ $btActionsNameAdd.Add_Click({
 # UI : Actions tab : Adding an action to the list
 
 $btActionsNameRefresh.Add_Click({
-    Update-SRPActionName -ActionGUID $dgActionsOrder.SelectedItem.GUID -ActionNameToModify $tbActionsName.Text
-
+    $GUIDToUpdate = $dgActionsOrder.SelectedItem.GUID
+    if ($GUIDToUpdate -isnot $null)
+    {
+        Update-SRPActionName -ActionGUID $GUIDToUpdate -ActionNameToModify $tbActionsName.Text
+    }
 })
 
 # ########
@@ -1187,7 +1199,7 @@ $lvStep.Items.Add([PSCustomObject]@{Name = "Modules/Extensions" ; LaMarge = $Mar
 $lvStep.Items.Add([PSCustomObject]@{Name = "Sign" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconFingerPrint") ; Tag = "Panel:Sign" ; GoToTab = "Sign"}) | Out-Null
 $lvStep.Items.Add([PSCustomObject]@{Name = "Build" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconBuild") ; Tag = "Panel:Build" ; GoToTab = "Build"}) | Out-Null
 $lvStep.Items.Add([PSCustomObject]@{Name = "Test" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconTest") ; Tag = "Panel:Test" ; GoToTab = "Test"}) | Out-Null
-
+$lvStep.SelectedIndex = 0
 
 #$cbTestParameters.ItemsSource = ParameterFieldUpdate
 #ParameterFieldUpdate -ComboBox $cbTestParameters
