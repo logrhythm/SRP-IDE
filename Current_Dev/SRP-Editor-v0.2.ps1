@@ -59,6 +59,7 @@ class SRPActionParameter
 class SRPAction
 {
     [ValidateNotNullOrEmpty()][string]$Name
+    [ValidateNotNullOrEmpty()][guid]$GUID
     [ValidateNotNullOrEmpty()][string]$Command
     [ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters
 }
@@ -433,10 +434,32 @@ $btNext.Add_Click({
 
 
 $lvStep.Add_SelectionChanged({
+
+    # Move the right tab
+    ($tcTabs.Items | where {$_.Header -eq $lvStep.Items[$lvStep.SelectedIndex].GoToTab}).IsSelected = $true
+    
+    # Check if we got into Action_X
+    # If we are, fill the screen with the relevant data
+    if ($lvStep.Items[$lvStep.SelectedIndex].GoToTab -eq "Action_X")
+    {
+        # Find which Action we are talking about
+        $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+            #$ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
+            #$script:ProjectMemoryObject.Actions += $ActionToAdd
+
+        $lbActionXActionName.Content = ("Action: {0}" -f $CurrentAction.name)
+        $lbActionXGUID.Content = ("GUID: {0}" -f $CurrentAction.GUID)
+        $tbActionXCommand.Text = $CurrentAction.Command
+        
+
+    }
+
+<#
    if (($lvStep.SelectedIndex -ge 0) -and ($lvStep.SelectedIndex -le $tcTabs.Items.Count))
    {
        $tcTabs.SelectedIndex = $ListViewToTab.($lvStep.SelectedIndex)
    }
+#>
     
 })
 
@@ -894,52 +917,171 @@ $btPlugInImportLPI.Add_Click({
 ##########################################################
 
 # ########
+# Function to Add an action to the differnet lists
+
+Function Add-SRPAction()
+{
+    param
+    (
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [string] $ActionNameToAdd,
+        [Switch] $DoNotAddToNavigation = $false, # Do not add it to the navigation panel on the left
+        [Switch] $DoNotAddToActionsOrderList = $false,
+        [Switch] $DoNotAddToMemoryObjectActionsList = $false,
+        [Switch] $DoNotCreateGUID = $false
+    )
+
+    $ReturnValue = $false
+    try
+    {
+        if (-not [string]::IsNullOrEmpty($ActionNameToAdd))
+        {
+            $GoodToAdd = $true
+            foreach ($Action in $script:ProjectMemoryObject.Actions)
+            {
+                if ($Action.Name -eq $ActionNameToAdd)
+                {
+                    #$GoodToAdd = $false
+                }
+            }
+            if ($GoodToAdd)
+            {
+                # Insert the Action in the Memory Object
+                if (-Not $DoNotAddToMemoryObjectActionsList)
+                {
+                    if ($DoNotCreateGUID) # Not sure why on earth you would want that. But hey, not here to judge...
+                    {
+                        $ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd"}
+                    }
+                    else
+                    {
+                        $ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
+                    }
+                    $script:ProjectMemoryObject.Actions += $ActionToAdd
+                }
+
+                # Insert the Action in the Order grid
+                if (-Not $DoNotAddToActionsOrderList)
+                {
+                    $dgActionsOrder.items.Add($ActionToAdd)
+                }
+
+                # Insert the Action into the navigation panel (lvStep)
+                if (-Not $DoNotAddToNavigation)
+                {
+                    $WhereToInsert = 2 # Right after the "Actions" item
+                    for ($i = 0 ; $i -lt $lvStep.Items.Count ; $i++)
+                    {
+                        if ($lvStep.Items.Item($i).Name -eq "Output") # Right before the "Output" item
+                        {
+                            $WhereToInsert = $i
+                            Break
+                        }
+                    }
+                    $lvStep.Items.Insert($WhereToInsert, [PSCustomObject]@{Name = ("Action: {0}" -f $ActionToAdd.Name) ; GUID = $ActionToAdd.GUID ; LaMarge = $script:MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
+                }
+            }
+            $ReturnValue = $true
+        } # if (-not [string]::IsNullOrEmpty($ActionNameToAdd))
+        else
+        {
+            LogInformation "Not possible to add a new Action with an empty name. Get your act together mate..."
+        }
+    }
+    catch
+    {
+        LogError ("Error adding Action ""{0}""." -f $ActionNameToAdd)
+    }
+    return $ReturnValue
+}
+
+# ########
+# Function to Update an action's name to the different lists
+
+Function Update-SRPActionName()
+{
+    param
+    (
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [guid] $ActionGUID,
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [string] $ActionNameToModify,
+        [Switch] $DoNotModifyInNavigation = $false, # Do not modify it to the navigation panel on the left
+        [Switch] $DoNotModifyInActionsOrderList = $false,
+        [Switch] $DoNotModifyInMemoryObjectActionsList = $false
+    )
+
+    $ReturnValue = $false
+    try
+    {
+        if (-not [string]::IsNullOrEmpty($ActionNameToModify) -and $ActionGUID -isnot $null)
+        {
+            $ActionNameToModify = $ActionNameToModify.Trim()
+            $GoodToModify = $true
+<#
+            foreach ($Action in $script:ProjectMemoryObject.Actions)
+            {
+                if ($Action.Name -eq $ActionNameToModify)
+                {
+                    $GoodToAdd = $false
+                }
+            }
+#>
+            if ($GoodToModify)
+            {
+                # Update the Action in the Memory Object
+                if (-Not $DoNotModifyInMemoryObjectActionsList)
+                {
+                    LogDebug "ModifyInMemoryObjectActionsList"
+                    ($script:ProjectMemoryObject.Actions | where {$_.GUID -eq $ActionGUID}).Name = $ActionNameToModify
+                }
+
+                # Update the Action in the Order grid
+                if (-Not $DoNotModifyInActionsOrderList)
+                {
+                    LogDebug "ModifyInActionsOrderList"
+                    if ($script:dgActionsOrder.SelectedIndex -ge 0)
+                    {
+                        $script:dgActionsOrder.SelectedItem.Name = $ActionNameToModify
+                        $script:dgActionsOrder.Items.Refresh()
+                    }
+                }
+
+                # Update the Action into the navigation panel (lvStep)
+                if (-Not $DoNotModifyInNavigation)
+                {
+                    LogDebug "ModifyInNavigation"
+                    ($script:lvStep.Items | where {$_.GUID -eq $ActionGUID}).Name = ("Action: {0}" -f $ActionNameToModify)
+                    $script:lvStep.Items.Refresh()
+                }
+            }
+            $ReturnValue = $true
+        } # if (-not [string]::IsNullOrEmpty($ActionNameToAdd))
+        else
+        {
+            LogInformation "Not possible to update the Action to an empty name. Get your act together mate..."
+        }
+    }
+    catch
+    {
+        LogError ("Error updating Action ""{0}""." -f $ActionNameToModify)
+    }
+    return $ReturnValue
+}
+
+# ########
 # UI : Actions tab : Adding an action to the list
 
 $btActionsNameAdd.Add_Click({
-    #LogError "NOT IMPLEMENTED YET"
-    $ActionNameToAdd = $tbActionsName.Text.Trim()
-    if (-not [string]::IsNullOrEmpty($ActionNameToAdd))
-    {
-        $GoodToAdd = $true
-        foreach ($Action in $script:ProjectMemoryObject.Actions)
-        {
-            if ($Action.Name -eq $ActionNameToAdd)
-            {
-                $GoodToAdd = $false
-            }
-        }
-        if ($GoodToAdd)
-        {
-            $ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd"}
-            $script:ProjectMemoryObject.Actions += $ActionToAdd
-            $dgActonsOrder.items.Add($ActionToAdd)
-        }
-    }
-
-    for ($i = 0 ; $i -lt $lvStep.Items.Count ; $i++)
-    {
-        $lvStep.Items[$i].Content.Children | where { -not [string]::IsNullOrEmpty($_.Text)} | select Text
-    }
-
-    $WhereToInsert = 2
-    for ($i = 0 ; $i -lt $lvStep.Items.Count ; $i++)
-    {
-        if ($lvStep.Items.Item($i).Name -eq "Output")
-        {
-            $WhereToInsert = $i
-            Break
-        }
-    }
-    $InsertedAt = $lvStep.Items.Insert($WhereToInsert, [PSCustomObject]@{Name = "Action: $ActionNameToAdd" ; LaMarge = $script:MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconRocket") ; Tag = "Panel:ActionX"})
-
+    Add-SRPAction -ActionNameToAdd $tbActionsName.Text.Trim()
 })
 
 # ########
 # UI : Actions tab : Adding an action to the list
 
 $btActionsNameRefresh.Add_Click({
-    LogError "NOT IMPLEMENTED YET"
+    Update-SRPActionName -ActionGUID $dgActionsOrder.SelectedItem.GUID -ActionNameToModify $tbActionsName.Text
+
 })
 
 # ########
@@ -947,6 +1089,7 @@ $btActionsNameRefresh.Add_Click({
 
 $cbActionsImportFromTemplate.Add_SelectionChanged({
     LogError "NOT IMPLEMENTED YET"
+    #$cbActionsImportFromTemplate
 })
 
 # ########
@@ -982,6 +1125,14 @@ $btActonsOrderDown.Add_Click({
 
 $btActonsOrderBottom.Add_Click({
     LogError "NOT IMPLEMENTED YET"
+})
+
+# ########
+# UI : Actions tab : Move action to the bottom of the list
+
+$dgActionsOrder.Add_SelectionChanged({
+    #LogError "NOT IMPLEMENTED YET"
+    $tbActionsName.Text = $dgActionsOrder.SelectedItem.Name
 })
 
 
@@ -1025,17 +1176,17 @@ ParameterFieldUpdate -ComboBoxes ($cbActionXFieldMappingField, $cbTestParameters
 
 $MarginLevel = @("0,0,0,0", "20,0,0,0", "40,0,0,0", "60,0,0,0", "80,0,0,0")
 
-$lvStep.Items.Add([PSCustomObject]@{Name = "Plug in" ; LaMarge = $MarginLevel[0] ; IconName = $ConfigReaderForm.FindResource("IconPlugIn") ; Tag = "Panel:PlugIn"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Actions" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconOrder") ; Tag = "Panel:Actions"}) | Out-Null
-#$lvStep.Items.Add([PSCustomObject]@{Name = "Action: ABC" ; LaMarge = $MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconRocket") ; Tag = "Panel:ActionX"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Action: XYZ" ; LaMarge = $MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconRocket") ; Tag = "Panel:ActionX"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Output" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconOutput") ; Tag = "Panel:Output"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Preferences" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconPreferenceCogs") ; Tag = "Panel:Pref"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Language" ; LaMarge = $MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconLanguage") ; Tag = "Panel:Language"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Modules/Extensions" ; LaMarge = $MarginLevel[2] ; IconName = $ConfigReaderForm.FindResource("IconPrebuiltFunctions") ; Tag = "Panel:Mod/Ext"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Sign" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconFingerPrint") ; Tag = "Panel:Sign"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Build" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconBuild") ; Tag = "Panel:Build"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Test" ; LaMarge = $MarginLevel[1] ; IconName = $ConfigReaderForm.FindResource("IconTest") ; Tag = "Panel:Test"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Plug in" ; LaMarge = $MarginLevel[0] ; IconName = $SRPEditorForm.FindResource("IconPlugIn") ; Tag = "Panel:PlugIn" ; GoToTab = "PlugIn"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Actions" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconOrder") ; Tag = "Panel:Actions" ; GoToTab = "Actions"}) | Out-Null
+#$lvStep.Items.Add([PSCustomObject]@{Name = "Action: ABC" ; LaMarge = $MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Action: XYZ" ; GUID = New-Guid ; LaMarge = $MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Output" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconOutput") ; Tag = "Panel:Output" ; GoToTab = "Output"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Preferences" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconPreferenceCogs") ; Tag = "Panel:Pref" ; GoToTab = "Pref"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Language" ; LaMarge = $MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconLanguage") ; Tag = "Panel:Language" ; GoToTab = "Language"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Modules/Extensions" ; LaMarge = $MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconPrebuiltFunctions") ; Tag = "Panel:Mod/Ext" ; GoToTab = "Mod/Ext"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Sign" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconFingerPrint") ; Tag = "Panel:Sign" ; GoToTab = "Sign"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Build" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconBuild") ; Tag = "Panel:Build" ; GoToTab = "Build"}) | Out-Null
+$lvStep.Items.Add([PSCustomObject]@{Name = "Test" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconTest") ; Tag = "Panel:Test" ; GoToTab = "Test"}) | Out-Null
 
 
 #$cbTestParameters.ItemsSource = ParameterFieldUpdate

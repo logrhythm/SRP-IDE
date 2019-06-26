@@ -1195,7 +1195,7 @@
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
                                                             <Grid Margin="6,6,11,0">
-                                                                <DataGrid x:Name="dgActonsOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
+                                                                <DataGrid x:Name="dgActionsOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
                                                                     <DataGrid.Columns>
                                                                         <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="320" IsReadOnly="True"/>
                                                                     </DataGrid.Columns>
@@ -1377,7 +1377,8 @@
                                             <Grid DockPanel.Dock="Top" Margin="0,0,0,25">
                                                 <Rectangle Fill="#FF2E2E2E" RadiusY="3" RadiusX="3"/>
                                                 <Rectangle Fill="#FF121212" Height="1" Margin="0,45,0,0" VerticalAlignment="Top"/>
-                                                <Label Content="Action XYZ" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
+                                                <Label x:Name="lbActionXActionName" Content="" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Foreground="#FFCCCCCC" FontSize="21"/>
+                                                <Label x:Name="lbActionXGUID" Content="" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Foreground="#FF909090" FontSize="7" ToolTip="Internal GUID of this Action."/>
                                                 <DockPanel Margin="15,50,0,0">
                                                     <Grid Margin="0,0,0,5" DockPanel.Dock="Top">
                                                         <Grid.ColumnDefinitions>
