@@ -132,6 +132,9 @@ $ProjectMemoryObject = @{"File" =
                        ; "Tests" = @()
                        }
 
+$LoadedNew = @{"Actions" = $false
+             ; "Preferences" = $false
+             }
 
 # Directories and files information
 # Base directory
@@ -437,22 +440,60 @@ $btNext.Add_Click({
 
 $lvStep.Add_SelectionChanged({
 
-    # Move the right tab
-    ($tcTabs.Items | where {$_.Header -eq $lvStep.Items[$lvStep.SelectedIndex].GoToTab}).IsSelected = $true
-    
-    # Check if we got into Action_X
-    # If we are, fill the screen with the relevant data
-    if ($lvStep.Items[$lvStep.SelectedIndex].GoToTab -eq "Action_X")
+    if ($lvStep.Items.Count -gt 0)
     {
-        # Find which Action we are talking about
-        $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
-            #$ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
-            #$script:ProjectMemoryObject.Actions += $ActionToAdd
+        # Move the right tab
+        ($tcTabs.Items | where {$_.Header -eq $lvStep.Items[$lvStep.SelectedIndex].GoToTab}).IsSelected = $true
+    
+        # Check if we are entering a tab that requires refresh
+        # If we are, fill the screen with the relevant data
+        switch -wildcard ($lvStep.Items[$lvStep.SelectedIndex].GoToTab) {
+            "Actions"
+            {
+                if ($script:LoadedNew.Actions)
+                {
+                    LogInfo ("New Actions have been loaded. Refresh the dgActionsOrder Grid.")
+                    #$dgActionsOrder.Items = $script:ProjectMemoryObject.Actions | select Name
+                    try
+                    {
+                        $dgActionsOrder.Items.Clear()
+                        foreach ($Action in $script:ProjectMemoryObject.Actions)
+                        {
+                            $dgActionsOrder.Items.Add($Action)
+                        }
+                        $script:LoadedNew.Actions = $false
+                    }
+                    catch
+                    {
+                        LogError ("Failed to add Actions to dgActionsOrder Grid. Exception: {0}." -f $_.Exception.Message)
+                    }
+                }
+                break
+            }
+            "Action_X"
+            {
+                # Find which Action we are talking about
+                $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+                    #$ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
+                    #$script:ProjectMemoryObject.Actions += $ActionToAdd
 
-        $lbActionXActionName.Content = ("Action: {0}" -f $CurrentAction.name)
-        $lbActionXGUID.Content = ("GUID: {0}" -f $CurrentAction.GUID)
-        $tbActionXCommand.Text = $CurrentAction.Command
-        
+                $lbActionXActionName.Content = ("Action: {0}" -f $CurrentAction.name)
+                $lbActionXGUID.Content = ("GUID: {0}" -f $CurrentAction.GUID)
+                $tbActionXCommand.Text = $CurrentAction.Command
+                break
+            }
+            "RegEx:*"
+            {
+
+                break
+            }
+            default 
+            {
+
+                break
+            }
+        }                
+
 
     }
 
@@ -894,6 +935,8 @@ $btPlugInOpen.Add_Click({
             $tbPlugInVersionMajor.Text  = $script:ProjectMemoryObject.PlugIn.Version.Major.ToString()
             $tbPlugInVersionMinor.Text  = $script:ProjectMemoryObject.PlugIn.Version.Minor.ToString()
             $tbPlugInVersionBuild.Text  = $script:ProjectMemoryObject.PlugIn.Version.Build.ToString()
+            BuildNavigationTree -ItemToSelect 0
+            $script:LoadedNew.Actions = $true
         }
         catch
         {
@@ -909,7 +952,7 @@ $btPlugInOpen.Add_Click({
 
 $btPlugInImportXML.Add_Click({
     Get-FileName -Filter "XML SmartResponse Config files (*.xml)|*.xml|All files (*.*)| *.*" -Title "Open an XML SmartResponse Configuraion file" -CheckFileExists -ReadOnlyChecked -ShowReadOnly
-    LogError "NOT IMPLEMENTED YET"
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
 })
 
 # ########
@@ -917,7 +960,7 @@ $btPlugInImportXML.Add_Click({
 
 $btPlugInImportLPI.Add_Click({
     Get-FileName -Filter "LPI Compiled SmartResponse files (*.lpi)|*.lpi|All files (*.*)| *.*" -Title "Open an LPI Compiled SmartResponse file" -CheckFileExists -ReadOnlyChecked -ShowReadOnly
-    LogError "NOT IMPLEMENTED YET"
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
 })
 
 
@@ -972,7 +1015,7 @@ Function Add-SRPAction()
                 # Insert the Action in the Order grid
                 if (-Not $DoNotAddToActionsOrderList)
                 {
-                    $dgActionsOrder.items.Add($ActionToAdd)
+                    $dgActionsOrder.Items.Add($ActionToAdd)
                 }
 
                 # Insert the Action into the navigation panel (lvStep)
@@ -1082,7 +1125,10 @@ Function Update-SRPActionName()
 # UI : Actions tab : Adding an action to the list
 
 $btActionsNameAdd.Add_Click({
-    Add-SRPAction -ActionNameToAdd $tbActionsName.Text.Trim()
+    if(-Not [string]::IsNullOrEmpty($tbActionsName.Text.Trim()))
+    {
+        Add-SRPAction -ActionNameToAdd $tbActionsName.Text.Trim()
+    }
 })
 
 # ########
@@ -1100,50 +1146,105 @@ $btActionsNameRefresh.Add_Click({
 # UI : Actions tab : Import from Template drop down list
 
 $cbActionsImportFromTemplate.Add_SelectionChanged({
-    LogError "NOT IMPLEMENTED YET"
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
     #$cbActionsImportFromTemplate
 })
 
 # ########
 # UI : Actions tab : Deleting an action from the list
 
-$btActonsDelete.Add_Click({
-    LogError "NOT IMPLEMENTED YET"
+$btActionsDelete.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
 })
 
 # ########
 # UI : Actions tab : Move action to the top of the list
 
-$btActonsOrderTop.Add_Click({
-    LogError "NOT IMPLEMENTED YET"
+$btActionsOrderTop.Add_Click({
+#    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    
+    $CurrentIndex = $dgActionsOrder.SelectedIndex
+    if ($dgActionsOrder.Items.Count -gt 1)
+    {
+        $ItemToMove = $dgActionsOrder.SelectedItem
+        $dgActionsOrder.Items.Remove($dgActionsOrder.SelectedItem)
+        $dgActionsOrder.Items.Insert(0,$ItemToMove)
+        $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[0]
+        
+        $ItemToMove = $script:ProjectMemoryObject.Actions[$CurrentIndex]
+        $script:ProjectMemoryObject.Actions.RemoveAt($CurrentIndex)
+        $script:ProjectMemoryObject.Actions.Insert(0,$ItemToMove)
+    }
 })
 
 # ########
 # UI : Actions tab : Move action one level up in the list
 
-$btActonsOrderUp.Add_Click({
-    LogError "NOT IMPLEMENTED YET"
+$btActionsOrderUp.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    if ($dgActionsOrder.Items.Count -gt 1)
+    {
+        $CurrentIndex = $dgActionsOrder.SelectedIndex
+        if ($CurrentIndex -gt 0)
+        {
+            $ItemToMove = $dgActionsOrder.SelectedItem
+            $dgActionsOrder.Items.Remove($dgActionsOrder.SelectedItem)
+            $dgActionsOrder.Items.Insert($CurrentIndex - 1,$ItemToMove)
+            $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[$CurrentIndex - 1]
+
+            $ItemToMove = $script:ProjectMemoryObject.Actions[$CurrentIndex]
+            $script:ProjectMemoryObject.Actions.RemoveAt($CurrentIndex)
+            $script:ProjectMemoryObject.Actions.Insert($CurrentIndex - 1,$ItemToMove)
+        }
+    }
 })
 
 # ########
 # UI : Actions tab : Move action one level down in the list
 
-$btActonsOrderDown.Add_Click({
-    LogError "NOT IMPLEMENTED YET"
+$btActionsOrderDown.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    if ($dgActionsOrder.Items.Count -gt 1)
+    {
+        $CurrentIndex = $dgActionsOrder.SelectedIndex
+        if ($CurrentIndex -lt $dgActionsOrder.Items.Count - 1)
+        {
+            $ItemToMove = $dgActionsOrder.SelectedItem
+            $dgActionsOrder.Items.Remove($dgActionsOrder.SelectedItem)
+            $dgActionsOrder.Items.Insert($CurrentIndex + 1,$ItemToMove)
+            $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[$CurrentIndex + 1]
+
+            $ItemToMove = $script:ProjectMemoryObject.Actions[$CurrentIndex]
+            $script:ProjectMemoryObject.Actions.RemoveAt($CurrentIndex)
+            $script:ProjectMemoryObject.Actions.Insert($CurrentIndex + 1,$ItemToMove)
+        }
+    }
 })
 
 # ########
 # UI : Actions tab : Move action to the bottom of the list
 
-$btActonsOrderBottom.Add_Click({
-    LogError "NOT IMPLEMENTED YET"
+$btActionsOrderBottom.Add_Click({
+#    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $CurrentIndex = $dgActionsOrder.SelectedIndex
+    if ($dgActionsOrder.Items.Count -gt 1)
+    {
+        $ItemToMove = $dgActionsOrder.SelectedItem
+        $dgActionsOrder.Items.Remove($dgActionsOrder.SelectedItem)
+        $dgActionsOrder.Items.Add($ItemToMove)
+        $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[$dgActionsOrder.Items.Count - 1]
+
+        $ItemToMove = $script:ProjectMemoryObject.Actions[$CurrentIndex]
+        $script:ProjectMemoryObject.Actions.RemoveAt($CurrentIndex)
+        $script:ProjectMemoryObject.Actions.Add($ItemToMove)
+    }
 })
 
 # ########
 # UI : Actions tab : Move action to the bottom of the list
 
 $dgActionsOrder.Add_SelectionChanged({
-    #LogError "NOT IMPLEMENTED YET"
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
     $tbActionsName.Text = $dgActionsOrder.SelectedItem.Name
 })
 
@@ -1159,7 +1260,7 @@ $dgActionsOrder.Add_SelectionChanged({
 
 $cbActionXFieldMappingField.Add_SelectionChanged({
     #LogDebug ("cbActionXFieldMappingField::SelectionChanged // Index: {0} / Value: ""{1}"" / Entry: ""{2}""" -f $cbActionXFieldMappingField.SelectedIndex, $cbActionXFieldMappingField.SelectedValue, $cbActionXFieldMappingField.SelectedValue.Name)
-    LogError "NOT IMPLEMENTED YET"
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
 })
 
 # ########
@@ -1173,7 +1274,43 @@ $cbTestParameters.Add_SelectionChanged({
     #LogDebug "cbTestParameters::SelectionChanged"
 })
 
+$MarginLevel = @("0,0,0,0", "20,0,0,0", "40,0,0,0", "60,0,0,0", "80,0,0,0")
 
+Function BuildNavigationTree()
+{
+    param
+    (
+        [int] $ItemToSelect = 0 # Send -1 or less, and this will not be used.
+    )
+
+    try
+    {
+        $script:lvStep.Items.Clear()
+    }
+    catch
+    {
+        LogDebug ("BuildNavigationTree: lvStep.Items.Clear failed. Exception: {0}" -f $_.Exception.Message)
+    }
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Plug in" ; LaMarge = $script:MarginLevel[0] ; IconName = $script:SRPEditorForm.FindResource("IconPlugIn") ; Tag = "Panel:PlugIn" ; GoToTab = "PlugIn"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Actions" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconOrder") ; Tag = "Panel:Actions" ; GoToTab = "Actions"}) | Out-Null
+    foreach ($Action in $script:ProjectMemoryObject.Actions)
+    {
+        #$lvStep.Items.Add([PSCustomObject]@{Name = "Action: XYZ" ; GUID = New-Guid ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
+        $script:lvStep.Items.Add([PSCustomObject]@{Name = ("Action: {0}" -f $Action.Name) ; GUID = $Action.GUID ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
+    }
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Output" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconOutput") ; Tag = "Panel:Output" ; GoToTab = "Output"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Preferences" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconPreferenceCogs") ; Tag = "Panel:Pref" ; GoToTab = "Pref"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Language" ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconLanguage") ; Tag = "Panel:Language" ; GoToTab = "Language"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Modules/Extensions" ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconPrebuiltFunctions") ; Tag = "Panel:Mod/Ext" ; GoToTab = "Mod/Ext"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Sign" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconFingerPrint") ; Tag = "Panel:Sign" ; GoToTab = "Sign"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Build" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconBuild") ; Tag = "Panel:Build" ; GoToTab = "Build"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Test" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconTest") ; Tag = "Panel:Test" ; GoToTab = "Test"}) | Out-Null
+
+    if ($ItemToSelect -ge 0)
+    {
+        $script:lvStep.SelectedIndex = $ItemToSelect
+    }
+}
 
 ########################################################################################################################
 ##################################################### Execution!!  #####################################################
@@ -1186,20 +1323,8 @@ PlugInDownloadCloudRefresh
 # Populate the List of Fields in the right ComboBoxes
 ParameterFieldUpdate -ComboBoxes ($cbActionXFieldMappingField, $cbTestParameters)
 
-$MarginLevel = @("0,0,0,0", "20,0,0,0", "40,0,0,0", "60,0,0,0", "80,0,0,0")
+BuildNavigationTree -ItemToSelect 0
 
-$lvStep.Items.Add([PSCustomObject]@{Name = "Plug in" ; LaMarge = $MarginLevel[0] ; IconName = $SRPEditorForm.FindResource("IconPlugIn") ; Tag = "Panel:PlugIn" ; GoToTab = "PlugIn"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Actions" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconOrder") ; Tag = "Panel:Actions" ; GoToTab = "Actions"}) | Out-Null
-#$lvStep.Items.Add([PSCustomObject]@{Name = "Action: ABC" ; LaMarge = $MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Action: XYZ" ; GUID = New-Guid ; LaMarge = $MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Output" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconOutput") ; Tag = "Panel:Output" ; GoToTab = "Output"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Preferences" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconPreferenceCogs") ; Tag = "Panel:Pref" ; GoToTab = "Pref"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Language" ; LaMarge = $MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconLanguage") ; Tag = "Panel:Language" ; GoToTab = "Language"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Modules/Extensions" ; LaMarge = $MarginLevel[2] ; IconName = $SRPEditorForm.FindResource("IconPrebuiltFunctions") ; Tag = "Panel:Mod/Ext" ; GoToTab = "Mod/Ext"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Sign" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconFingerPrint") ; Tag = "Panel:Sign" ; GoToTab = "Sign"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Build" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconBuild") ; Tag = "Panel:Build" ; GoToTab = "Build"}) | Out-Null
-$lvStep.Items.Add([PSCustomObject]@{Name = "Test" ; LaMarge = $MarginLevel[1] ; IconName = $SRPEditorForm.FindResource("IconTest") ; Tag = "Panel:Test" ; GoToTab = "Test"}) | Out-Null
-$lvStep.SelectedIndex = 0
 
 #$cbTestParameters.ItemsSource = ParameterFieldUpdate
 #ParameterFieldUpdate -ComboBox $cbTestParameters

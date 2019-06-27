@@ -403,46 +403,6 @@ namespace SRP_IDE
 #line hidden
 
 
-#line 1219 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button btActonsOrderTop;
-
-#line default
-#line hidden
-
-
-#line 1237 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button btActonsOrderUp;
-
-#line default
-#line hidden
-
-
-#line 1251 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button btActonsOrderDown;
-
-#line default
-#line hidden
-
-
-#line 1265 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button btActonsOrderBottom;
-
-#line default
-#line hidden
-
-
-#line 1284 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button btActonsDelete;
-
-#line default
-#line hidden
-
-
 #line 1372 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TabItem tiAction_X;
@@ -566,14 +526,6 @@ namespace SRP_IDE
 #line 1624 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btActionXFieldMapValue;
-
-#line default
-#line hidden
-
-
-#line 1676 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.DataGrid rttbActonXOrder;
 
 #line default
 #line hidden
@@ -950,14 +902,6 @@ namespace SRP_IDE
 #line 2706 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBlock tbBuildOutput;
-
-#line default
-#line hidden
-
-
-#line 2713 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button btActonsDddelete;
 
 #line default
 #line hidden
@@ -1590,6 +1534,13 @@ namespace SRP_IDE
         }
 
         internal System.Windows.Media.Animation.Storyboard sbPlugInDownloadCloudRefreshStatusAlert;
+        internal System.Windows.Controls.Button btActionsOrderTop;
+        internal System.Windows.Controls.Button btActionsOrderUp;
+        internal System.Windows.Controls.Button btActionsOrderDown;
+        internal System.Windows.Controls.Button btActionsOrderBottom;
+        internal System.Windows.Controls.DataGrid rttbActionXOrder;
+        internal System.Windows.Controls.Button btActionsDddelete;
+        internal System.Windows.Controls.Button btActionsDelete;
     }
 }
 
