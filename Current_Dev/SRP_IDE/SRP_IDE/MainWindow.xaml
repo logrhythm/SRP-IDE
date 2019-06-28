@@ -1911,8 +1911,14 @@
                                                                 <ComboBox.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </ComboBox.Effect>
-                                                                <ComboBoxItem Content="PowerShell" IsSelected="True"/>
-                                                                <ComboBoxItem Content="Python"/>
+                                                                <ComboBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <StackPanel Orientation="Vertical">
+                                                                            <TextBlock Text="{Binding Name}"/>
+                                                                            <TextBlock Text="{Binding Command}" Foreground="#FF2D7AC7" FontSize="10" FontStyle="Italic" FontWeight="Bold"/>
+                                                                        </StackPanel>
+                                                                    </DataTemplate>
+                                                                </ComboBox.ItemTemplate>
                                                             </ComboBox>
                                                         </Grid>
                                                         <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What scripting language shall we use to build script of the SmartResponse PlugIn." HorizontalAlignment="Right" Width="15">
