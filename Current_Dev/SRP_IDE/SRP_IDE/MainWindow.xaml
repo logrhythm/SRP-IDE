@@ -1333,7 +1333,7 @@
                                                             </Rectangle>
                                                             <TextBox x:Name="tbActionXCommand" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                                         </Grid>
-                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Name for the Action." HorizontalAlignment="Right" Width="15">
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Command to run for this Action. Typically the name of the Executable or interpreter." HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                     </Grid>
@@ -1357,7 +1357,7 @@
                                                                 <ComboBoxItem Content="Encrypted"/>
                                                             </ComboBox>
                                                         </Grid>
-                                                        <Canvas ToolTip="Import an Action's details from the current template(s)." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                        <Canvas ToolTip="Type of Parameter." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                         <Grid Height="40" Margin="0,20,0,0" VerticalAlignment="Top" MinWidth="110" Grid.Column="1">
@@ -1368,11 +1368,11 @@
                                                             </Rectangle>
                                                             <TextBox x:Name="tbActionXParamName" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
                                                         </Grid>
-                                                        <Canvas ToolTip="Import an Action's details from the current template(s)." Grid.Column="1" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                        <Canvas ToolTip="Name of the Parameter." Grid.Column="1" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                                            <Button x:Name="btActionXParamRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,10,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                            <Button x:Name="btActionXParamRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,10,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Parameter.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1386,7 +1386,7 @@
                                                                     <Path Fill="#FFCCCCCC" StrokeThickness="0.69189203" Data="M 3.094595 2.8243559 0.25674348 2.4101956e-5 H 7.3378395 V 7.0676004 L 4.5135076 4.2432686 q -2.5135099 2.4594573 -2.5135099 5.7702884 0 3.297285 2.3513522 5.648638 2.3513522 2.337832 5.6486375 2.337832 3.3243246 0 5.6621836 -2.337832 2.337832 -2.337833 2.337832 -5.648638 0 -3.1892062 -2.337832 -5.6756768 l 1.418912 -1.4054191 q 2.918918 3.1081143 2.918918 7.0810959 0 4.135113 -2.932437 7.06755 -2.918918 2.918917 -7.0675766 2.918917 -4.1351132 0 -7.0675501 -2.918917 Q 3.0363231e-7 14.14867 3.0363231e-7 10.013557 3.0363231e-7 5.864898 3.094595 2.8243559 Z"/>
                                                                 </Canvas>
                                                             </Button>
-                                                            <Button x:Name="btActionXParamAdd" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Create a new Action with this name.">
+                                                            <Button x:Name="btActionXParamAdd" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Create a new Parameter with this name.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1440,11 +1440,11 @@
                                                                 </ComboBox.ItemTemplate>
                                                             </ComboBox>
                                                         </Grid>
-                                                        <Canvas ToolTip="Use this table below to re-order or select the Actions." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                        <Canvas ToolTip="Which Alarm field should this Parameter require/accept or is best fir." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                                            <Button x:Name="btActionXFieldMapFieldRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                            <Button x:Name="btActionXFieldMapFieldRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the Field of the selected Parameter.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1472,11 +1472,11 @@
                                                             </Rectangle>
                                                             <TextBox x:Name="rttbActionXFieldMappingValue" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
                                                         </Grid>
-                                                        <Canvas ToolTip="Use this table below to re-order or select the Actions." Grid.Column="2" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                        <Canvas ToolTip="For Constant, please enter the Value of the field here." Grid.Column="2" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="3" Orientation="Horizontal">
-                                                            <Button x:Name="btActionXFieldMapValueRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                            <Button x:Name="btActionXFieldMapValueRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the Value of the selected Parameter.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1513,11 +1513,11 @@
                                                             </Rectangle>
                                                             <TextBox x:Name="tbActionXFieldSwitch" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
                                                         </Grid>
-                                                        <Canvas ToolTip="XXXXXX" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                        <Canvas ToolTip="Switch to insert before the value of the Field, when calling the Command." Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                                            <Button x:Name="btActionXFieldSwitchRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                            <Button x:Name="btActionXFieldSwitchRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the switch of the selected Parameter.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1555,11 +1555,11 @@
                                                                 <ComboBoxItem Content="Date (EU) | Non empty"/>
                                                             </ComboBox>
                                                         </Grid>
-                                                        <Canvas ToolTip="XXXXXX" Grid.Column="2" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
+                                                        <Canvas ToolTip="Select which Validation Rule you would like to apply to this Parameter." Grid.Column="2" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="3" Orientation="Horizontal">
-                                                            <Button x:Name="btActionXFieldMapValue" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Action.">
+                                                            <Button x:Name="btActionXFieldMapValue" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the validation rule of the selected Parameter.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1622,11 +1622,11 @@
                                                                 </DataGrid>
                                                             </Grid>
                                                         </Grid>
-                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Use this table below to re-order or select the Actions." HorizontalAlignment="Right" Width="15" >
+                                                        <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="Use this table below to re-order or select the Parameters." HorizontalAlignment="Right" Width="15" >
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z"/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,30,0,0">
-                                                            <Button x:Name="btActionXOrderTop" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Action to the top of the list." Margin="0,0,0,10">
+                                                            <Button x:Name="btActionXOrderTop" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Parameter to the top of the list." Margin="0,0,0,10">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1644,7 +1644,7 @@
                                                                     </Path>
                                                                 </Canvas>
                                                             </Button>
-                                                            <Button x:Name="btActionXOrderUp" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Move this Action up in the list." Margin="0,0,0,10">
+                                                            <Button x:Name="btActionXOrderUp" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Move this Parameter up in the list." Margin="0,0,0,10">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1658,7 +1658,7 @@
                                                                     <Path Fill="#FFCCCCCC" StrokeThickness="0.55700606" Data="M 0 16.100957 9.3015661 0 18.592253 16.100957 Z"/>
                                                                 </Canvas>
                                                             </Button>
-                                                            <Button x:Name="btActionXOrderDown" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Move this Action down in the list." Margin="0,0,0,10">
+                                                            <Button x:Name="btActionXOrderDown" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Move this Parameter down in the list." Margin="0,0,0,10">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1672,7 +1672,7 @@
                                                                     <Path Fill="#FFCCCCCC" StrokeThickness="0.55700606" Data="M 18.592253 -8.3446503e-7 9.2906872 16.100956 -5.9604645e-8 -8.3446503e-7 Z"/>
                                                                 </Canvas>
                                                             </Button>
-                                                            <Button x:Name="btActionXOrderBottom" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Action to the bottom of the list." Margin="0,0,0,10">
+                                                            <Button x:Name="btActionXOrderBottom" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Style="{DynamicResource GreyButtonStyle}" ToolTip="Send this Parameter to the bottom of the list." Margin="0,0,0,10">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1691,7 +1691,7 @@
                                                                 </Canvas>
                                                             </Button>
                                                         </StackPanel>
-                                                        <Button x:Name="btActionXDelete" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,0,0,10" Style="{DynamicResource GreyButtonStyle}" ToolTip="Delete the selected Action." Grid.Column="1">
+                                                        <Button x:Name="btActionXDelete" Height="30" VerticalAlignment="Bottom" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,0,0,10" Style="{DynamicResource GreyButtonStyle}" ToolTip="Delete the selected Parameter." Grid.Column="1">
                                                             <Button.Effect>
                                                                 <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                             </Button.Effect>
@@ -2712,7 +2712,9 @@
                                                                     <GroupStyle>
                                                                         <GroupStyle.HeaderTemplate>
                                                                             <DataTemplate>
-                                                                                <TextBlock Text="{Binding Name}"/>
+                                                                                <Border Background="#FF2E2E2E" Padding="4,4,0,4" BorderThickness="0,2,0,0" BorderBrush="#FF007BC2">
+                                                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                                                                                </Border>
                                                                             </DataTemplate>
                                                                         </GroupStyle.HeaderTemplate>
                                                                     </GroupStyle>
