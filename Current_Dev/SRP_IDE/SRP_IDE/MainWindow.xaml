@@ -1608,13 +1608,13 @@
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
                                                             <Grid Margin="6,6,11,0">
-                                                                <DataGrid x:Name="rttbActionXOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
+                                                                <DataGrid x:Name="dgActionXOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
                                                                     <DataGrid.Columns>
-                                                                        <DataGridTextColumn Binding="{Binding Types}" Header="Types" MinWidth="100" IsReadOnly="True"/>
+                                                                        <DataGridTextColumn Binding="{Binding Type}" Header="Types" MinWidth="100" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="100" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding Field_Value}" Header="Field/Value" MinWidth="100" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding Switch}" Header="Switch" MinWidth="50" IsReadOnly="True"/>
-                                                                        <DataGridTextColumn Binding="{Binding Validation}" Header="Validation" MinWidth="50" IsReadOnly="True"/>
+                                                                        <DataGridTextColumn Binding="{Binding ValidationRule}" Header="Validation" MinWidth="50" IsReadOnly="True"/>
                                                                     </DataGrid.Columns>
                                                                 </DataGrid>
                                                             </Grid>
