@@ -1,434 +1,542 @@
 [
-    {
-        "Name":  "Severity",
-        "Family":  "Classification"
-    },
-    {
-        "Name":  "Vendor Message ID",
-        "Family":  "Classification"
-    },
-    {
-        "Name":  "Vendor Info",
-        "Family":  "Classification"
-    },
-    {
-        "Name":  "Threat Name",
-        "Family":  "Classification"
-    },
-    {
-        "Name":  "Threat ID",
-        "Family":  "Classification"
-    },
-    {
-        "Name":  "CVE",
-        "Family":  "Classification"
-    },
-    {
-        "Name":  "User (Origin)",
-        "Family":  "Identity"
-    },
-    {
-        "Name":  "User (Impacted)",
-        "Family":  "Identity"
-    },
-    {
-        "Name":  "Sender",
-        "Family":  "Identity"
-    },
-    {
-        "Name":  "Recipient",
-        "Family":  "Identity"
-    },
-    {
-        "Name":  "Group",
-        "Family":  "Identity"
-    },
-    {
-        "Name":  "MAC Address (Origin)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "MAC Address (Impacted)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "Interface (Origin)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "Interface (Impacted)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "IP Address (Origin)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "IP Address (Impacted)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "NAT IP Address (Origin)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "NAT IP Address (Impacted)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "Hostname (Origin)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "Hostname (Impacted)",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "Serial Number",
-        "Family":  "Host"
-    },
-    {
-        "Name":  "Domain (Impacted)",
-        "Family":  "Network "
-    },
-    {
-        "Name":  "Domain (Origin)",
-        "Family":  "Network "
-    },
-    {
-        "Name":  "Protocol (Number)",
-        "Family":  "Network "
-    },
-    {
-        "Name":  "Protocol (Name)",
-        "Family":  "Network "
-    },
-    {
-        "Name":  "TCP/UDP Port (Origin)",
-        "Family":  "Network "
-    },
-    {
-        "Name":  "TCP/UDP Port (Impacted)",
-        "Family":  "Network "
-    },
-    {
-        "Name":  "NAT TCP/UDP Port (Origin)",
-        "Family":  "Network "
-    },
-    {
-        "Name":  "NAT TCP/UDP Port (Impacted)",
-        "Family":  "Network "
-    },
-    {
-        "Name":  "Object",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Object Name",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Object Type",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Hash",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Policy",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Result",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "URL",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "User Agent",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Response Code",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Subject",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Version",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Command",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Reason",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Action",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Status",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Session Type",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Process Name",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Process ID",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Parent Process ID",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Parent Process Name",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Parent Process Path",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Quantity ",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Amount",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Size",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Rate",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Session",
-        "Family":  "Application"
-    },
-    {
-        "Name":  "Time Start",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Time End",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Duration in Days",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Duration in Hours",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Duration in Minutes",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Duration in Seconds",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Duration in Milliseconds",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Duration in Microsecond",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Duration in Nanosecond",
-        "Family":  "Duration"
-    },
-    {
-        "Name":  "Bits received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Bytes received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Kilobits received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "KiloBytes received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Megabits received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "MegaBytes received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Gigabits received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "GigaBytes received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Terabits received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "TeraBytes received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Petabits received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "PetaBytes received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Bits",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Bytes",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Kbits",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "KBytes",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Megabits",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "MegaBytes",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Gigabits",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "GigaBytes",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Terabits",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "TeraBytes",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Petabits",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "PetaBytes",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Bits sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "Bytes sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "Kbits sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "KBytes sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "Megabits sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "MegaBytes sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "Gigabits sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "GigaBytes sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "Terabits sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "TeraBytes sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "Petabits sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "PetaBytes sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "Packet Received",
-        "Family":  "Host (Impacted) Traffic Received"
-    },
-    {
-        "Name":  "Packet Sent",
-        "Family":  "Host (Impacted) Traffic Sent"
-    },
-    {
-        "Name":  "\u003ctag1\u003e ",
-        "Family":  "Special Sub-Rule Tags "
-    },
-    {
-        "Name":  "\u003ctag2\u003e ",
-        "Family":  "Special Sub-Rule Tags "
-    },
-    {
-        "Name":  "\u003ctag3\u003e ",
-        "Family":  "Special Sub-Rule Tags "
-    },
-    {
-        "Name":  "\u003ctag4\u003e ",
-        "Family":  "Special Sub-Rule Tags "
-    },
-    {
-        "Name":  "\u003ctag5\u003e ",
-        "Family":  "Special Sub-Rule Tags "
-    }
+   {
+      "Name":"Severity",
+      "Family":"Classification",
+      "Code":"severity"
+   },
+   {
+      "Name":"Vendor Message ID",
+      "Family":"Classification",
+      "Code":"vmid"
+   },
+   {
+      "Name":"Vendor Info",
+      "Family":"Classification",
+      "Code":"vendorinfo"
+   },
+   {
+      "Name":"Threat Name",
+      "Family":"Classification",
+      "Code":"threatname"
+   },
+   {
+      "Name":"Threat ID",
+      "Family":"Classification",
+      "Code":"threatid"
+   },
+   {
+      "Name":"CVE",
+      "Family":"Classification",
+      "Code":"cve"
+   },
+   {
+      "Name":"User (Origin)",
+      "Family":"Identity",
+      "Code":"login"
+   },
+   {
+      "Name":"User (Impacted)",
+      "Family":"Identity",
+      "Code":"account"
+   },
+   {
+      "Name":"Sender",
+      "Family":"Identity",
+      "Code":"sender"
+   },
+   {
+      "Name":"Recipient",
+      "Family":"Identity",
+      "Code":"recipient"
+   },
+   {
+      "Name":"Group",
+      "Family":"Identity",
+      "Code":"group"
+   },
+   {
+      "Name":"MAC Address (Origin)",
+      "Family":"Host",
+      "Code":"smac"
+   },
+   {
+      "Name":"MAC Address (Impacted)",
+      "Family":"Host",
+      "Code":"dmac"
+   },
+   {
+      "Name":"Interface (Origin)",
+      "Family":"Host",
+      "Code":"sinterface"
+   },
+   {
+      "Name":"Interface (Impacted)",
+      "Family":"Host",
+      "Code":"dinterface"
+   },
+   {
+      "Name":"IP Address (Origin)",
+      "Family":"Host",
+      "Code":"sip"
+   },
+   {
+      "Name":"IP Address (Impacted)",
+      "Family":"Host",
+      "Code":"dip"
+   },
+   {
+      "Name":"NAT IP Address (Origin)",
+      "Family":"Host",
+      "Code":"snatip"
+   },
+   {
+      "Name":"NAT IP Address (Impacted)",
+      "Family":"Host",
+      "Code":"dnatip"
+   },
+   {
+      "Name":"Hostname (Origin)",
+      "Family":"Host",
+      "Code":"sname"
+   },
+   {
+      "Name":"Hostname (Impacted)",
+      "Family":"Host",
+      "Code":"dname"
+   },
+   {
+      "Name":"Serial Number",
+      "Family":"Host",
+      "Code":"serialnumber"
+   },
+   {
+      "Name":"Domain (Impacted)",
+      "Family":"Network ",
+      "Code":"domain"
+   },
+   {
+      "Name":"Domain (Origin)",
+      "Family":"Network ",
+      "Code":"domainorigin"
+   },
+   {
+      "Name":"Protocol (Number)",
+      "Family":"Network ",
+      "Code":"protnum"
+   },
+   {
+      "Name":"Protocol (Name)",
+      "Family":"Network ",
+      "Code":"protname"
+   },
+   {
+      "Name":"TCP/UDP Port (Origin)",
+      "Family":"Network ",
+      "Code":"sport"
+   },
+   {
+      "Name":"TCP/UDP Port (Impacted)",
+      "Family":"Network ",
+      "Code":"dport"
+   },
+   {
+      "Name":"NAT TCP/UDP Port (Origin)",
+      "Family":"Network ",
+      "Code":"snatport"
+   },
+   {
+      "Name":"NAT TCP/UDP Port (Impacted)",
+      "Family":"Network ",
+      "Code":"dnatport"
+   },
+   {
+      "Name":"Object",
+      "Family":"Application",
+      "Code":"object"
+   },
+   {
+      "Name":"Object Name",
+      "Family":"Application",
+      "Code":"objectname"
+   },
+   {
+      "Name":"Object Type",
+      "Family":"Application",
+      "Code":"objecttype"
+   },
+   {
+      "Name":"Hash",
+      "Family":"Application",
+      "Code":"hash"
+   },
+   {
+      "Name":"Policy",
+      "Family":"Application",
+      "Code":"policy"
+   },
+   {
+      "Name":"Result",
+      "Family":"Application",
+      "Code":"result"
+   },
+   {
+      "Name":"URL",
+      "Family":"Application",
+      "Code":"url"
+   },
+   {
+      "Name":"User Agent",
+      "Family":"Application",
+      "Code":"useragent"
+   },
+   {
+      "Name":"Response Code",
+      "Family":"Application",
+      "Code":"responsecode"
+   },
+   {
+      "Name":"Subject",
+      "Family":"Application",
+      "Code":"subject"
+   },
+   {
+      "Name":"Version",
+      "Family":"Application",
+      "Code":"version"
+   },
+   {
+      "Name":"Command",
+      "Family":"Application",
+      "Code":"command"
+   },
+   {
+      "Name":"Reason",
+      "Family":"Application",
+      "Code":"reason"
+   },
+   {
+      "Name":"Action",
+      "Family":"Application",
+      "Code":"action"
+   },
+   {
+      "Name":"Status",
+      "Family":"Application",
+      "Code":"status"
+   },
+   {
+      "Name":"Session Type",
+      "Family":"Application",
+      "Code":"sessiontype"
+   },
+   {
+      "Name":"Process Name",
+      "Family":"Application",
+      "Code":"process"
+   },
+   {
+      "Name":"Process ID",
+      "Family":"Application",
+      "Code":"processid"
+   },
+   {
+      "Name":"Parent Process ID",
+      "Family":"Application",
+      "Code":"parentprocessid"
+   },
+   {
+      "Name":"Parent Process Name",
+      "Family":"Application",
+      "Code":"parentprocessname"
+   },
+   {
+      "Name":"Parent Process Path",
+      "Family":"Application",
+      "Code":"parentprocesspath"
+   },
+   {
+      "Name":"Quantity ",
+      "Family":"Application",
+      "Code":"quantity"
+   },
+   {
+      "Name":"Amount",
+      "Family":"Application",
+      "Code":"amount"
+   },
+   {
+      "Name":"Size",
+      "Family":"Application",
+      "Code":"size"
+   },
+   {
+      "Name":"Rate",
+      "Family":"Application",
+      "Code":"rate"
+   },
+   {
+      "Name":"Session",
+      "Family":"Application",
+      "Code":"session"
+   },
+   {
+      "Name":"Time Start",
+      "Family":"Duration",
+      "Code":"timestart"
+   },
+   {
+      "Name":"Time End",
+      "Family":"Duration",
+      "Code":"timeend"
+   },
+   {
+      "Name":"Duration in Days",
+      "Family":"Duration",
+      "Code":"days"
+   },
+   {
+      "Name":"Duration in Hours",
+      "Family":"Duration",
+      "Code":"hours"
+   },
+   {
+      "Name":"Duration in Minutes",
+      "Family":"Duration",
+      "Code":"minutes"
+   },
+   {
+      "Name":"Duration in Seconds",
+      "Family":"Duration",
+      "Code":"seconds"
+   },
+   {
+      "Name":"Duration in Milliseconds",
+      "Family":"Duration",
+      "Code":"milliseconds"
+   },
+   {
+      "Name":"Duration in Microsecond",
+      "Family":"Duration",
+      "Code":"microseconds"
+   },
+   {
+      "Name":"Duration in Nanosecond",
+      "Family":"Duration",
+      "Code":"nanoseconds"
+   },
+   {
+      "Name":"Bits received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"bitsin"
+   },
+   {
+      "Name":"Bytes received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"bytesin"
+   },
+   {
+      "Name":"Kilobits received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"kilobitsin"
+   },
+   {
+      "Name":"KiloBytes received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"kilobytesin"
+   },
+   {
+      "Name":"Megabits received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"megabitsin"
+   },
+   {
+      "Name":"MegaBytes received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"megabytein"
+   },
+   {
+      "Name":"Gigabits received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"gigabitsin"
+   },
+   {
+      "Name":"GigaBytes received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"gigabytein"
+   },
+   {
+      "Name":"Terabits received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"terabitsin"
+   },
+   {
+      "Name":"TeraBytes received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"terabytesin"
+   },
+   {
+      "Name":"Petabits received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"petabitsin"
+   },
+   {
+      "Name":"PetaBytes received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"petabytesin"
+   },
+   {
+      "Name":"Bits",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"bits"
+   },
+   {
+      "Name":"Bytes",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"bytes"
+   },
+   {
+      "Name":"Kbits",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"kilobits"
+   },
+   {
+      "Name":"KBytes",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"kilobytes"
+   },
+   {
+      "Name":"Megabits",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"megabits"
+   },
+   {
+      "Name":"MegaBytes",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"megabytes"
+   },
+   {
+      "Name":"Gigabits",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"gigabits"
+   },
+   {
+      "Name":"GigaBytes",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"gigabytes"
+   },
+   {
+      "Name":"Terabits",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"terabits"
+   },
+   {
+      "Name":"TeraBytes",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"terabytes"
+   },
+   {
+      "Name":"Petabits",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"petabits"
+   },
+   {
+      "Name":"PetaBytes",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"petabytes"
+   },
+   {
+      "Name":"Bits sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"bitsout"
+   },
+   {
+      "Name":"Bytes sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"bytesout"
+   },
+   {
+      "Name":"Kbits sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"kilobitsout"
+   },
+   {
+      "Name":"KBytes sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"kilobytesout"
+   },
+   {
+      "Name":"Megabits sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"megabitsout"
+   },
+   {
+      "Name":"MegaBytes sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"megabyteout"
+   },
+   {
+      "Name":"Gigabits sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"gigabitsout"
+   },
+   {
+      "Name":"GigaBytes sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"gigabyteout"
+   },
+   {
+      "Name":"Terabits sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"terabitsout"
+   },
+   {
+      "Name":"TeraBytes sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"terabytesout"
+   },
+   {
+      "Name":"Petabits sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"petabitsout"
+   },
+   {
+      "Name":"PetaBytes sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"petabytesout"
+   },
+   {
+      "Name":"Packet Received",
+      "Family":"Host (Impacted) Traffic Received",
+      "Code":"packetsin"
+   },
+   {
+      "Name":"Packet Sent",
+      "Family":"Host (Impacted) Traffic Sent",
+      "Code":"packetsout"
+   },
+   {
+      "Name":"\u003ctag1\u003e ",
+      "Family":"Special Sub-Rule Tags ",
+      "Code":"tag1"
+   },
+   {
+      "Name":"\u003ctag2\u003e ",
+      "Family":"Special Sub-Rule Tags ",
+      "Code":"tag2"
+   },
+   {
+      "Name":"\u003ctag3\u003e ",
+      "Family":"Special Sub-Rule Tags ",
+      "Code":"tag3"
+   },
+   {
+      "Name":"\u003ctag4\u003e ",
+      "Family":"Special Sub-Rule Tags ",
+      "Code":"tag4"
+   },
+   {
+      "Name":"\u003ctag5\u003e ",
+      "Family":"Special Sub-Rule Tags ",
+      "Code":"tag5"
+   }
 ]
