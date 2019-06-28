@@ -510,7 +510,7 @@ $lvStep.Add_SelectionChanged({
                     $tbActionXCommand.Text = $CurrentAction.Command
 
                     # Bring in the Parameters for that Action
-                    $rttbActionXOrder.Items.Clear()
+                    $dgActionXOrder.Items.Clear()
                     foreach ($Parameter in $CurrentAction.Parameters)
                     {
                         $dgActionXOrder.Items.Add($Parameter)
