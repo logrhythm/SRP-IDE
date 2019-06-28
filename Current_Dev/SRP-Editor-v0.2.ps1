@@ -20,6 +20,9 @@
 # - First Config file
 # - First PlugInCloudTemplateList file
 # - Download from Cloud, parse, update and save locally the PlugInCloudTemplateList
+# - Add Actions
+# - Build navigation panel programatically
+# - Order Actions
 #
 # ################
 #
@@ -1066,7 +1069,7 @@ Function Update-SRPActionName()
     $ReturnValue = $false
     try
     {
-        if (-not [string]::IsNullOrEmpty($ActionNameToModify) -and $ActionGUID -isnot $null)
+        if (-not [string]::IsNullOrEmpty($ActionNameToModify) -and $ActionGUID -ne $null)
         {
             $ActionNameToModify = $ActionNameToModify.Trim()
             $GoodToModify = $true
@@ -1136,7 +1139,7 @@ $btActionsNameAdd.Add_Click({
 
 $btActionsNameRefresh.Add_Click({
     $GUIDToUpdate = $dgActionsOrder.SelectedItem.GUID
-    if ($GUIDToUpdate -isnot $null)
+    if ($GUIDToUpdate -ne $null)
     {
         Update-SRPActionName -ActionGUID $GUIDToUpdate -ActionNameToModify $tbActionsName.Text
     }
@@ -1154,90 +1157,125 @@ $cbActionsImportFromTemplate.Add_SelectionChanged({
 # UI : Actions tab : Deleting an action from the list
 
 $btActionsDelete.Add_Click({
-    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $ActionToDeleteIndex = $dgActionsOrder.SelectedIndex
+    $GUIDToDelete = $dgActionsOrder.SelectedItem.GUID
+    if ($GUIDToDelete -ne $null)
+    {
+        # Remove in the Action Order Data Grid
+        $dgActionsOrder.Items.RemoveAt($ActionToDeleteIndex)
+        # Remove from the Memory Object
+        $script:ProjectMemoryObject.Actions.RemoveAt($ActionToDeleteIndex)
+        # Remove from the Navigation panel
+        $ActionIndex = $script:lvStep.Items.IndexOf(($script:lvStep.Items | where {$_.Name -eq "Actions"}))
+        $lvStep.Items.RemoveAt($ActionToDeleteIndex + $ActionIndex + 1)
+
+        # In the rder Data Grid, pick the Action just above the one just deleted
+        if ($ActionToDeleteIndex -gt 0)
+        {
+            $dgActionsOrder.SelectedIndex = $ActionToDeleteIndex - 1
+        }
+        else
+        {
+            $dgActionsOrder.SelectedIndex = 0
+        }
+    }
 })
+
+# ########
+# UI : Actions tab : Movin Actions in the different lists
+
+Function MoveActionItem()
+{
+    param
+    (
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [int] $FromIndex,
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [int] $ToIndex,
+        [Switch] $DoNotMoveInNavigation = $false, # Do not modify it to the navigation panel on the left
+        [Switch] $DoNotMoveInActionsOrderList = $false,
+        [Switch] $DoNotMoveInMemoryObjectActionsList = $false
+    )
+    # Update the Action in the Memory Object
+    if (-Not $DoNotMoveInMemoryObjectActionsList)
+    {
+        #LogDebug "ModifyInMemoryObjectActionsList"
+        if ($script:ProjectMemoryObject.Actions.Count -gt 1)
+        {
+            if (($FromIndex -ge 0) -And ($FromIndex -lt $script:ProjectMemoryObject.Actions.Count) `
+            -And ($ToIndex -ge 0) -And ($ToIndex -lt $script:ProjectMemoryObject.Actions.Count))
+            {
+                $ItemToMove = $script:ProjectMemoryObject.Actions[$FromIndex]
+                $script:ProjectMemoryObject.Actions.RemoveAt($FromIndex)
+                $script:ProjectMemoryObject.Actions.Insert($ToIndex,$ItemToMove)
+            }
+        }
+    }
+
+    # Update the Action in the Order grid
+    if (-Not $DoNotMoveInActionsOrderList)
+    {
+        #LogDebug "ModifyInActionsOrderList"
+        if ($dgActionsOrder.Items.Count -gt 1)
+        {
+            if (($FromIndex -ge 0) -And ($FromIndex -lt $dgActionsOrder.Items.Count) `
+            -And ($ToIndex -ge 0) -And ($ToIndex -lt $dgActionsOrder.Items.Count))
+            {
+                $ItemToMove = $dgActionsOrder.Items[$FromIndex]
+                $dgActionsOrder.Items.RemoveAt($FromIndex)
+                $dgActionsOrder.Items.Insert($ToIndex,$ItemToMove)
+                $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[$ToIndex]
+            }
+        }
+    }
+
+    # Update the Action into the navigation panel (lvStep)
+    if (-Not $DoNotMoveInNavigation)
+    {
+        #LogDebug "ModifyInNavigation"
+        $ActionIndex = $script:lvStep.Items.IndexOf(($script:lvStep.Items | where {$_.Name -eq "Actions"}))
+        $OutputIndex = $script:lvStep.Items.IndexOf(($script:lvStep.Items | where {$_.Name -eq "Output"}))
+        $NumberOfActions = ($OutputIndex - $ActionIndex - 1)
+        if ($NumberOfActions -gt 1)
+        {
+            if (($FromIndex -ge 0) -And ($FromIndex -lt $NumberOfActions) `
+            -And ($ToIndex -ge 0) -And ($ToIndex -lt $NumberOfActions))
+            {
+                $ItemToMove = $lvStep.Items[$FromIndex + $ActionIndex + 1]
+                $lvStep.Items.RemoveAt($FromIndex + $ActionIndex + 1)
+                $lvStep.Items.Insert($ToIndex + $ActionIndex + 1,$ItemToMove)
+                $script:lvStep.Items.Refresh()
+            }
+        }
+    }
+}
 
 # ########
 # UI : Actions tab : Move action to the top of the list
 
 $btActionsOrderTop.Add_Click({
-#    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
-    
-    $CurrentIndex = $dgActionsOrder.SelectedIndex
-    if ($dgActionsOrder.Items.Count -gt 1)
-    {
-        $ItemToMove = $dgActionsOrder.SelectedItem
-        $dgActionsOrder.Items.Remove($dgActionsOrder.SelectedItem)
-        $dgActionsOrder.Items.Insert(0,$ItemToMove)
-        $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[0]
-        
-        $ItemToMove = $script:ProjectMemoryObject.Actions[$CurrentIndex]
-        $script:ProjectMemoryObject.Actions.RemoveAt($CurrentIndex)
-        $script:ProjectMemoryObject.Actions.Insert(0,$ItemToMove)
-    }
+    MoveActionItem -FromIndex $dgActionsOrder.SelectedIndex -ToIndex 0
 })
 
 # ########
 # UI : Actions tab : Move action one level up in the list
 
 $btActionsOrderUp.Add_Click({
-    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
-    if ($dgActionsOrder.Items.Count -gt 1)
-    {
-        $CurrentIndex = $dgActionsOrder.SelectedIndex
-        if ($CurrentIndex -gt 0)
-        {
-            $ItemToMove = $dgActionsOrder.SelectedItem
-            $dgActionsOrder.Items.Remove($dgActionsOrder.SelectedItem)
-            $dgActionsOrder.Items.Insert($CurrentIndex - 1,$ItemToMove)
-            $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[$CurrentIndex - 1]
-
-            $ItemToMove = $script:ProjectMemoryObject.Actions[$CurrentIndex]
-            $script:ProjectMemoryObject.Actions.RemoveAt($CurrentIndex)
-            $script:ProjectMemoryObject.Actions.Insert($CurrentIndex - 1,$ItemToMove)
-        }
-    }
+    MoveActionItem -FromIndex $dgActionsOrder.SelectedIndex -ToIndex ($dgActionsOrder.SelectedIndex - 1)
 })
 
 # ########
 # UI : Actions tab : Move action one level down in the list
 
 $btActionsOrderDown.Add_Click({
-    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
-    if ($dgActionsOrder.Items.Count -gt 1)
-    {
-        $CurrentIndex = $dgActionsOrder.SelectedIndex
-        if ($CurrentIndex -lt $dgActionsOrder.Items.Count - 1)
-        {
-            $ItemToMove = $dgActionsOrder.SelectedItem
-            $dgActionsOrder.Items.Remove($dgActionsOrder.SelectedItem)
-            $dgActionsOrder.Items.Insert($CurrentIndex + 1,$ItemToMove)
-            $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[$CurrentIndex + 1]
-
-            $ItemToMove = $script:ProjectMemoryObject.Actions[$CurrentIndex]
-            $script:ProjectMemoryObject.Actions.RemoveAt($CurrentIndex)
-            $script:ProjectMemoryObject.Actions.Insert($CurrentIndex + 1,$ItemToMove)
-        }
-    }
+    MoveActionItem -FromIndex $dgActionsOrder.SelectedIndex -ToIndex ($dgActionsOrder.SelectedIndex + 1)
 })
 
 # ########
 # UI : Actions tab : Move action to the bottom of the list
 
 $btActionsOrderBottom.Add_Click({
-#    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
-    $CurrentIndex = $dgActionsOrder.SelectedIndex
-    if ($dgActionsOrder.Items.Count -gt 1)
-    {
-        $ItemToMove = $dgActionsOrder.SelectedItem
-        $dgActionsOrder.Items.Remove($dgActionsOrder.SelectedItem)
-        $dgActionsOrder.Items.Add($ItemToMove)
-        $dgActionsOrder.SelectedItem = $dgActionsOrder.Items[$dgActionsOrder.Items.Count - 1]
-
-        $ItemToMove = $script:ProjectMemoryObject.Actions[$CurrentIndex]
-        $script:ProjectMemoryObject.Actions.RemoveAt($CurrentIndex)
-        $script:ProjectMemoryObject.Actions.Add($ItemToMove)
-    }
+    MoveActionItem -FromIndex $dgActionsOrder.SelectedIndex -ToIndex ($dgActionsOrder.Items.Count - 1)
 })
 
 # ########
