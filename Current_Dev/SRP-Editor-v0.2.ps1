@@ -64,8 +64,33 @@ class SRPAction
     [ValidateNotNullOrEmpty()][string]$Name
     [ValidateNotNullOrEmpty()][guid]$GUID
     [ValidateNotNullOrEmpty()][string]$Command
-    [ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters
+   #[ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters
+   #[ValidateNotNullOrEmpty()][System.Collections.ArrayList]$Parameters
+                              [System.Collections.ArrayList]$Parameters
+    SRPAction ()
+    {
+        $this.Parameters = New-Object System.Collections.ArrayList
+    }
+    SRPAction ([string]$Name)
+    {
+        $this.Parameters = New-Object System.Collections.ArrayList
+        $this.Name = $Name
+    }
+    SRPAction ([string]$Name, [guid]$GUID)
+    {
+        $this.Name = $Name
+        $this.Parameters = New-Object System.Collections.ArrayList
+        $this.GUID = $GUID
+    }
+    SRPAction ([string]$Name, [guid]$GUID, [string]$Switch)
+    {
+        $this.Name = $Name
+        $this.GUID = $GUID
+        $this.Switch = $Switch
+        $this.Parameters = New-Object System.Collections.ArrayList
+    }
 }
+
 
 class SRPTestParameter
 {
@@ -102,7 +127,7 @@ $ProjectMemoryObject = @{"File" =
                                ; "BuildAutoIncrment" = $true
                                }
                            }
-#                      ; "Actions" = @()
+#                      ; "Actions" = @() # I moved from the good old Array to an ArrayList object, as it offers built-in item management functions
                        ; "Actions" = New-Object System.Collections.ArrayList
                        ; "Output" =
                            @{"Folder" = '%SRP_Project%\Output'
@@ -115,6 +140,14 @@ $ProjectMemoryObject = @{"File" =
                            }
                        ; "Language" =
                            @{"ScriptingLanguage" = "PowerShell"
+                           ; "Command" = "powershell.exe"
+                           ; "DefaultParameter" = 
+                               @{"Type" = "Constant"
+                               ; "Name" = "Script"
+                               ; "MapToField" = ""
+                               ; "Switch" = '-file "%SRP"'
+                               ; "ValidationRule" = ""
+                               }
                            }
                        ; "ModulesExtensions" = 
                            @{"APIWrappers" = @()
@@ -205,6 +238,9 @@ $PlugInCloudTemplateListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "P
 
 # Local copy of the LogRhythm Fields List JSON
 $LogRhythmFieldsListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "LogRhythmFieldsListLocal.json"
+
+# Local copy of the Languages List JSON
+$LanguagesListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "LanguagesListLocal.json"
 
 
 # ########
@@ -887,6 +923,7 @@ $SRPEditorForm.AddHandler([System.Windows.Controls.TextBox]::TextChangedEvent, $
 # ########
 # Build the list of Parameter fields (LogRhythm MDI fields)
 
+<#  Doubt this is still needed
 $ComboBoxList = $null
 
 function ParameterFieldArray()
@@ -897,8 +934,10 @@ function ParameterFieldArray()
     )
 
 }
+#>
 
-function ParameterFieldUpdate()
+# Update the list of the LogRhythm fields in the right ComboBoxes
+Function ParameterFieldUpdate()
 {
     param
     (
@@ -909,6 +948,11 @@ function ParameterFieldUpdate()
 
     # Start with a fresh Array
     $ParameterFieldListArray = @()
+
+    if ($DownloadFromCloud)
+    {
+        LogError ("NOT IMPLEMENTED YET ({0})" -f "LanguageFieldUpdate -DownloadFromCloud")
+    }
 
     $ParameterFieldListArray = Get-Content -Raw -Path $LogRhythmFieldsListJSONLocalFile  | ConvertFrom-Json
 
@@ -923,6 +967,41 @@ function ParameterFieldUpdate()
         $ComboBox.ItemsSource = $ListView
     }
 }
+
+# Update the list of the Languages in the right ComboBoxes
+
+Function LanguageFieldUpdate()
+{
+    param
+    (
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [System.Windows.Controls.ComboBox[]] $ComboBoxes = $(Throw("-ComboBoxes is required")),
+        [Switch] $DownloadFromCloud = $False
+    )
+
+    # Start with a fresh Array
+    $LanguagesListArray = @()
+
+    if ($DownloadFromCloud)
+    {
+        LogError ("NOT IMPLEMENTED YET ({0})" -f "LanguageFieldUpdate -DownloadFromCloud")
+    }
+
+    $LanguagesListArray = Get-Content -Raw -Path $LanguagesListJSONLocalFile  | ConvertFrom-Json
+
+    # Look for ComboBoxes that have Tag="NeedList:LRFields"
+    # Then assign them $ListView to the ItemsSource property
+    # ...
+    # Gave up, and did it by sending them by hand in a parameter.
+    foreach ($ComboBox in $ComboBoxes)
+    {
+        $ListView = [System.Windows.Data.ListCollectionView]$LanguagesListArray
+        #$ListView.GroupDescriptions.Add((new-object System.Windows.Data.PropertyGroupDescription "Family"))
+        $ComboBox.ItemsSource = $ListView
+    }
+}
+
+
 
 # ########
 # UI : PlugIn tab : Browse button
@@ -1100,6 +1179,7 @@ Function Add-SRPAction()
         [Switch] $DoNotAddToNavigation = $false, # Do not add it to the navigation panel on the left
         [Switch] $DoNotAddToActionsOrderList = $false,
         [Switch] $DoNotAddToMemoryObjectActionsList = $false,
+        [Switch] $DoNotAddDefaultParameter = $false, # That is the default parameter that is coming with/from the Language
         [Switch] $DoNotCreateGUID = $false
     )
 
@@ -1118,18 +1198,34 @@ Function Add-SRPAction()
             }
             if ($GoodToAdd)
             {
+                # ########
+                # Create the Action
+
+                # With or without GUID
+                if ($DoNotCreateGUID) # Not sure why on earth you would want that. But hey, not here to judge...
+                {
+                   #$ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd"}
+                    $ActionToAdd = [SRPAction]::New($ActionNameToAdd)
+                }
+                else
+                {
+                   $ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
+                    $GUID = New-Guid
+                   # $ActionToAdd = [SRPAction]::New($ActionNameToAdd, $GUID)
+                }
+
+                # With or without the default parameter, based on the selected language
+                if (-Not $DoNotAddDefaultParameter) # Not sure why on earth you would want that. But hey, not here to judge...
+                {
+                    $ActionToAdd.Parameters.Add([SRPActionParameter]@{ Type = $script:ProjectMemoryObject.Language.DefaultParameter.Type ;
+                                                                       Name = $script:ProjectMemoryObject.Language.DefaultParameter.Name ;
+                                                                       Switch = $script:ProjectMemoryObject.Language.DefaultParameter.Switch 
+                                                                     })
+                }
+
                 # Insert the Action in the Memory Object
                 if (-Not $DoNotAddToMemoryObjectActionsList)
                 {
-                    if ($DoNotCreateGUID) # Not sure why on earth you would want that. But hey, not here to judge...
-                    {
-                        $ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd"}
-                    }
-                    else
-                    {
-                        $ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
-                    }
-                    #$script:ProjectMemoryObject.Actions += $ActionToAdd
                     $script:ProjectMemoryObject.Actions.Add($ActionToAdd)
                 }
 
@@ -1163,7 +1259,7 @@ Function Add-SRPAction()
     }
     catch
     {
-        LogError ("Error adding Action ""{0}""." -f $ActionNameToAdd)
+        LogError ("Error adding Action ""{0}"". Exception: {1}" -f $ActionNameToAdd, $_.Exception.Message)
     }
     return $ReturnValue
 }
@@ -1424,9 +1520,9 @@ $cbActionXFieldMappingField.Add_SelectionChanged({
 # UI : ActionX tab : Command field
 
 $tbActionXCommand.Add_TextChanged({
-    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
     $CurrentAction = ($script:ProjectMemoryObject.Actions | where {$_.GUID -eq $script:lvStep.SelectedItem.GUID})
-    
+    $CurrentAction.Command = $tbActionXCommand.Text.Trim()
     #$script:ProjectMemoryObject.Output.Folder = $tbOutputFolder.Text.Trim()
 })
 
@@ -1488,6 +1584,9 @@ PlugInDownloadCloudRefresh
 
 # Populate the List of Fields in the right ComboBoxes
 ParameterFieldUpdate -ComboBoxes ($cbActionXFieldMappingField, $cbTestParameters)
+
+# Populate the List of Languages ComboBoxes
+LanguageFieldUpdate -ComboBoxes ($cbLanguageLanguageSelection)
 
 BuildNavigationTree -ItemToSelect 0
 
