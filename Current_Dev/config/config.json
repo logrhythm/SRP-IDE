@@ -1,5 +1,8 @@
 {
     "DocType": "Main Configuration File",
     "LastUpdateTime": "2019-05-21T16:49:21.000Z",
-    "PlugInCloudTemplateURL": "https://raw.githubusercontent.com/TonyMasse/SRP-IDE/master/Resources/PlugInCloudTemplateList.json"
+    "PlugInCloudTemplateURL": "https://raw.githubusercontent.com/TonyMasse/SRP-IDE/master/Resources/PlugInCloudTemplateList.json",
+    "FieldsListURL": "https://raw.githubusercontent.com/TonyMasse/SRP-IDE/master/Resources/LogRhythmFieldsList.json",
+    "LanguageListURL": "https://raw.githubusercontent.com/TonyMasse/SRP-IDE/master/Resources/LanguagesList.json",
+	"HomonymousActionsAuthorised": true
 }
