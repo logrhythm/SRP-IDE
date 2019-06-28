@@ -1,0 +1,68 @@
+[
+    {
+        "Name":  "Powershell",
+        "Command":  "powershell.exe",
+		"DefaultParameter": [
+			{
+				"Type": "Constant",
+				"Name": "Script",
+				"Switch": "-file \"%SRP\""
+			}
+		]
+    },
+    {
+        "Name":  "Python",
+        "Command":  "python.exe",
+		"DefaultParameter": [
+			{
+				"Type": "Constant",
+				"Name": "Script",
+				"Switch": "\"%SRP\""
+			}
+		]
+    },
+    {
+        "Name":  "Batch",
+        "Command":  "cmd.exe",
+		"DefaultParameter": [
+			{
+				"Type": "Constant",
+				"Name": "Script",
+				"Switch": "/C \"%SRP\""
+			}
+		]
+    },
+    {
+        "Name":  "Perl",
+        "Command":  "perl.exe",
+		"DefaultParameter": [
+			{
+				"Type": "Constant",
+				"Name": "Script",
+				"Switch": "\"%SRP\""
+			}
+		]
+    },
+    {
+        "Name":  "Ruby",
+        "Command":  "ruby.exe",
+		"DefaultParameter": [
+			{
+				"Type": "Constant",
+				"Name": "Script",
+				"Switch": "\"%SRP\""
+			}
+		]
+    },
+    {
+        "Name":  "Java",
+        "Command":  "java.exe",
+		"DefaultParameter": [
+			{
+				"Type": "Constant",
+				"Name": "Script",
+				"Switch": "\"%SRP\""
+			}
+		]
+    }
+]
