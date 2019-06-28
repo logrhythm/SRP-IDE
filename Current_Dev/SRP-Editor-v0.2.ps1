@@ -36,7 +36,7 @@
 ########################################################################################################################
 ##################################### Variables, Constants and Function declaration ####################################
 ########################################################################################################################
-
+[void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
 
 # Version
 $VersionNumber = "0.2"
@@ -102,9 +102,10 @@ $ProjectMemoryObject = @{"File" =
                                ; "BuildAutoIncrment" = $true
                                }
                            }
-                       ; "Actions" = @()
+#                      ; "Actions" = @()
+                       ; "Actions" = New-Object System.Collections.ArrayList
                        ; "Output" =
-                           @{"Folder" = ""
+                           @{"Folder" = '%SRP_Project%\Output'
                            ; "OneFolderPerVersion" = $true
                            }
                        ; "Preferences" =
@@ -349,7 +350,7 @@ catch
 
 ###########
 # Read XAML
-[void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
+#[void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
 $reader=(New-Object System.Xml.XmlNodeReader $XAML) 
 try{$SRPEditorForm=[Windows.Markup.XamlReader]::Load( $reader )}
 catch{LogError "Unable to load Windows.Markup.XamlReader for ConfigReader.MainWindow. Some possible causes for this problem include: .NET Framework is missing PowerShell must be launched with PowerShell -sta, invalid XAML code was encountered."; exit}
@@ -365,21 +366,6 @@ $xaml.SelectNodes("//*[@Name]") | %{Set-Variable -Name ($_.Name) -Value $SRPEdit
 ForEach ($TabItem in $tcTabs.Items) {
     $TabItem.Visibility="Hidden"
 }
-
-#######
-# Create a Hash table of ListView items on the left and their respective Tab controls
-$ListViewToTab=@{
-    0 = 0; # PlugIn
-    1 = 1; # Actions
-    2 = 2; # Action_X
-    3 = 3; # Output
-    4 = 4; # Preferences
-    5 = 5; # Language
-    6 = 6; # Modules / Extensions
-    7 = 7; # Sign
-    8 = 8; # Build
-    9 = 9; # Test
-  }
 
 ############################
 # Add events to Form Objects
@@ -429,6 +415,8 @@ $btSave.Add_Click({
 
 ############
 # Navigation
+
+# The Buttons at the bottom of the window
 $btPrevious.Add_Click({
    if ($lvStep.SelectedIndex -gt 0)
    {
@@ -440,7 +428,7 @@ $btNext.Add_Click({
    $lvStep.SelectedIndex = $lvStep.SelectedIndex + 1
 })
 
-
+# The Navigation tree on the left of the window
 $lvStep.Add_SelectionChanged({
 
     if ($lvStep.Items.Count -gt 0)
@@ -475,19 +463,115 @@ $lvStep.Add_SelectionChanged({
             }
             "Action_X"
             {
-                # Find which Action we are talking about
-                $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
-                    #$ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
-                    #$script:ProjectMemoryObject.Actions += $ActionToAdd
+                try
+                {
+                    # Find which Action we are talking about
+                    $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+                        #$ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
+                        #$script:ProjectMemoryObject.Actions += $ActionToAdd
 
-                $lbActionXActionName.Content = ("Action: {0}" -f $CurrentAction.name)
-                $lbActionXGUID.Content = ("GUID: {0}" -f $CurrentAction.GUID)
-                $tbActionXCommand.Text = $CurrentAction.Command
+                    $lbActionXActionName.Content = ("Action: {0}" -f $CurrentAction.name)
+                    $lbActionXGUID.Content = ("GUID: {0}" -f $CurrentAction.GUID)
+                    $tbActionXCommand.Text = $CurrentAction.Command
+                }
+                catch
+                {
+                    LogError ("Failed to update Action X UI. Exception: {0}." -f $_.Exception.Message)
+                }
                 break
             }
-            "RegEx:*"
+            "Output"
             {
-
+                try
+                {
+                    # The Folder field
+                    $tbOutputFolder.Text = $script:ProjectMemoryObject.Output.Folder
+                    # The Folder option Radio Buttons (either OnePerVersion or SingleFolder)
+                    if ($script:ProjectMemoryObject.Output.OneFolderPerVersion)
+                    {
+                        $rbOutputFolderOptionOnePerVersion.IsChecked = $true
+                    }
+                    else
+                    {
+                        $rbOutputFolderOptionSingleFolder.IsChecked = $true
+                    }
+                }
+                catch
+                {
+                    LogError ("Failed to update Output folder or option UI. Exception: {0}." -f $_.Exception.Message)
+                }
+                break
+            }
+            "Pref"
+            {
+                try
+                {
+                    # 
+                }
+                catch
+                {
+                    LogError ("Failed to update Preferences UI. Exception: {0}." -f $_.Exception.Message)
+                }
+                break
+            }
+            "Language"
+            {
+                try
+                {
+                    # 
+                }
+                catch
+                {
+                    LogError ("Failed to update Language UI. Exception: {0}." -f $_.Exception.Message)
+                }
+                break
+            }
+            "Mod/Ext"
+            {
+                try
+                {
+                    # 
+                }
+                catch
+                {
+                    LogError ("Failed to update Modules/Extensions UI. Exception: {0}." -f $_.Exception.Message)
+                }
+                break
+            }
+            "Sign"
+            {
+                try
+                {
+                    # 
+                }
+                catch
+                {
+                    LogError ("Failed to update Signature UI. Exception: {0}." -f $_.Exception.Message)
+                }
+                break
+            }
+            "Build"
+            {
+                try
+                {
+                    # 
+                }
+                catch
+                {
+                    LogError ("Failed to update Build UI. Exception: {0}." -f $_.Exception.Message)
+                }
+                break
+            }
+            "Test"
+            {
+                try
+                {
+                    # 
+                }
+                catch
+                {
+                    LogError ("Failed to update Test UI. Exception: {0}." -f $_.Exception.Message)
+                }
                 break
             }
             default 
@@ -499,15 +583,48 @@ $lvStep.Add_SelectionChanged({
 
 
     }
-
-<#
-   if (($lvStep.SelectedIndex -ge 0) -and ($lvStep.SelectedIndex -le $tcTabs.Items.Count))
-   {
-       $tcTabs.SelectedIndex = $ListViewToTab.($lvStep.SelectedIndex)
-   }
-#>
-    
 })
+
+# ########
+# Build or Re-build the list of pages in the Navigation panel on the left of the screen (lvSteps)
+
+$MarginLevel = @("0,0,0,0", "20,0,0,0", "40,0,0,0", "60,0,0,0", "80,0,0,0")
+
+Function BuildNavigationTree()
+{
+    param
+    (
+        [int] $ItemToSelect = 0 # Send -1 or less, and this will not be used.
+    )
+
+    try
+    {
+        $script:lvStep.Items.Clear()
+    }
+    catch
+    {
+        LogDebug ("BuildNavigationTree: lvStep.Items.Clear failed. Exception: {0}" -f $_.Exception.Message)
+    }
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Plug in" ; LaMarge = $script:MarginLevel[0] ; IconName = $script:SRPEditorForm.FindResource("IconPlugIn") ; Tag = "Panel:PlugIn" ; GoToTab = "PlugIn"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Actions" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconOrder") ; Tag = "Panel:Actions" ; GoToTab = "Actions"}) | Out-Null
+    foreach ($Action in $script:ProjectMemoryObject.Actions)
+    {
+        #$lvStep.Items.Add([PSCustomObject]@{Name = "Action: XYZ" ; GUID = New-Guid ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
+        $script:lvStep.Items.Add([PSCustomObject]@{Name = ("Action: {0}" -f $Action.Name) ; GUID = $Action.GUID ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
+    }
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Output" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconOutput") ; Tag = "Panel:Output" ; GoToTab = "Output"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Preferences" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconPreferenceCogs") ; Tag = "Panel:Pref" ; GoToTab = "Pref"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Language" ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconLanguage") ; Tag = "Panel:Language" ; GoToTab = "Language"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Modules/Extensions" ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconPrebuiltFunctions") ; Tag = "Panel:Mod/Ext" ; GoToTab = "Mod/Ext"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Sign" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconFingerPrint") ; Tag = "Panel:Sign" ; GoToTab = "Sign"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Build" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconBuild") ; Tag = "Panel:Build" ; GoToTab = "Build"}) | Out-Null
+    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Test" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconTest") ; Tag = "Panel:Test" ; GoToTab = "Test"}) | Out-Null
+
+    if ($ItemToSelect -ge 0)
+    {
+        $script:lvStep.SelectedIndex = $ItemToSelect
+    }
+}
 
 # ########
 # Build the list of Plug-in Cloud Templates
@@ -1012,7 +1129,8 @@ Function Add-SRPAction()
                     {
                         $ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
                     }
-                    $script:ProjectMemoryObject.Actions += $ActionToAdd
+                    #$script:ProjectMemoryObject.Actions += $ActionToAdd
+                    $script:ProjectMemoryObject.Actions.Add($ActionToAdd)
                 }
 
                 # Insert the Action in the Order grid
@@ -1196,22 +1314,6 @@ Function MoveActionItem()
         [Switch] $DoNotMoveInActionsOrderList = $false,
         [Switch] $DoNotMoveInMemoryObjectActionsList = $false
     )
-    # Update the Action in the Memory Object
-    if (-Not $DoNotMoveInMemoryObjectActionsList)
-    {
-        #LogDebug "ModifyInMemoryObjectActionsList"
-        if ($script:ProjectMemoryObject.Actions.Count -gt 1)
-        {
-            if (($FromIndex -ge 0) -And ($FromIndex -lt $script:ProjectMemoryObject.Actions.Count) `
-            -And ($ToIndex -ge 0) -And ($ToIndex -lt $script:ProjectMemoryObject.Actions.Count))
-            {
-                $ItemToMove = $script:ProjectMemoryObject.Actions[$FromIndex]
-                $script:ProjectMemoryObject.Actions.RemoveAt($FromIndex)
-                $script:ProjectMemoryObject.Actions.Insert($ToIndex,$ItemToMove)
-            }
-        }
-    }
-
     # Update the Action in the Order grid
     if (-Not $DoNotMoveInActionsOrderList)
     {
@@ -1245,6 +1347,23 @@ Function MoveActionItem()
                 $lvStep.Items.RemoveAt($FromIndex + $ActionIndex + 1)
                 $lvStep.Items.Insert($ToIndex + $ActionIndex + 1,$ItemToMove)
                 $script:lvStep.Items.Refresh()
+            }
+        }
+    }
+
+    # Update the Action in the Memory Object
+    if (-Not $DoNotMoveInMemoryObjectActionsList)
+    {
+        #LogDebug "ModifyInMemoryObjectActionsList"
+        if ($script:ProjectMemoryObject.Actions.Count -gt 1)
+        {
+            if (($FromIndex -ge 0) -And ($FromIndex -lt $script:ProjectMemoryObject.Actions.Count) `
+            -And ($ToIndex -ge 0) -And ($ToIndex -lt $script:ProjectMemoryObject.Actions.Count))
+            {
+                
+                $ItemToMove = $script:ProjectMemoryObject.Actions[$FromIndex]
+                $script:ProjectMemoryObject.Actions.RemoveAt($FromIndex) # XXXXX - Exception calling "RemoveAt" with "1" argument(s): "Collection was of a fixed size."
+                $script:ProjectMemoryObject.Actions.Insert($ToIndex,$ItemToMove) # Exception calling "Insert" with "2" argument(s): "Collection was of a fixed size."
             }
         }
     }
@@ -1302,6 +1421,52 @@ $cbActionXFieldMappingField.Add_SelectionChanged({
 })
 
 # ########
+# UI : ActionX tab : Command field
+
+$tbActionXCommand.Add_TextChanged({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $CurrentAction = ($script:ProjectMemoryObject.Actions | where {$_.GUID -eq $script:lvStep.SelectedItem.GUID})
+    
+    #$script:ProjectMemoryObject.Output.Folder = $tbOutputFolder.Text.Trim()
+})
+
+
+# ########
+# UI : Output tab
+##########################################################
+
+# ########
+# UI : Output tab : Output folder
+
+$tbOutputFolder.Add_TextChanged({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Output.Folder = $tbOutputFolder.Text.Trim()
+})
+
+
+# ########
+# UI : Output tab : Output folder Browse button
+
+$btOutputFolderBrowse.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+
+# ########
+# UI : Output tab : Output option
+
+$rbOutputFolderOptionOnePerVersion.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Output.OneFolderPerVersion = $rbOutputFolderOptionOnePerVersion.IsChecked
+})
+
+$rbOutputFolderOptionOnePerVersion.Add_UnChecked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Output.OneFolderPerVersion = $rbOutputFolderOptionOnePerVersion.IsChecked
+    
+})
+
+# ########
 # UI : Test tab
 ##########################################################
 
@@ -1312,43 +1477,6 @@ $cbTestParameters.Add_SelectionChanged({
     #LogDebug "cbTestParameters::SelectionChanged"
 })
 
-$MarginLevel = @("0,0,0,0", "20,0,0,0", "40,0,0,0", "60,0,0,0", "80,0,0,0")
-
-Function BuildNavigationTree()
-{
-    param
-    (
-        [int] $ItemToSelect = 0 # Send -1 or less, and this will not be used.
-    )
-
-    try
-    {
-        $script:lvStep.Items.Clear()
-    }
-    catch
-    {
-        LogDebug ("BuildNavigationTree: lvStep.Items.Clear failed. Exception: {0}" -f $_.Exception.Message)
-    }
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Plug in" ; LaMarge = $script:MarginLevel[0] ; IconName = $script:SRPEditorForm.FindResource("IconPlugIn") ; Tag = "Panel:PlugIn" ; GoToTab = "PlugIn"}) | Out-Null
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Actions" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconOrder") ; Tag = "Panel:Actions" ; GoToTab = "Actions"}) | Out-Null
-    foreach ($Action in $script:ProjectMemoryObject.Actions)
-    {
-        #$lvStep.Items.Add([PSCustomObject]@{Name = "Action: XYZ" ; GUID = New-Guid ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
-        $script:lvStep.Items.Add([PSCustomObject]@{Name = ("Action: {0}" -f $Action.Name) ; GUID = $Action.GUID ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconRocket") ; Tag = "Panel:Action_X" ; GoToTab = "Action_X"}) | Out-Null
-    }
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Output" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconOutput") ; Tag = "Panel:Output" ; GoToTab = "Output"}) | Out-Null
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Preferences" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconPreferenceCogs") ; Tag = "Panel:Pref" ; GoToTab = "Pref"}) | Out-Null
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Language" ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconLanguage") ; Tag = "Panel:Language" ; GoToTab = "Language"}) | Out-Null
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Modules/Extensions" ; LaMarge = $script:MarginLevel[2] ; IconName = $script:SRPEditorForm.FindResource("IconPrebuiltFunctions") ; Tag = "Panel:Mod/Ext" ; GoToTab = "Mod/Ext"}) | Out-Null
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Sign" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconFingerPrint") ; Tag = "Panel:Sign" ; GoToTab = "Sign"}) | Out-Null
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Build" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconBuild") ; Tag = "Panel:Build" ; GoToTab = "Build"}) | Out-Null
-    $script:lvStep.Items.Add([PSCustomObject]@{Name = "Test" ; LaMarge = $script:MarginLevel[1] ; IconName = $script:SRPEditorForm.FindResource("IconTest") ; Tag = "Panel:Test" ; GoToTab = "Test"}) | Out-Null
-
-    if ($ItemToSelect -ge 0)
-    {
-        $script:lvStep.SelectedIndex = $ItemToSelect
-    }
-}
 
 ########################################################################################################################
 ##################################################### Execution!!  #####################################################
