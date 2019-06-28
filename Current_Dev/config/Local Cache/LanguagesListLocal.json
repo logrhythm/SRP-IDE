@@ -7,6 +7,11 @@
 				"Type": "Constant",
 				"Name": "Script",
 				"Switch": "-file \"%SRP\""
+			},
+			{
+				"Type": "String",
+				"Name": "Computer Name",
+				"Switch": "-ComputerName"
 			}
 		]
     },
