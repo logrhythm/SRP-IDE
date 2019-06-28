@@ -1425,7 +1425,9 @@
                                                                     <GroupStyle>
                                                                         <GroupStyle.HeaderTemplate>
                                                                             <DataTemplate>
-                                                                                <TextBlock Text="{Binding Name}"/>
+                                                                                <Grid Background="#FF151515">
+                                                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="#FF007BC2"/>
+                                                                                </Grid>
                                                                             </DataTemplate>
                                                                         </GroupStyle.HeaderTemplate>
                                                                     </GroupStyle>
