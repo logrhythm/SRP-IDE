@@ -491,14 +491,6 @@ namespace SRP_IDE
 #line hidden
 
 
-#line 1369 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox rttbActionXParamName;
-
-#line default
-#line hidden
-
-
 #line 1375 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btActionXParamRefresh;
@@ -1590,6 +1582,7 @@ namespace SRP_IDE
         }
 
         internal System.Windows.Controls.DataGrid dgActionXOrder;
+        internal System.Windows.Controls.TextBox tbActionXParamName;
     }
 }
 
