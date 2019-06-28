@@ -54,7 +54,7 @@ class SRPActionParameter
 {
     [ValidateNotNullOrEmpty()][string]$Type
     [ValidateNotNullOrEmpty()][string]$Name
-    [ValidateNotNullOrEmpty()][string]$MapToField
+    [ValidateNotNullOrEmpty()][string]$Field_Value
     [ValidateNotNullOrEmpty()][string]$Switch
     [ValidateNotNullOrEmpty()][string]$ValidationRule
 }
@@ -64,8 +64,8 @@ class SRPAction
     [ValidateNotNullOrEmpty()][string]$Name
     [ValidateNotNullOrEmpty()][guid]$GUID
     [ValidateNotNullOrEmpty()][string]$Command
-   #[ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters
-   #[ValidateNotNullOrEmpty()][System.Collections.ArrayList]$Parameters
+   #[ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters  # Old style Array of type. Moved on, and now using ArrayList
+   #[ValidateNotNullOrEmpty()][System.Collections.ArrayList]$Parameters # Silly me, this fails because I both want to create an empty object, and at the same time prevent empty object...
                               [System.Collections.ArrayList]$Parameters
     SRPAction ()
     {
@@ -503,12 +503,18 @@ $lvStep.Add_SelectionChanged({
                 {
                     # Find which Action we are talking about
                     $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
-                        #$ActionToAdd = [SRPAction]@{ Name = "$ActionNameToAdd" ; GUID = New-Guid}
-                        #$script:ProjectMemoryObject.Actions += $ActionToAdd
 
+                    # Update the common fields
                     $lbActionXActionName.Content = ("Action: {0}" -f $CurrentAction.name)
                     $lbActionXGUID.Content = ("GUID: {0}" -f $CurrentAction.GUID)
                     $tbActionXCommand.Text = $CurrentAction.Command
+
+                    # Bring in the Parameters for that Action
+                    $rttbActionXOrder.Items.Clear()
+                    foreach ($Parameter in $CurrentAction.Parameters)
+                    {
+                        $dgActionXOrder.Items.Add($Parameter)
+                    }
                 }
                 catch
                 {
@@ -1221,6 +1227,7 @@ Function Add-SRPAction()
                                                                        Name = $script:ProjectMemoryObject.Language.DefaultParameter.Name ;
                                                                        Switch = $script:ProjectMemoryObject.Language.DefaultParameter.Switch 
                                                                      })
+                    $ActionToAdd.Command = $script:ProjectMemoryObject.Language.Command
                 }
 
                 # Insert the Action in the Memory Object
@@ -1526,6 +1533,16 @@ $tbActionXCommand.Add_TextChanged({
     #$script:ProjectMemoryObject.Output.Folder = $tbOutputFolder.Text.Trim()
 })
 
+# ########
+# UI : ActionX tab : Move action to the bottom of the list
+
+$dgActionXOrder.Add_SelectionChanged({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $cbActionXParamType.SelectedItem = $cbActionXParamType.Items | where {$_.Content -eq $dgActionXOrder.SelectedItem.Type}
+    $tbActionXParamName.Text = $dgActionXOrder.SelectedItem.Name
+    $cbActionXFieldMappingField.SelectedItem = $cbActionXFieldMappingField.Items | where {$_.Name -eq $dgActionXOrder.SelectedItem.Field_Value}
+    #$tbActionsName.Text = $dgActionXOrder.SelectedItem.Name
+})
 
 # ########
 # UI : Output tab
@@ -1561,6 +1578,20 @@ $rbOutputFolderOptionOnePerVersion.Add_UnChecked({
     $script:ProjectMemoryObject.Output.OneFolderPerVersion = $rbOutputFolderOptionOnePerVersion.IsChecked
     
 })
+
+
+# ########
+# UI : Preference / Language tab
+##########################################################
+
+# ########
+# UI : Preference / Language tab : Language drop down
+
+$cbLanguageLanguageSelection.Add_SelectionChanged({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Language = $cbLanguageLanguageSelection.SelectedItem
+})
+
 
 # ########
 # UI : Test tab
