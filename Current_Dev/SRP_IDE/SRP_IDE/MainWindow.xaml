@@ -1818,15 +1818,11 @@
                                                                 <ComboBox.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </ComboBox.Effect>
-                                                                <ComboBoxItem Content="LogRhythm Code Sample" IsSelected="True"/>
-                                                                <ComboBoxItem Content="MIT License"/>
-                                                                <ComboBoxItem Content="Apache License 2.0"/>
-                                                                <ComboBoxItem Content="GNU GPLv3"/>
-                                                                <ComboBoxItem Content="GNU LGPLv3"/>
-                                                                <ComboBoxItem Content="GNU AGPLv3"/>
-                                                                <ComboBoxItem Content="Mozilla Public License 2.0"/>
-                                                                <ComboBoxItem Content="The Unlicense"/>
-                                                                <ComboBoxItem Content="** None **"/>
+                                                                <ComboBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                    </DataTemplate>
+                                                                </ComboBox.ItemTemplate>
                                                             </ComboBox>
                                                         </Grid>
                                                         <Canvas Height="15" Margin="0,5,12,0" VerticalAlignment="Top" ToolTip="What license type do you want to apply to the SmartResponse PlugIn." HorizontalAlignment="Right" Width="15">

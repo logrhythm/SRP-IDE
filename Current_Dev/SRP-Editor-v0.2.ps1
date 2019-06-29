@@ -134,7 +134,7 @@ class SRPAction
 class SRPTestParameter
 {
     [ValidateNotNullOrEmpty()][string]$Name
-                              [string]$Code
+    [ValidateNotNullOrEmpty()][string]$Code
                               [string]$Value
 }
 
@@ -191,7 +191,10 @@ $ProjectMemoryObject = @{"File" =
                            ; "OneFolderPerVersion" = $true
                            }
                        ; "Preferences" =
-                           @{"LicenseFile" = "LogRhythm Code Sample"
+                           @{"LicenseFile" =
+                               @{"Name" = ""
+                               ; "Text" = ""
+                               }
                            ; "GenerateSignleScriptFile" = $false
                            ; "GenerateLPIAtBuildTime" = $false
                            }
@@ -338,6 +341,9 @@ $LogRhythmFieldsListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "LogRh
 
 # Local copy of the Languages List JSON
 $LanguagesListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "LanguagesListLocal.json"
+
+# Local copy of the Licenses List JSON
+$LicensesListJSONLocalFile = Join-Path -Path $cachePath -ChildPath "LicenseListLocal.json"
 
 
 
@@ -1253,7 +1259,42 @@ Function LanguageFieldUpdate()
     }
 }
 
+# Update the list of the License in the right ComboBoxes
 
+Function LicenseUpdate()
+{
+    param
+    (
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [System.Windows.Controls.ComboBox[]] $ComboBoxes = $(Throw("-ComboBoxes is required")),
+        [Switch] $DownloadFromCloud = $False
+    )
+
+    # Start with a fresh Array
+    $LicensesListArray = @()
+
+    if ($DownloadFromCloud)
+    {
+        LogError ("NOT IMPLEMENTED YET ({0})" -f "LicenseUpdate -DownloadFromCloud")
+    }
+
+    $LicensesListArray = Get-Content -Raw -Path $LicensesListJSONLocalFile  | ConvertFrom-Json
+    if ($LicensesListArray.DocType -eq "LicenseList")
+    {
+        # Go through the list of ComboBoxes and assign them $ListView to the ItemsSource property
+        foreach ($ComboBox in $ComboBoxes)
+        {
+            $ListView = [System.Windows.Data.ListCollectionView]$LicensesListArray.LicenseList
+            $ComboBox.ItemsSource = $ListView
+            $ComboBox.SelectedItem = $ComboBox.Items | where {$_.Name -eq ($LicensesListArray.LicenseList | where {$_.IsSelected -eq $true}).Name}
+        }
+    }
+    else
+    {
+        LogError ("Cannot load Licenses List from the file ""{0}"". Document of the wrong format." -f $LicensesListJSONLocalFile)
+    }
+
+}
 
 
 #  888     888 8888888                 8888888b.  888                   8888888                888             888      
@@ -2360,6 +2401,9 @@ ParameterFieldUpdate -ComboBoxes ($cbActionXFieldMappingField, $cbTestParameters
 
 # Populate the List of Languages ComboBoxes
 LanguageFieldUpdate -ComboBoxes ($cbLanguageLanguageSelection)
+
+# Populate the List of License ComboBoxes
+LicenseUpdate -ComboBoxes ($cbPreferencesLicenseFile)
 
 BuildNavigationTree -ItemToSelect 0
 
