@@ -2120,9 +2120,9 @@
                                                                     <BlurEffect/>
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
-                                                            <TextBox x:Name="tbSignCertificatePath" Height="28" Margin="6,6,11,0" Text="Cert:\CurrentUser\My" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__NotEmpty"/>
+                                                            <TextBox x:Name="tbSignCertificatePath" Height="28" Margin="6,6,11,0" Text="Cert:\CurrentUser\My" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666" Tag="ValidIf__RegEx:^Cert:\\.+"/>
                                                         </Grid>
-                                                        <Button x:Name="btSignCertificatePathBrowse" Content="Browse" Height="30" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" Grid.Column="1">
+                                                        <Button x:Name="btSignCertificatePathBrowse" Content="Browse" Height="30" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" Grid.Column="1" IsEnabled="False">
                                                             <Button.Effect>
                                                                 <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                             </Button.Effect>

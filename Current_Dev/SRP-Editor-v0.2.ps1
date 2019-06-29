@@ -779,7 +779,9 @@ $lvStep.Add_SelectionChanged({
             {
                 try
                 {
-                    # 
+                    # The Language File drop down list
+                    $cbLanguageLanguageSelection.SelectedItem = $cbLanguageLanguageSelection.Items | where {$_.Name -eq $script:ProjectMemoryObject.Language.Name}
+                     
                 }
                 catch
                 {
@@ -803,7 +805,37 @@ $lvStep.Add_SelectionChanged({
             {
                 try
                 {
-                    # 
+                    # The Signing Process (either Built-In or Customer/3rd Party)
+                    if ($script:ProjectMemoryObject.Signature.BuiltInProcess)
+                    {
+                        $rbSignSigningProcessBuiltIn.IsChecked = $true
+                    }
+                    else
+                    {
+                        $rbSignSigningProcessCustom.IsChecked = $true
+                    }
+                    # The Workflow (either Auto or Manual)
+                    if ($script:ProjectMemoryObject.Signature.AutoSignEveryBuild)
+                    {
+                        $rbSignWorkflowAuto.IsChecked = $true
+                    }
+                    else
+                    {
+                        $rbSignWorkflowManual.IsChecked = $true
+                    }
+                    # The Certif source (either Local Store of PBF File)
+                    if ($script:ProjectMemoryObject.Signature.UseCertificateStore)
+                    {
+                        $rbSignCertificateSourceLocalCertificateStore.IsChecked = $true
+                    }
+                    else
+                    {
+                        $rbSignCertificateSourcePBXFile.IsChecked = $true
+                    }
+                    # The Certif Path
+                    $tbSignCertificatePath.Text = $script:ProjectMemoryObject.Signature.CertificatePath
+                    # The Custom/3rd Party Signature script Path
+                    $tbSignCustomScriptCommand.Text = $script:ProjectMemoryObject.Signature.CustomSigningScriptPath
                 }
                 catch
                 {
@@ -2332,7 +2364,7 @@ $rbPreferencesScriptFileOptionSingleFile.Add_Checked({
     $script:ProjectMemoryObject.Preferences.GenerateSingleScriptFile = $rbPreferencesScriptFileOptionSingleFile.IsChecked
 })
 
-$rbPreferencesScriptFileOptionDualFile.Add_UnChecked({
+$rbPreferencesScriptFileOptionSingleFile.Add_UnChecked({
     #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
     $script:ProjectMemoryObject.Preferences.GenerateSingleScriptFile = $rbPreferencesScriptFileOptionSingleFile.IsChecked
     
@@ -2346,7 +2378,7 @@ $rbPreferencesPlugInLPIFileOptionGenerateLPI.Add_Checked({
     $script:ProjectMemoryObject.Preferences.GenerateLPIAtBuildTime = $rbPreferencesPlugInLPIFileOptionGenerateLPI.IsChecked
 })
 
-$rbPreferencesPlugInLPIFileOptionDoNotGenerate.Add_UnChecked({
+$rbPreferencesPlugInLPIFileOptionGenerateLPI.Add_UnChecked({
     #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
     $script:ProjectMemoryObject.Preferences.GenerateLPIAtBuildTime = $rbPreferencesPlugInLPIFileOptionGenerateLPI.IsChecked
     
@@ -2413,6 +2445,80 @@ $cbLanguageLanguageSelection.Add_SelectionChanged({
 # UI : Sign tab
 ##########################################################
 
+# ########
+# UI : Sign tab : Signing Process
+
+$rbSignSigningProcessBuiltIn.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Signature.BuiltInProcess = $rbSignSigningProcessBuiltIn.IsChecked
+})
+
+$rbSignSigningProcessCustom.Add_UnChecked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Signature.BuiltInProcess = $rbSignSigningProcessBuiltIn.IsChecked
+    
+})
+
+# ########
+# UI : Sign tab : Signing Workflow
+
+$rbSignWorkflowAuto.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Signature.AutoSignEveryBuild = $rbSignWorkflowAuto.IsChecked
+})
+
+$rbSignWorkflowAuto.Add_UnChecked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Signature.AutoSignEveryBuild = $rbSignSigningProcessBuiltIn.IsChecked
+    
+})
+
+# ########
+# UI : Sign tab : Built-in Signing Process : Certif Source
+
+$rbSignCertificateSourceLocalCertificateStore.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Signature.UseCertificateStore = $rbSignCertificateSourceLocalCertificateStore.IsChecked
+    $btSignCertificatePathBrowse.IsEnabled = $false
+    $tbSignCertificatePath.Tag = 'ValidIf__RegEx:^Cert:\\.+' # Cert:\CurrentUser\My
+    $TempText = $tbSignCertificatePath.Text
+    $tbSignCertificatePath.Text = ""
+    $tbSignCertificatePath.Text = $TempText # Just to trigger the TextChanged event
+})
+
+$rbSignCertificateSourceLocalCertificateStore.Add_UnChecked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Signature.UseCertificateStore = $rbSignCertificateSourceLocalCertificateStore.IsChecked
+    $btSignCertificatePathBrowse.IsEnabled = $true
+    $tbSignCertificatePath.Tag = "ValidIf__RegEx:^(?!Cert:).+" # Anything that doens't start with "Cert:\"
+    $TempText = $tbSignCertificatePath.Text
+    $tbSignCertificatePath.Text = ""
+    $tbSignCertificatePath.Text = $TempText # Just to trigger the TextChanged event
+})
+
+# ########
+# UI : Sign tab : Built-in Signing Process : Certif Path
+
+$tbSignCertificatePath.Add_TextChanged({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Signature.CertificatePath = $tbSignCertificatePath.Text.Trim()
+})
+
+$btSignCertificatePathBrowse.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+# ########
+# UI : Sign tab : Custom/3rd Party Signing Tool : Command Line
+
+$tbSignCustomScriptCommand.Add_TextChanged({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Signature.CustomSigningScriptPath = $tbSignCustomScriptCommand.Text.Trim()
+})
+
+$btSignCustomScriptBrowse.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
 
 
 #  888     888 8888888                 888888b.            d8b 888      888       888             888      
@@ -2487,6 +2593,8 @@ LicenseUpdate -ComboBoxes ($cbPreferencesLicenseFile)
 
 BuildNavigationTree -ItemToSelect 0
 
+#829
+$script:ProjectMemoryObject.Signature.UseCertificateStore
 
 #$cbTestParameters.ItemsSource = ParameterFieldUpdate
 #ParameterFieldUpdate -ComboBox $cbTestParameters
