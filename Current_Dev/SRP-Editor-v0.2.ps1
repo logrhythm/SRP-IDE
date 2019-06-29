@@ -25,6 +25,14 @@
 # - Order Actions
 # - Add and Modify Parameters
 # - Order Parameters
+# - Map in-memory data object with UI on the following tabs
+#  -- Plug-In
+#  -- Actions
+#  -- ActionX
+#  -- Output
+#  -- Preference
+#  -- Language
+#  -- Sign
 #
 # ################
 #
@@ -848,6 +856,41 @@ $lvStep.Add_SelectionChanged({
                 try
                 {
                     # 
+                    # The Funciton creation option (eitherOne per action or Signle Function)
+                    {
+                    }
+                    else
+                    {
+                        $rbBuildFunctionCreationSingleFunction.IsChecked = $true
+                    }
+                    # Validation policy
+                    # "Hard Validation" / "Warning Only" / "None"
+                    switch ($script:ProjectMemoryObject.Build.ParameterValidation) {
+                        "Hard Validation"
+                        {
+                            $rbBuildParamValidationHard.IsChecked = $true
+                            break
+                        }
+                        "Warning Only"
+                        {
+                            $rbBuildParamValidationWarning.IsChecked = $true
+                            break
+                        }
+                        "None"
+                        {
+                            $rbBuildParamValidationNone.IsChecked = $true
+                            break
+                        }
+                        default
+                        {
+                            LogError ("Building UI / Build Tab / Unknown type of Parameter Validation: ""{0}""." -f $script:ProjectMemoryObject.Build.ParameterValidation)
+                            break
+                        }
+                    } # switch ($script:ProjectMemoryObject.Build.ParameterValidation) {
+                    # The Pre-Build script path
+                    $tbBuildPreBuildExternalScript.Text = $script:ProjectMemoryObject.Build.PreBuildExternalScriptPath
+                    # The Post-Build script path
+                    $tbBuildPostBuildExternalScript.Text = $script:ProjectMemoryObject.Build.PostBuildExternalScriptPath
                 }
                 catch
                 {
@@ -2520,6 +2563,13 @@ $btSignCustomScriptBrowse.Add_Click({
     LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
 })
 
+# ########
+# UI : Sign tab : the SIGN button
+
+$btSignSign.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
 
 #  888     888 8888888                 888888b.            d8b 888      888       888             888      
 #  888     888   888                   888  "88b           Y8P 888      888       888             888      
@@ -2537,6 +2587,88 @@ $btSignCustomScriptBrowse.Add_Click({
 # UI : Build tab
 ##########################################################
 
+# ########
+# UI : Build tab : Function creation
+
+$rbBuildFunctionCreationOnePerAction.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Build.CreateOneFunctionPerAction = $rbBuildFunctionCreationOnePerAction.IsChecked
+})
+
+$rbBuildFunctionCreationOnePerAction.Add_UnChecked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Build.CreateOneFunctionPerAction = $rbBuildFunctionCreationOnePerAction.IsChecked
+})
+
+# ########
+# UI : Build tab : Parameter Validation
+
+$rbBuildParamValidationHard.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Build.ParameterValidation = $rbBuildParamValidationHard.Content.Trim()
+})
+$rbBuildParamValidationWarning.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Build.ParameterValidation = $rbBuildParamValidationWarning.Content.Trim()
+})
+$rbBuildParamValidationNone.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Build.ParameterValidation = $rbBuildParamValidationNone.Content.Trim()
+})
+
+# ########
+# UI : Build tab : Pre-Build script path
+
+$tbBuildPreBuildExternalScript.Add_TextChanged({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Build.PreBuildExternalScriptPath = $tbBuildPreBuildExternalScript.Text.Trim()
+})
+
+# ########
+# UI : Build tab : Pre- Browse
+
+$btBuildPreBuildExternalScriptBrowse.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+# ########
+# UI : Build tab : Post-Build script path
+
+$tbBuildPostBuildExternalScript.Add_TextChanged({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Build.PostBuildExternalScriptPath = $tbBuildPostBuildExternalScript.Text.Trim()
+})
+
+# ########
+# UI : Build tab : Post- Browse
+
+$btBuildPostBuildExternalScriptBrowse.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+# ########
+# UI : Build tab : Clean Output list
+
+$btBuildOutputDelete.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $tbBuildOutput.Text = ""
+})
+
+# ########
+# UI : Build tab : the BUILD button
+
+$btBuildBuild.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+# ########
+# UI : Build tab : the BUILD & LPI button
+
+$btBuildBuildAndProduceLPIPackage.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+
 #  888     888 8888888                 88888888888                   888          888             888      
 #  888     888   888                       888                       888          888             888      
 #  888     888   888                       888                       888          888             888      
@@ -2549,9 +2681,48 @@ $btSignCustomScriptBrowse.Add_Click({
 #                                                                                                          
 #                                                                                                          
 
+
 # ########
 # UI : Test tab
 ##########################################################
+
+# ########
+# UI : Test tab : the BUILD & TEST ONE button
+
+$btTestBuildAndTestOne.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+# ########
+# UI : Test tab : the BUILD & TEST ALL button
+
+$btTestBuildAndTestAll.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+# ########
+# UI : Test tab : the TEST ONE button
+
+$btTestTestOne.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+# ########
+# UI : Test tab : the TEST ALL button
+
+$btTestTestAll.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+# ########
+# UI : Test tab : Add Action to test list
+
+$btTestActionToTestAdd.Add_Click({
+    LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+})
+
+
+
 
 # ########
 # UI : Test tab : Field drop down
