@@ -22,10 +22,10 @@ Which produces something like this:
 ```
 
 The Settings I use are:
-- Font: Colossal
-- Character Width: Full
-- Character Height: Full
-- Format the output in the form of a programming comment or echoing output: BASH
+- **Font:** Colossal
+- **Character Width:** Full
+- **Character Height:** Full
+- **Format the output in the form of a programming comment or echoing output:** BASH
 
->Cheers,
-> Tony
+Cheers,
+ Tony
