@@ -1,9 +1,10 @@
 # Code Banners
-### So we can find parts quickly
+### So we (I) can find parts quickly
 
 To create the banners I put in the code (so it's much easier to find the parts you are looking for in the tiny "thumbnail" of the code, I use this.
 
-http://patorjk.com/software/taag/#p=display&h=0&v=0&c=bash&f=Colossal&t=LogRhythm%20SmartResponse%20Plug-In%20Editor
+- http://patorjk.com/software/taag/#p=display&h=0&v=0&c=bash&f=Colossal&t=LogRhythm%20SmartResponse%20Plug-In%20Editor
+
 Which produces something like this:
 
 ```powershell
@@ -26,5 +27,5 @@ The Settings I use are:
 - Character Height: Full
 - Format the output in the form of a programming comment or echoing output: BASH
 
-Cheers,
- Tony
+>Cheers,
+> Tony
