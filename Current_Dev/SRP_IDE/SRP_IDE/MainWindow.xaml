@@ -1372,7 +1372,7 @@
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                                            <Button x:Name="btActionXParamRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,10,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the name of the selected Parameter.">
+                                                            <Button x:Name="btActionXParamRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,10,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the Name and Type of the selected Parameter.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1470,7 +1470,7 @@
                                                                     <BlurEffect/>
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
-                                                            <TextBox x:Name="rttbActionXFieldMappingValue" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
+                                                            <TextBox x:Name="tbActionXFieldMappingValue" Height="28" Margin="6,6,11,0" Text="" VerticalAlignment="Top"  Background="#FF1F2121" Foreground="#FF989898" FontSize="16" BorderBrush="#FF1F2121" SelectionBrush="#FF666666"/>
                                                         </Grid>
                                                         <Canvas ToolTip="For Constant, please enter the Value of the field here." Grid.Column="2" Height="15" Margin="0,5,12,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="15">
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
@@ -1559,7 +1559,7 @@
                                                             <Path Fill="#FFCCCCCC" StrokeThickness="1.8541069" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="1" Data="M 7.5000101 9.6999879e-6 A 7.4999966 7.4999966 0 0 0 3.3333334e-8 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 15 7.4999966 7.4999966 0 0 0 15 7.5000097 7.4999966 7.4999966 0 0 0 7.5000101 9.6999879e-6 Z M 6.3527202 1.4807897 H 8.61183 v 1.99726 H 6.3527202 Z m -1.3418701 3.47003 h 3.7319201 v 1.825111 3.4454493 h 1.1783901 v 2.02981 H 5.1417799 V 10.22138 H 6.4511002 V 7.0131897 H 5.0108501 Z" ToolTip=""/>
                                                         </Canvas>
                                                         <StackPanel Grid.Column="3" Orientation="Horizontal">
-                                                            <Button x:Name="btActionXFieldMapValue" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the validation rule of the selected Parameter.">
+                                                            <Button x:Name="btActionXFieldValidationRefresh" Height="30" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#FFCCCCCC" BorderBrush="{x:Null}" Margin="0,25,0,0" Style="{DynamicResource GreyButtonStyle}" ToolTip="Update the validation rule of the selected Parameter.">
                                                                 <Button.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </Button.Effect>
@@ -1615,8 +1615,8 @@
                                                                     <DataGrid.Columns>
                                                                         <DataGridTextColumn Binding="{Binding Type}" Header="Types" MinWidth="100" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="100" IsReadOnly="True"/>
-                                                                        <DataGridTextColumn Binding="{Binding FieldName}" Header="Field" MinWidth="100" IsReadOnly="True"/>
-                                                                        <DataGridTextColumn Binding="{Binding ConstanteValue}" Header="Value" MinWidth="80" IsReadOnly="True"/>
+                                                                        <DataGridTextColumn Binding="{Binding FieldName}" Header="Field" MinWidth="140" IsReadOnly="True"/>
+                                                                        <DataGridTextColumn Binding="{Binding ConstantValue}" Header="Value" MinWidth="60" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding Switch}" Header="Switch" MinWidth="50" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding ValidationRule}" Header="Validation" MinWidth="50" IsReadOnly="True"/>
                                                                     </DataGrid.Columns>

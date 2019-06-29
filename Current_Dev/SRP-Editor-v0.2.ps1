@@ -20,9 +20,11 @@
 # - First Config file
 # - First PlugInCloudTemplateList file
 # - Download from Cloud, parse, update and save locally the PlugInCloudTemplateList
-# - Add Actions
+# - Add and Modify Actions
 # - Build navigation panel programatically
 # - Order Actions
+# - Add and Modify Parameters
+# - Order Parameters
 #
 # ################
 #
@@ -54,9 +56,23 @@ class SRPActionParameter
 {
     [ValidateNotNullOrEmpty()][string]$Type
     [ValidateNotNullOrEmpty()][string]$Name
-    [ValidateNotNullOrEmpty()][string]$Field_Value
-    [ValidateNotNullOrEmpty()][string]$Switch
-    [ValidateNotNullOrEmpty()][string]$ValidationRule
+                              [string]$FieldName
+                              [string]$FieldCode
+                              [string]$ConstantValue
+                              [string]$Switch
+                              [string]$ValidationRule
+    SRPActionParameter ()
+    {
+    }
+    SRPActionParameter ([string]$Name)
+    {
+        $this.Name = $Name
+    }
+    SRPActionParameter ([string]$Name, [string]$Type)
+    {
+        $this.Name = $Name
+        $this.Type = $Type
+    }
 }
 
 class SRPAction
@@ -78,16 +94,16 @@ class SRPAction
     }
     SRPAction ([string]$Name, [guid]$GUID)
     {
-        $this.Name = $Name
         $this.Parameters = New-Object System.Collections.ArrayList
+        $this.Name = $Name
         $this.GUID = $GUID
     }
     SRPAction ([string]$Name, [guid]$GUID, [string]$Switch)
     {
+        $this.Parameters = New-Object System.Collections.ArrayList
         $this.Name = $Name
         $this.GUID = $GUID
         $this.Switch = $Switch
-        $this.Parameters = New-Object System.Collections.ArrayList
     }
 }
 
@@ -95,14 +111,32 @@ class SRPAction
 class SRPTestParameter
 {
     [ValidateNotNullOrEmpty()][string]$Name
-    [ValidateNotNullOrEmpty()][string]$Value
+                              [string]$Code
+                              [string]$Value
 }
 
 class SRPTest
 {
     [ValidateNotNullOrEmpty()][bool]$Enable
     [ValidateNotNullOrEmpty()][string]$Action
-    [ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters
+                              [System.Collections.ArrayList]$Parameters
+    SRPTest ()
+    {
+        $this.Parameters = New-Object System.Collections.ArrayList
+    }
+    SRPTest ($Action)
+    {
+        $this.Parameters = New-Object System.Collections.ArrayList
+        $this.Action = $Action
+        $this.Enable = $true
+    }
+    SRPTest ($Action, $Enable)
+    {
+        $this.Parameters = New-Object System.Collections.ArrayList
+        $this.Action = $Action
+        $this.Enable = $Enable
+    }
+
 }
 
 # The memory object itself
@@ -141,10 +175,11 @@ $ProjectMemoryObject = @{"File" =
                        ; "Language" =
                            @{"ScriptingLanguage" = "PowerShell"
                            ; "Command" = "powershell.exe"
-                           ; "DefaultParameter" = 
+                           ; "DefaultParameters" = 
                                @{"Type" = "Constant"
                                ; "Name" = "Script"
                                ; "MapToField" = ""
+                               ; "ConstantValue" = ""
                                ; "Switch" = '-file "%SRP"'
                                ; "ValidationRule" = ""
                                }
@@ -166,7 +201,7 @@ $ProjectMemoryObject = @{"File" =
                            ; "PreBuildExternalScriptPath" = ""
                            ; "PostBuildExternalScriptPath" = ""
                            }
-                       ; "Tests" = @()
+                       ; "Tests" = New-Object System.Collections.ArrayList
                        }
 
 $LoadedNew = @{"Actions" = $false
@@ -508,6 +543,12 @@ $lvStep.Add_SelectionChanged({
                     $lbActionXActionName.Content = ("Action: {0}" -f $CurrentAction.name)
                     $lbActionXGUID.Content = ("GUID: {0}" -f $CurrentAction.GUID)
                     $tbActionXCommand.Text = $CurrentAction.Command
+                    $cbActionXParamType.SelectedIndex = 1 # String
+                    $tbActionXParamName.Text = ""
+                    $cbActionXFieldMappingField.SelectedIndex = 0
+                    $tbActionXFieldMappingValue.Text = ""
+                    $tbActionXFieldSwitch.Text = ""
+                    $cbActionXFieldValidation.SelectedIndex = 0
 
                     # Bring in the Parameters for that Action
                     $dgActionXOrder.Items.Clear()
@@ -1185,7 +1226,7 @@ Function Add-SRPAction()
         [Switch] $DoNotAddToNavigation = $false, # Do not add it to the navigation panel on the left
         [Switch] $DoNotAddToActionsOrderList = $false,
         [Switch] $DoNotAddToMemoryObjectActionsList = $false,
-        [Switch] $DoNotAddDefaultParameter = $false, # That is the default parameter that is coming with/from the Language
+        [Switch] $DoNotAddDefaultParameters = $false, # That is the default parameter that is coming with/from the Language
         [Switch] $DoNotCreateGUID = $false
     )
 
@@ -1220,13 +1261,28 @@ Function Add-SRPAction()
                    # $ActionToAdd = [SRPAction]::New($ActionNameToAdd, $GUID)
                 }
 
-                # With or without the default parameter, based on the selected language
-                if (-Not $DoNotAddDefaultParameter) # Not sure why on earth you would want that. But hey, not here to judge...
+                # With or without the default parameters, based on the selected language
+                if (-Not $DoNotAddDefaultParameters) # Not sure why on earth you would want that. But hey, not here to judge...
                 {
-                    $ActionToAdd.Parameters.Add([SRPActionParameter]@{ Type = $script:ProjectMemoryObject.Language.DefaultParameter.Type ;
-                                                                       Name = $script:ProjectMemoryObject.Language.DefaultParameter.Name ;
-                                                                       Switch = $script:ProjectMemoryObject.Language.DefaultParameter.Switch 
-                                                                     })
+                    foreach($Parameter in $script:ProjectMemoryObject.Language.DefaultParameters)
+                    {
+                        if (-Not [string]::IsNullOrEmpty($Parameter.MapToField))
+                        {
+                            $FieldNameToAdd = ($cbActionXFieldMappingField.Items | where {$_.Code -eq $Parameter.MapToField}).Name
+                        }
+                        else
+                        {
+                            $FieldNameToAdd = ""
+                        }
+                        $ActionToAdd.Parameters.Add([SRPActionParameter]@{ Type = $Parameter.Type ;
+                                                                           Name = $Parameter.Name ;
+                                                                           FieldCode = $Parameter.MapToField ;
+                                                                           FieldName = $FieldNameToAdd ;
+                                                                           ConstantValue = $Parameter.ConstantValue ;
+                                                                           Switch = $Parameter.Switch ;
+                                                                           ValidationRule = $Parameter.ValidationRule 
+                                                                         })
+                    }
                     $ActionToAdd.Command = $script:ProjectMemoryObject.Language.Command
                 }
 
@@ -1403,7 +1459,7 @@ $btActionsDelete.Add_Click({
 })
 
 # ########
-# UI : Actions tab : Movin Actions in the different lists
+# UI : Actions tab : Moving Actions in the different lists
 
 Function MoveActionItem()
 {
@@ -1465,8 +1521,8 @@ Function MoveActionItem()
             {
                 
                 $ItemToMove = $script:ProjectMemoryObject.Actions[$FromIndex]
-                $script:ProjectMemoryObject.Actions.RemoveAt($FromIndex) # XXXXX - Exception calling "RemoveAt" with "1" argument(s): "Collection was of a fixed size."
-                $script:ProjectMemoryObject.Actions.Insert($ToIndex,$ItemToMove) # Exception calling "Insert" with "2" argument(s): "Collection was of a fixed size."
+                $script:ProjectMemoryObject.Actions.RemoveAt($FromIndex) 
+                $script:ProjectMemoryObject.Actions.Insert($ToIndex,$ItemToMove) 
             }
         }
     }
@@ -1515,6 +1571,7 @@ $dgActionsOrder.Add_SelectionChanged({
 # UI : ActionX tab
 ##########################################################
 
+<# No need for this, as the change, if any, is only done when clicking on the Update button next to it.
 # ########
 # UI : ActionX tab : Field mapping drop down
 
@@ -1522,6 +1579,7 @@ $cbActionXFieldMappingField.Add_SelectionChanged({
     #LogDebug ("cbActionXFieldMappingField::SelectionChanged // Index: {0} / Value: ""{1}"" / Entry: ""{2}""" -f $cbActionXFieldMappingField.SelectedIndex, $cbActionXFieldMappingField.SelectedValue, $cbActionXFieldMappingField.SelectedValue.Name)
     LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
 })
+#>
 
 # ########
 # UI : ActionX tab : Command field
@@ -1534,15 +1592,333 @@ $tbActionXCommand.Add_TextChanged({
 })
 
 # ########
-# UI : ActionX tab : Move action to the bottom of the list
+# UI : ActionX tab : New item selected in the Order DataGrid
 
 $dgActionXOrder.Add_SelectionChanged({
     #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
     $cbActionXParamType.SelectedItem = $cbActionXParamType.Items | where {$_.Content -eq $dgActionXOrder.SelectedItem.Type}
     $tbActionXParamName.Text = $dgActionXOrder.SelectedItem.Name
-    $cbActionXFieldMappingField.SelectedItem = $cbActionXFieldMappingField.Items | where {$_.Name -eq $dgActionXOrder.SelectedItem.Field_Value}
+    $cbActionXFieldMappingField.SelectedItem = $cbActionXFieldMappingField.Items | where {$_.Code -eq $dgActionXOrder.SelectedItem.FieldCode}
+    $tbActionXFieldMappingValue.Text = $dgActionXOrder.SelectedItem.ConstantValue
+    $cbActionXFieldValidation.SelectedItem = $cbActionXFieldValidation.Items | where {$_.Content -eq $dgActionXOrder.SelectedItem.ValidationRule}
+
+    $tbActionXFieldSwitch.Text = $dgActionXOrder.SelectedItem.Switch
+
+
     #$tbActionsName.Text = $dgActionXOrder.SelectedItem.Name
 })
+
+# ########
+# Function to Add an action's parameter to the list
+
+Function Add-SRPActionParameter()
+{
+    param
+    (
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [string] $ParameterNameToAdd,
+        [Switch] $DoNotAddFieldMapping = $false,
+        [Switch] $DoNotAddConstantValue = $false,
+        [Switch] $DoNotAddSwitch = $false,
+        [Switch] $DoNotAddValidationRule = $false,
+        [Switch] $DoNotAddToParametersOrderList = $false,
+        [Switch] $DoNotAddToMemoryObjectActionsParametersList = $false
+    )
+
+    $ReturnValue = $false
+    try
+    {
+        if (-not [string]::IsNullOrEmpty($ParameterNameToAdd))
+        {
+            $GoodToAdd = $true
+            $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+            foreach ($Parameter in $CurrentAction.Paramters)
+            {
+                if ($Parameter.Name -eq $ParameterNameToAdd)
+                {
+                    $GoodToAdd = $false
+                }
+            }
+            if ($GoodToAdd)
+            {
+                # ########
+                # Create the Parameter
+
+                $ParameterToAdd = [SRPActionParameter]::New($ParameterNameToAdd, $cbActionXParamType.SelectedItem.Content)
+
+                # With or without Field Mapping
+                if ($DoNotAddFieldMapping -and $cbActionXFieldMappingField.SelectedIndex -ge 0)
+                {
+                   $ParameterToAdd.FieldCode = $cbActionXFieldMappingField.SelectedItem.Code
+                   $ParameterToAdd.FieldName = $cbActionXFieldMappingField.SelectedItem.Name
+                }
+
+                # With or without Constant Value
+                if (-Not $DoNotAddConstantValue)
+                {
+                   $ParameterToAdd.ConstantValue = $tbActionXFieldMappingValue.Text.Trim()
+                }
+
+                # With or without Switch
+                if (-Not $DoNotAddSwitch)
+                {
+                   $ParameterToAdd.Switch = $tbActionXFieldSwitch.Text.Trim()
+                }
+
+                # With or without Validation Rule
+                if ($DoNotAddValidationRule -and $cbActionXFieldValidation.SelectedIndex -ge 0)
+                {
+                   $ParameterToAdd.FieldCode = $cbActionXFieldMappingField.SelectedItem.Code
+                   $ParameterToAdd.FieldName = $cbActionXFieldMappingField.SelectedItem.Name
+                }
+                
+                # Finally, add to the Memory object
+                if (-Not $DoNotAddToMemoryObjectActionsParametersList)
+                {
+                    $CurrentAction.Parameters.Add($ParameterToAdd)
+                }
+
+                # And add to the Order list
+                if (-Not $DoNotAddToParametersOrderList)
+                {
+                    $dgActionXOrder.Items.Add($ParameterToAdd)
+                    $CurrentAction.Parameters.Add($ParameterToAdd)
+                }
+            }
+            $ReturnValue = $true
+        } # if (-not [string]::IsNullOrEmpty($ParameterNameToAdd))
+        else
+        {
+            LogInformation "Not possible to add a new Parameter with an empty name."
+        }
+    }
+    catch
+    {
+        LogError ("Error adding Parameter ""{0}"". Exception: {1}" -f $ParameterNameToAdd, $_.Exception.Message)
+    }
+    return $ReturnValue
+}
+
+# ########
+# UI : ActionX tab : Add the Parameter to the list
+
+$btActionXParamAdd.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    if(-Not [string]::IsNullOrEmpty($tbActionXParamName.Text.Trim()))
+    {
+        Add-SRPActionParameter -ParameterNameToAdd $tbActionXParamName.Text.Trim()
+    }
+    
+})
+
+# ########
+# UI : ActionX tab : Update the Parameter's Name
+
+$btActionXParamRefresh.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    if(-Not [string]::IsNullOrEmpty($tbActionXParamName.Text.Trim()) -and $cbActionXParamType.SelectedIndex -ge 0 -and $dgActionXOrder.SelectedIndex -ge 0)
+    {
+        # Find current Action and Parameter in the Memory object
+        $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+        $CurrentParameter=$CurrentAction.Parameters | where {$_.Name -eq $dgActionXOrder.SelectedItem.Name}
+        
+        # Update the Memory Object
+        $CurrentParameter.Name = $tbActionXParamName.Text.Trim()
+        $CurrentParameter.Type = $cbActionXParamType.SelectedItem.Content
+
+        # Update the Order data grid
+        $dgActionXOrder.SelectedItem.Name = $tbActionXParamName.Text.Trim()
+        $dgActionXOrder.SelectedItem.Type = $cbActionXParamType.SelectedItem.Content
+        $dgActionXOrder.Items.Refresh()
+    }
+})
+
+# ########
+# UI : ActionX tab : Update the Parameter's Field Mapping
+
+$btActionXFieldMapFieldRefresh.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    if($cbActionXFieldMappingField.SelectedIndex -ge 0 -and $dgActionXOrder.SelectedIndex -ge 0)
+    {
+        # Find current Action and Parameter in the Memory object
+        $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+        $CurrentParameter=$CurrentAction.Parameters | where {$_.Name -eq $dgActionXOrder.SelectedItem.Name}
+        
+        # Update the Memory Object
+        $CurrentParameter.FieldCode = $cbActionXFieldMappingField.SelectedItem.Code
+        $CurrentParameter.FieldName = $cbActionXFieldMappingField.SelectedItem.Name
+
+        # Update the Order data grid
+        $dgActionXOrder.SelectedItem.FieldCode = $cbActionXFieldMappingField.SelectedItem.Code
+        $dgActionXOrder.SelectedItem.FieldName = $cbActionXFieldMappingField.SelectedItem.Name
+        $dgActionXOrder.Items.Refresh()
+    }
+})
+
+# ########
+# UI : ActionX tab : Update the Parameter's Constant Value
+
+$btActionXFieldMapValueRefresh.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    if($dgActionXOrder.SelectedIndex -ge 0)
+    {
+        # Find current Action and Parameter in the Memory object
+        $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+        $CurrentParameter=$CurrentAction.Parameters | where {$_.Name -eq $dgActionXOrder.SelectedItem.Name}
+        
+        # Update the Memory Object
+        $CurrentParameter.ConstantValue = $tbActionXFieldMappingValue.Text.Trim()
+
+        # Update the Order data grid
+        $dgActionXOrder.SelectedItem.ConstantValue = $tbActionXFieldMappingValue.Text.Trim()
+        $dgActionXOrder.Items.Refresh()
+    }
+})
+
+# ########
+# UI : ActionX tab : Update the Parameter's Switch
+
+$btActionXFieldSwitchRefresh.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    if($dgActionXOrder.SelectedIndex -ge 0)
+    {
+        # Find current Action and Parameter in the Memory object
+        $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+        $CurrentParameter=$CurrentAction.Parameters | where {$_.Name -eq $dgActionXOrder.SelectedItem.Name}
+        
+        # Update the Memory Object
+        $CurrentParameter.Switch = $tbActionXFieldSwitch.Text.Trim()
+
+        # Update the Order data grid
+        $dgActionXOrder.SelectedItem.Switch = $tbActionXFieldSwitch.Text.Trim()
+        $dgActionXOrder.Items.Refresh()
+    }})
+
+# ########
+# UI : ActionX tab : Update the Parameter's Validation Rule
+
+$btActionXFieldValidationRefresh.Add_Click({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    if($cbActionXFieldValidation.SelectedIndex -ge 0 -and $dgActionXOrder.SelectedIndex -ge 0)
+    {
+        # Find current Action and Parameter in the Memory object
+        $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+        $CurrentParameter=$CurrentAction.Parameters | where {$_.Name -eq $dgActionXOrder.SelectedItem.Name}
+        
+        # Update the Memory Object
+        $CurrentParameter.ValidationRule = $cbActionXFieldValidation.SelectedItem.Content
+
+        # Update the Order data grid
+        $dgActionXOrder.SelectedItem.ValidationRule = $cbActionXFieldValidation.SelectedItem.Content
+        $dgActionXOrder.Items.Refresh()
+    }
+})
+
+
+# ########
+# UI : ActionX tab : Moving Parameters in the list
+
+Function MoveParameterItem()
+{
+    param
+    (
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [int] $FromIndex,
+		[Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [int] $ToIndex,
+        [Switch] $DoNotMoveInParametersOrderList = $false,
+        [Switch] $DoNotMoveInMemoryObjectActionsParametersList = $false
+    )
+    # Update the Parameter in the Order grid
+    if (-Not $DoNotMoveInParametersOrderList)
+    {
+        if ($dgActionXOrder.Items.Count -gt 1)
+        {
+            if (($FromIndex -ge 0) -And ($FromIndex -lt $dgActionXOrder.Items.Count) `
+            -And ($ToIndex -ge 0) -And ($ToIndex -lt $dgActionXOrder.Items.Count))
+            {
+                $ItemToMove = $dgActionXOrder.Items[$FromIndex]
+                $dgActionXOrder.Items.RemoveAt($FromIndex)
+                $dgActionXOrder.Items.Insert($ToIndex,$ItemToMove)
+                $dgActionXOrder.SelectedItem = $dgActionXOrder.Items[$ToIndex]
+            }
+        }
+    }
+
+    # Update the Parameter in the Memory Object
+    if (-Not $DoNotMoveInMemoryObjectActionsParametersList)
+    {
+        # Find current Action and Parameter in the Memory object
+        $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+
+        if ($script:ProjectMemoryObject.Actions.Count -gt 1)
+        {
+            if (($FromIndex -ge 0) -And ($FromIndex -lt $CurrentAction.Parameters.Count) `
+            -And ($ToIndex -ge 0) -And ($ToIndex -lt $CurrentAction.Parameters.Count))
+            {
+                
+                $ItemToMove = $CurrentAction.Parameters[$FromIndex]
+                $CurrentAction.Parameters.RemoveAt($FromIndex) 
+                $CurrentAction.Parameters.Insert($ToIndex,$ItemToMove) 
+            }
+        }
+    }
+}
+# ########
+# UI : ActionX tab : Move Parameter to the top of the list
+
+$btActionXOrderTop.Add_Click({
+    MoveParameterItem -FromIndex $dgActionXOrder.SelectedIndex -ToIndex 0
+})
+
+# ########
+# UI : ActionX tab : Move Parameter one level up in the list
+
+$btActionXOrderUp.Add_Click({
+    MoveParameterItem -FromIndex $dgActionXOrder.SelectedIndex -ToIndex ($dgActionXOrder.SelectedIndex - 1)
+})
+
+# ########
+# UI : ActionX tab : Move Parameter one level down in the list
+
+$btActionXOrderDown.Add_Click({
+    MoveParameterItem -FromIndex $dgActionXOrder.SelectedIndex -ToIndex ($dgActionXOrder.SelectedIndex + 1)
+})
+
+# ########
+# UI : ActionX tab : Move Parameter to the bottom of the list
+
+$btActionXOrderBottom.Add_Click({
+    MoveParameterItem -FromIndex $dgActionXOrder.SelectedIndex -ToIndex ($dgActionXOrder.Items.Count - 1)
+})
+
+# ########
+# UI : ActionX tab : Deleting an Parameter from the list
+
+$btActionXDelete.Add_Click({
+    # Find current Action in the Memory object
+    $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
+
+    $ParameterToDeleteIndex = $dgActionXOrder.SelectedIndex
+    if ($ParameterToDeleteIndex -ge 0)
+    {
+        # Remove in the Parameter Order Data Grid
+        $dgActionXOrder.Items.RemoveAt($ParameterToDeleteIndex)
+        # Remove from the Memory Object
+        $CurrentAction.Parameters.RemoveAt($ParameterToDeleteIndex)
+
+        # In the Order Data Grid, pick the Parameter just above the one just deleted
+        if ($ParameterToDeleteIndex -gt 0)
+        {
+            $dgActionXOrder.SelectedIndex = $ParameterToDeleteIndex - 1
+        }
+        else
+        {
+            $dgActionXOrder.SelectedIndex = 0
+        }
+    }
+})
+
 
 # ########
 # UI : Output tab

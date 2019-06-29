@@ -2,7 +2,7 @@
     {
         "Name":  "Powershell",
         "Command":  "powershell.exe",
-		"DefaultParameter": [
+		"DefaultParameters": [
 			{
 				"Type": "Constant",
 				"Name": "Script",
@@ -11,14 +11,22 @@
 			{
 				"Type": "String",
 				"Name": "Computer Name",
+				"MapToField": "dname",
 				"Switch": "-ComputerName"
+			},
+			{
+				"Type": "Constant",
+				"Name": "Action to do",
+				"ConstantValue": "Rule the World",
+				"Switch": "-Action",
+				"ValidationRule": "String | Empty or not"
 			}
 		]
     },
     {
         "Name":  "Python",
         "Command":  "python.exe",
-		"DefaultParameter": [
+		"DefaultParameters": [
 			{
 				"Type": "Constant",
 				"Name": "Script",
@@ -29,7 +37,7 @@
     {
         "Name":  "Batch",
         "Command":  "cmd.exe",
-		"DefaultParameter": [
+		"DefaultParameters": [
 			{
 				"Type": "Constant",
 				"Name": "Script",
@@ -40,7 +48,7 @@
     {
         "Name":  "Perl",
         "Command":  "perl.exe",
-		"DefaultParameter": [
+		"DefaultParameters": [
 			{
 				"Type": "Constant",
 				"Name": "Script",
@@ -51,7 +59,7 @@
     {
         "Name":  "Ruby",
         "Command":  "ruby.exe",
-		"DefaultParameter": [
+		"DefaultParameters": [
 			{
 				"Type": "Constant",
 				"Name": "Script",
@@ -62,7 +70,7 @@
     {
         "Name":  "Java",
         "Command":  "java.exe",
-		"DefaultParameter": [
+		"DefaultParameters": [
 			{
 				"Type": "Constant",
 				"Name": "Script",
