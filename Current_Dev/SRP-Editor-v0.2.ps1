@@ -2469,7 +2469,7 @@ $rbSignWorkflowAuto.Add_Checked({
 
 $rbSignWorkflowAuto.Add_UnChecked({
     #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
-    $script:ProjectMemoryObject.Signature.AutoSignEveryBuild = $rbSignSigningProcessBuiltIn.IsChecked
+    $script:ProjectMemoryObject.Signature.AutoSignEveryBuild = $rbSignWorkflowAuto.IsChecked
     
 })
 
@@ -2593,8 +2593,6 @@ LicenseUpdate -ComboBoxes ($cbPreferencesLicenseFile)
 
 BuildNavigationTree -ItemToSelect 0
 
-#829
-$script:ProjectMemoryObject.Signature.UseCertificateStore
 
 #$cbTestParameters.ItemsSource = ParameterFieldUpdate
 #ParameterFieldUpdate -ComboBox $cbTestParameters
