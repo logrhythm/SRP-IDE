@@ -1,8 +1,12 @@
+# Code Banners
+### So we can find parts quickly
+
 To create the banners I put in the code (so it's much easier to find the parts you are looking for in the tiny "thumbnail" of the code, I use this.
 
 http://patorjk.com/software/taag/#p=display&h=0&v=0&c=bash&f=Colossal&t=LogRhythm%20SmartResponse%20Plug-In%20Editor
 Which produces something like this:
 
+```powershell
 #  888                        8888888b.  888               888    888                           .d8888b.                                 888    8888888b.                                                                       8888888b.  888                          8888888                8888888888      888 d8b 888                     
 #  888                        888   Y88b 888               888    888                          d88P  Y88b                                888    888   Y88b                                                                      888   Y88b 888                            888                  888             888 Y8P 888                     
 #  888                        888    888 888               888    888                          Y88b.                                     888    888    888                                                                      888    888 888                            888                  888             888     888                     
@@ -14,6 +18,7 @@ Which produces something like this:
 #                         888                          888                                                                                                                   888                                                                             888                                                                               
 #                    Y8b d88P                     Y8b d88P                                                                                                                   888                                                                        Y8b d88P                                                                               
 #                     "Y88P"                       "Y88P"                                                                                                                    888                                                                         "Y88P"                                                                                
+```
 
 The Settings I use are:
 - Font: Colossal
