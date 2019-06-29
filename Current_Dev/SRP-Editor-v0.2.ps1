@@ -112,7 +112,6 @@ class SRPAction
     [ValidateNotNullOrEmpty()][guid]$GUID
     [ValidateNotNullOrEmpty()][string]$Command
    #[ValidateNotNullOrEmpty()][SRPActionParameter[]]$Parameters  # Old style Array of type. Moved on, and now using ArrayList
-   #[ValidateNotNullOrEmpty()][System.Collections.ArrayList]$Parameters # Silly me, this fails because I both want to create an empty object, and at the same time prevent empty object...
                               [System.Collections.ArrayList]$Parameters
     SRPAction ()
     {
@@ -231,7 +230,7 @@ $ProjectMemoryObject = @{"File" =
                            }
                        ; "Build" =
                            @{"CreateOneFunctionPerAction" = $true
-                           ; "ParameterValidation" = "Hard Validation"
+                           ; "ParameterValidation" = "Hard Validation" # "Hard Validation" / "Warning Only" / "None"
                            ; "PreBuildExternalScriptPath" = ""
                            ; "PostBuildExternalScriptPath" = ""
                            }
@@ -855,9 +854,10 @@ $lvStep.Add_SelectionChanged({
             {
                 try
                 {
-                    # 
                     # The Funciton creation option (eitherOne per action or Signle Function)
+                    if ($script:ProjectMemoryObject.Build.CreateOneFunctionPerAction)
                     {
+                        $rbBuildFunctionCreationOnePerAction.IsChecked = $true
                     }
                     else
                     {
