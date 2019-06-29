@@ -195,7 +195,7 @@ $ProjectMemoryObject = @{"File" =
                                @{"Name" = ""
                                ; "Text" = ""
                                }
-                           ; "GenerateSignleScriptFile" = $false
+                           ; "GenerateSingleScriptFile" = $false
                            ; "GenerateLPIAtBuildTime" = $false
                            }
                        ; "Language" =
@@ -748,7 +748,26 @@ $lvStep.Add_SelectionChanged({
             {
                 try
                 {
-                    # 
+                    # The License File drop down list
+                    $cbPreferencesLicenseFile.SelectedItem = $cbPreferencesLicenseFile.Items | where {$_.Name -eq $script:ProjectMemoryObject.Preferences.LicenseFile.Name}
+                    # The Script File option Radio Buttons (either Single File or Dual File)
+                    if ($script:ProjectMemoryObject.Preferences.GenerateSingleScriptFile)
+                    {
+                        $rbPreferencesScriptFileOptionSingleFile.IsChecked = $true
+                    }
+                    else
+                    {
+                        $rbPreferencesScriptFileOptionDualFile.IsChecked = $true
+                    }
+                    # The LPI generation option (either Do NOt Generate or Generate LPI File)
+                    if ($script:ProjectMemoryObject.Preferences.GenerateLPIAtBuildTime)
+                    {
+                        $rbPreferencesPlugInLPIFileOptionGenerateLPI.IsChecked = $true
+                    }
+                    else
+                    {
+                        $rbPreferencesPlugInLPIFileOptionDoNotGenerate.IsChecked = $true
+                    }
                 }
                 catch
                 {
@@ -1226,6 +1245,19 @@ Function ParameterFieldUpdate()
     }
 }
 
+
+#  888                                                                              
+#  888                                                                              
+#  888                                                                              
+#  888       8888b.  88888b.   .d88b.  888  888  8888b.   .d88b.   .d88b.  .d8888b  
+#  888          "88b 888 "88b d88P"88b 888  888     "88b d88P"88b d8P  Y8b 88K      
+#  888      .d888888 888  888 888  888 888  888 .d888888 888  888 88888888 "Y8888b. 
+#  888      888  888 888  888 Y88b 888 Y88b 888 888  888 Y88b 888 Y8b.          X88 
+#  88888888 "Y888888 888  888  "Y88888  "Y88888 "Y888888  "Y88888  "Y8888   88888P' 
+#                                  888                        888                   
+#                             Y8b d88P                   Y8b d88P                   
+#                              "Y88P"                     "Y88P"                    
+
 # Update the list of the Languages in the right ComboBoxes
 
 Function LanguageFieldUpdate()
@@ -1259,7 +1291,20 @@ Function LanguageFieldUpdate()
     }
 }
 
-# Update the list of the License in the right ComboBoxes
+
+#  888      d8b                                                       
+#  888      Y8P                                                       
+#  888                                                                
+#  888      888  .d8888b  .d88b.  88888b.  .d8888b   .d88b.  .d8888b  
+#  888      888 d88P"    d8P  Y8b 888 "88b 88K      d8P  Y8b 88K      
+#  888      888 888      88888888 888  888 "Y8888b. 88888888 "Y8888b. 
+#  888      888 Y88b.    Y8b.     888  888      X88 Y8b.          X88 
+#  88888888 888  "Y8888P  "Y8888  888  888  88888P'  "Y8888   88888P' 
+#                                                                     
+#                                                                     
+#                                                                     
+
+# Update the list of the Licenses in the right ComboBoxes
 
 Function LicenseUpdate()
 {
@@ -2271,6 +2316,41 @@ $rbOutputFolderOptionOnePerVersion.Add_UnChecked({
 # UI : Preference tab
 ##########################################################
 
+# ########
+# UI : Preference tab : License drop down
+
+$cbPreferencesLicenseFile.Add_SelectionChanged({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Preferences.LicenseFile = $cbPreferencesLicenseFile.SelectedItem
+})
+
+# ########
+# UI : Preference tab : Script File Output option
+
+$rbPreferencesScriptFileOptionSingleFile.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Preferences.GenerateSingleScriptFile = $rbPreferencesScriptFileOptionSingleFile.IsChecked
+})
+
+$rbPreferencesScriptFileOptionDualFile.Add_UnChecked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Preferences.GenerateSingleScriptFile = $rbPreferencesScriptFileOptionSingleFile.IsChecked
+    
+})
+
+# ########
+# UI : Preference tab : LPI File Output option
+
+$rbPreferencesPlugInLPIFileOptionGenerateLPI.Add_Checked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Preferences.GenerateLPIAtBuildTime = $rbPreferencesPlugInLPIFileOptionGenerateLPI.IsChecked
+})
+
+$rbPreferencesPlugInLPIFileOptionDoNotGenerate.Add_UnChecked({
+    #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Preferences.GenerateLPIAtBuildTime = $rbPreferencesPlugInLPIFileOptionGenerateLPI.IsChecked
+    
+})
 
 
 #  888     888 8888888                 8888888b.                    .d888                                                                            d88P       888                                                                           888             888      
