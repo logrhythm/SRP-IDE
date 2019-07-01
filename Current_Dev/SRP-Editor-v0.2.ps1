@@ -138,6 +138,7 @@ class SRPAction
 }
 
 
+<#
 class SRPTestParameter
 {
     [ValidateNotNullOrEmpty()][string]$Name
@@ -168,7 +169,39 @@ class SRPTest
     }
 
 }
+#>
 
+class SRPTestParameter
+{
+    [ValidateNotNullOrEmpty()][string]$Name
+                              [string]$Code
+                              [string]$Value
+}
+
+class SRPTest
+{
+    [ValidateNotNullOrEmpty()][bool]$Enable
+    [ValidateNotNullOrEmpty()][string]$Action
+                              [System.Collections.ObjectModel.ObservableCollection[SRPTestParameter]]$Parameters
+                              [string]$ParametersPreview
+    SRPTest ()
+    {
+        $this.Parameters = New-Object System.Collections.ObjectModel.ObservableCollection[SRPTestParameter]
+    }
+    SRPTest ([string]$Action)
+    {
+        $this.Parameters = New-Object System.Collections.ObjectModel.ObservableCollection[SRPTestParameter]
+        $this.Action = $Action
+        $this.Enable = $true
+    }
+    SRPTest ([string]$Action, $Enable)
+    {
+        $this.Parameters = New-Object System.Collections.ObjectModel.ObservableCollection[SRPTestParameter]
+        $this.Action = $Action
+        $this.Enable = $Enable
+    }
+
+}
 # The memory object itself
 $ProjectMemoryObject = @{"File" = 
                            @{"Type" = "SmartResponse PlugIn Project"
@@ -234,7 +267,8 @@ $ProjectMemoryObject = @{"File" =
                            ; "PreBuildExternalScriptPath" = ""
                            ; "PostBuildExternalScriptPath" = ""
                            }
-                       ; "Tests" = New-Object System.Collections.ArrayList
+                      #; "Tests" = New-Object System.Collections.ArrayList
+                       ; "Tests" = New-Object System.Collections.ObjectModel.ObservableCollection[SRPTest]
                        }
 
 $LoadedNew = @{"Actions" = $false
@@ -1417,6 +1451,29 @@ Function LicenseUpdate()
 }
 
 
+#  888    888 d8b          888            888                                 888       888888b.   d8b               888 d8b                            
+#  888    888 Y8P          888            888                                 888       888  "88b  Y8P               888 Y8P                            
+#  888    888              888            888                                 888       888  .88P                    888                                
+#  8888888888 888  .d88b.  88888b.        888       .d88b.  888  888  .d88b.  888       8888888K.  888 88888b.   .d88888 888 88888b.   .d88b.  .d8888b  
+#  888    888 888 d88P"88b 888 "88b       888      d8P  Y8b 888  888 d8P  Y8b 888       888  "Y88b 888 888 "88b d88" 888 888 888 "88b d88P"88b 88K      
+#  888    888 888 888  888 888  888       888      88888888 Y88  88P 88888888 888       888    888 888 888  888 888  888 888 888  888 888  888 "Y8888b. 
+#  888    888 888 Y88b 888 888  888       888      Y8b.      Y8bd8P  Y8b.     888       888   d88P 888 888  888 Y88b 888 888 888  888 Y88b 888      X88 
+#  888    888 888  "Y88888 888  888       88888888  "Y8888    Y88P    "Y8888  888       8888888P"  888 888  888  "Y88888 888 888  888  "Y88888  88888P' 
+#                      888                                                                                                                 888          
+#                 Y8b d88P                                                                                                            Y8b d88P          
+#                  "Y88P"                                                                                                              "Y88P"           
+
+<#
+$Window.Add_Loaded({
+    $script:ProjectMemoryObject.Tests.Clear()
+    $dgTestTestsOrder.ItemsSource = $script:ProjectMemoryObject.Tests
+})
+#>
+
+$ProjectMemoryObject.Tests.Clear()
+$dgTestTestsOrder.ItemsSource = $ProjectMemoryObject.Tests
+
+
 #  888     888 8888888                 8888888b.  888                   8888888                888             888      
 #  888     888   888                   888   Y88b 888                     888                  888             888      
 #  888     888   888                   888    888 888                     888                  888             888      
@@ -1660,7 +1717,7 @@ Function Add-SRPAction()
                     {
                         if (-Not [string]::IsNullOrEmpty($Parameter.MapToField))
                         {
-                            $FieldNameToAdd = ($cbActionXFieldMappingField.Items | where {$_.Code -eq $Parameter.MapToField}).Name
+                            $FieldNameToAdd = ($cbActionXFieldMappingField.Items | where {$_.FieldCode -eq $Parameter.MapToField}).FieldName
                         }
                         else
                         {
@@ -2004,7 +2061,7 @@ $dgActionXOrder.Add_SelectionChanged({
     #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
     $cbActionXParamType.SelectedItem = $cbActionXParamType.Items | where {$_.Content -eq $dgActionXOrder.SelectedItem.Type}
     $tbActionXParamName.Text = $dgActionXOrder.SelectedItem.Name
-    $cbActionXFieldMappingField.SelectedItem = $cbActionXFieldMappingField.Items | where {$_.Code -eq $dgActionXOrder.SelectedItem.FieldCode}
+    $cbActionXFieldMappingField.SelectedItem = $cbActionXFieldMappingField.Items | where {$_.FieldCode -eq $dgActionXOrder.SelectedItem.FieldCode}
     $tbActionXFieldMappingValue.Text = $dgActionXOrder.SelectedItem.ConstantValue
     $cbActionXFieldValidation.SelectedItem = $cbActionXFieldValidation.Items | where {$_.Content -eq $dgActionXOrder.SelectedItem.ValidationRule}
 
@@ -2038,7 +2095,7 @@ Function Add-SRPActionParameter()
         {
             $GoodToAdd = $true
             $CurrentAction=$script:ProjectMemoryObject.Actions | where {$_.GUID -eq $lvStep.Items[$lvStep.SelectedIndex].GUID}
-            foreach ($Parameter in $CurrentAction.Paramters)
+            foreach ($Parameter in $CurrentAction.Parameters)
             {
                 if ($Parameter.Name -eq $ParameterNameToAdd)
                 {
@@ -2053,10 +2110,10 @@ Function Add-SRPActionParameter()
                 $ParameterToAdd = [SRPActionParameter]::New($ParameterNameToAdd, $cbActionXParamType.SelectedItem.Content)
 
                 # With or without Field Mapping
-                if ($DoNotAddFieldMapping -and $cbActionXFieldMappingField.SelectedIndex -ge 0)
+                if (-not $DoNotAddFieldMapping -and $cbActionXFieldMappingField.SelectedIndex -ge 0)
                 {
-                   $ParameterToAdd.FieldCode = $cbActionXFieldMappingField.SelectedItem.Code
-                   $ParameterToAdd.FieldName = $cbActionXFieldMappingField.SelectedItem.Name
+                   $ParameterToAdd.FieldCode = $cbActionXFieldMappingField.SelectedItem.FieldCode
+                   $ParameterToAdd.FieldName = $cbActionXFieldMappingField.SelectedItem.FieldName
                 }
 
                 # With or without Constant Value
@@ -2072,10 +2129,9 @@ Function Add-SRPActionParameter()
                 }
 
                 # With or without Validation Rule
-                if ($DoNotAddValidationRule -and $cbActionXFieldValidation.SelectedIndex -ge 0)
+                if (-Not $DoNotAddValidationRule -and $cbActionXFieldValidation.SelectedIndex -ge 0)
                 {
-                   $ParameterToAdd.FieldCode = $cbActionXFieldMappingField.SelectedItem.Code
-                   $ParameterToAdd.FieldName = $cbActionXFieldMappingField.SelectedItem.Name
+                   $ParameterToAdd.ValidationRule = $cbActionXFieldValidation.SelectedItem.Content
                 }
                 
                 # Finally, add to the Memory object
@@ -2088,7 +2144,6 @@ Function Add-SRPActionParameter()
                 if (-Not $DoNotAddToParametersOrderList)
                 {
                     $dgActionXOrder.Items.Add($ParameterToAdd)
-                    $CurrentAction.Parameters.Add($ParameterToAdd)
                 }
             }
             $ReturnValue = $true
@@ -2112,7 +2167,7 @@ $btActionXParamAdd.Add_Click({
     #LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
     if(-Not [string]::IsNullOrEmpty($tbActionXParamName.Text.Trim()))
     {
-        Add-SRPActionParameter -ParameterNameToAdd $tbActionXParamName.Text.Trim()
+        Add-SRPActionParameter -ParameterNameToAdd $tbActionXParamName.Text.Trim() -DoNotAddFieldMapping
     }
     
 })
@@ -2151,12 +2206,12 @@ $btActionXFieldMapFieldRefresh.Add_Click({
         $CurrentParameter=$CurrentAction.Parameters | where {$_.Name -eq $dgActionXOrder.SelectedItem.Name}
         
         # Update the Memory Object
-        $CurrentParameter.FieldCode = $cbActionXFieldMappingField.SelectedItem.Code
-        $CurrentParameter.FieldName = $cbActionXFieldMappingField.SelectedItem.Name
+        $CurrentParameter.FieldCode = $cbActionXFieldMappingField.SelectedItem.FieldCode
+        $CurrentParameter.FieldName = $cbActionXFieldMappingField.SelectedItem.FieldName
 
         # Update the Order data grid
-        $dgActionXOrder.SelectedItem.FieldCode = $cbActionXFieldMappingField.SelectedItem.Code
-        $dgActionXOrder.SelectedItem.FieldName = $cbActionXFieldMappingField.SelectedItem.Name
+        $dgActionXOrder.SelectedItem.FieldCode = $cbActionXFieldMappingField.SelectedItem.FieldCode
+        $dgActionXOrder.SelectedItem.FieldName = $cbActionXFieldMappingField.SelectedItem.FieldName
         $dgActionXOrder.Items.Refresh()
     }
 })
@@ -2719,9 +2774,8 @@ $btTestTestAll.Add_Click({
 
 $btTestActionToTestAdd.Add_Click({
     LogError ("NOT IMPLEMENTED YET ({0})" -f $_.OriginalSource.Name)
+    $script:ProjectMemoryObject.Tests.Add($cbTestActionToTest.SelectedItem.Name)
 })
-
-
 
 
 # ########

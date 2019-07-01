@@ -1435,7 +1435,7 @@
                                                                 </ComboBox.GroupStyle>
                                                                 <ComboBox.ItemTemplate>
                                                                     <DataTemplate>
-                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                        <TextBlock Text="{Binding FieldName}"/>
                                                                     </DataTemplate>
                                                                 </ComboBox.ItemTemplate>
                                                             </ComboBox>
@@ -2503,10 +2503,15 @@
                                                             <Path Fill="#FFFFFFFF" StrokeThickness="0.24916969" Data="M 5.2807097 14.533919 C 4.8820413 14.135251 4.931869 13.462488 4.1096136 14.284753 3.2873489 15.107008 2.0664252 16.975785 2.440175 17.374454 2.8388434 17.773122 4.707621 16.52728 5.5298763 15.705015 6.352141 14.857841 5.6793781 14.907669 5.2807097 14.533919 Z"/>
                                                         </Canvas>
                                                         <Grid Height="40" Margin="25,20,0,0" VerticalAlignment="Top" MinWidth="310">
-                                                            <ComboBox x:Name="cbTestActionToTest" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
+                                                            <ComboBox x:Name="cbTestActionToTest"  ItemsSource="{Binding Items, ElementName=dgActionsOrder}" Height="28" Margin="6,6,11,0" VerticalAlignment="Top" Background="#FF1F2121" Foreground="#FFCCCCCC" FontSize="16" BorderBrush="#FF1F2121">
                                                                 <ComboBox.Effect>
                                                                     <DropShadowEffect Opacity="0.4" BlurRadius="10" ShadowDepth="3"/>
                                                                 </ComboBox.Effect>
+                                                                <ComboBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                    </DataTemplate>
+                                                                </ComboBox.ItemTemplate>
                                                             </ComboBox>
                                                         </Grid>
                                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -2595,11 +2600,16 @@
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
                                                             <Grid Margin="6,6,11,0">
-                                                                <DataGrid x:Name="dgTestTestsOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
+                                                                <DataGrid x:Name="dgTestTestsOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6" FrozenColumnCount="1" CanUserAddRows="False">
                                                                     <DataGrid.Columns>
+                                                                        <DataGridCheckBoxColumn Binding="{Binding Enable}" Header="Test" MinWidth="20" MaxWidth="40"/>
+                                                                        <DataGridTextColumn Binding="{Binding Action}" Header="Action" MinWidth="150"/>
+                                                                        <DataGridTextColumn Binding="{Binding ParametersPreview}" Header="Parameters" MinWidth="150" IsReadOnly="True"/>
+                                                                        <!--
                                                                         <DataGridTextColumn Binding="{Binding Test}" Header="Test" MinWidth="20" MaxWidth="40" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding Action}" Header="Action" MinWidth="150" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding Parameters}" Header="Parameters" MinWidth="150" IsReadOnly="True"/>
+                                                                        -->
                                                                     </DataGrid.Columns>
                                                                 </DataGrid>
                                                             </Grid>
@@ -2718,7 +2728,7 @@
                                                                 </ComboBox.GroupStyle>
                                                                 <ComboBox.ItemTemplate>
                                                                     <DataTemplate>
-                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                        <TextBlock Text="{Binding FieldName}"/>
                                                                     </DataTemplate>
                                                                 </ComboBox.ItemTemplate>
                                                             </ComboBox>
@@ -2809,10 +2819,18 @@
                                                                 </Rectangle.Effect>
                                                             </Rectangle>
                                                             <Grid Margin="6,6,11,0">
+                                                                <!--
                                                                 <DataGrid x:Name="dgTestParametersOrder" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6">
                                                                     <DataGrid.Columns>
                                                                         <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="100" IsReadOnly="True"/>
                                                                         <DataGridTextColumn Binding="{Binding Value}" Header="Value" MinWidth="100" IsReadOnly="True"/>
+                                                                    </DataGrid.Columns>
+                                                                </DataGrid>
+                                                                -->
+                                                                <DataGrid x:Name="dgTestParametersOrder" ItemsSource="{Binding SelectedItem.Parameters, ElementName=dgTestTestsOrder}" Background="#FF1F2121" Foreground="#FF989898" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" MinWidth="363" Width="{Binding Path=ActualWidth, ElementName=GridWidthRefMiddleDataGrid}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" Margin="0,0,0,6" CanUserAddRows="False">
+                                                                    <DataGrid.Columns>
+                                                                        <DataGridTextColumn Binding="{Binding Name}" Header="Name" MinWidth="100"/>
+                                                                        <DataGridTextColumn Binding="{Binding Value}" Header="Value" MinWidth="100"/>
                                                                     </DataGrid.Columns>
                                                                 </DataGrid>
                                                             </Grid>
