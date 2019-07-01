@@ -1,542 +1,542 @@
 [
    {
-      "Name":"Severity",
+      "FieldName":"Severity",
       "Family":"Classification",
-      "Code":"severity"
+      "FieldCode":"severity"
    },
    {
-      "Name":"Vendor Message ID",
+      "FieldName":"Vendor Message ID",
       "Family":"Classification",
-      "Code":"vmid"
+      "FieldCode":"vmid"
    },
    {
-      "Name":"Vendor Info",
+      "FieldName":"Vendor Info",
       "Family":"Classification",
-      "Code":"vendorinfo"
+      "FieldCode":"vendorinfo"
    },
    {
-      "Name":"Threat Name",
+      "FieldName":"Threat Name",
       "Family":"Classification",
-      "Code":"threatname"
+      "FieldCode":"threatname"
    },
    {
-      "Name":"Threat ID",
+      "FieldName":"Threat ID",
       "Family":"Classification",
-      "Code":"threatid"
+      "FieldCode":"threatid"
    },
    {
-      "Name":"CVE",
+      "FieldName":"CVE",
       "Family":"Classification",
-      "Code":"cve"
+      "FieldCode":"cve"
    },
    {
-      "Name":"User (Origin)",
+      "FieldName":"User (Origin)",
       "Family":"Identity",
-      "Code":"login"
+      "FieldCode":"login"
    },
    {
-      "Name":"User (Impacted)",
+      "FieldName":"User (Impacted)",
       "Family":"Identity",
-      "Code":"account"
+      "FieldCode":"account"
    },
    {
-      "Name":"Sender",
+      "FieldName":"Sender",
       "Family":"Identity",
-      "Code":"sender"
+      "FieldCode":"sender"
    },
    {
-      "Name":"Recipient",
+      "FieldName":"Recipient",
       "Family":"Identity",
-      "Code":"recipient"
+      "FieldCode":"recipient"
    },
    {
-      "Name":"Group",
+      "FieldName":"Group",
       "Family":"Identity",
-      "Code":"group"
+      "FieldCode":"group"
    },
    {
-      "Name":"MAC Address (Origin)",
+      "FieldName":"MAC Address (Origin)",
       "Family":"Host",
-      "Code":"smac"
+      "FieldCode":"smac"
    },
    {
-      "Name":"MAC Address (Impacted)",
+      "FieldName":"MAC Address (Impacted)",
       "Family":"Host",
-      "Code":"dmac"
+      "FieldCode":"dmac"
    },
    {
-      "Name":"Interface (Origin)",
+      "FieldName":"Interface (Origin)",
       "Family":"Host",
-      "Code":"sinterface"
+      "FieldCode":"sinterface"
    },
    {
-      "Name":"Interface (Impacted)",
+      "FieldName":"Interface (Impacted)",
       "Family":"Host",
-      "Code":"dinterface"
+      "FieldCode":"dinterface"
    },
    {
-      "Name":"IP Address (Origin)",
+      "FieldName":"IP Address (Origin)",
       "Family":"Host",
-      "Code":"sip"
+      "FieldCode":"sip"
    },
    {
-      "Name":"IP Address (Impacted)",
+      "FieldName":"IP Address (Impacted)",
       "Family":"Host",
-      "Code":"dip"
+      "FieldCode":"dip"
    },
    {
-      "Name":"NAT IP Address (Origin)",
+      "FieldName":"NAT IP Address (Origin)",
       "Family":"Host",
-      "Code":"snatip"
+      "FieldCode":"snatip"
    },
    {
-      "Name":"NAT IP Address (Impacted)",
+      "FieldName":"NAT IP Address (Impacted)",
       "Family":"Host",
-      "Code":"dnatip"
+      "FieldCode":"dnatip"
    },
    {
-      "Name":"Hostname (Origin)",
+      "FieldName":"Hostname (Origin)",
       "Family":"Host",
-      "Code":"sname"
+      "FieldCode":"sname"
    },
    {
-      "Name":"Hostname (Impacted)",
+      "FieldName":"Hostname (Impacted)",
       "Family":"Host",
-      "Code":"dname"
+      "FieldCode":"dname"
    },
    {
-      "Name":"Serial Number",
+      "FieldName":"Serial Number",
       "Family":"Host",
-      "Code":"serialnumber"
+      "FieldCode":"serialnumber"
    },
    {
-      "Name":"Domain (Impacted)",
+      "FieldName":"Domain (Impacted)",
       "Family":"Network ",
-      "Code":"domain"
+      "FieldCode":"domain"
    },
    {
-      "Name":"Domain (Origin)",
+      "FieldName":"Domain (Origin)",
       "Family":"Network ",
-      "Code":"domainorigin"
+      "FieldCode":"domainorigin"
    },
    {
-      "Name":"Protocol (Number)",
+      "FieldName":"Protocol (Number)",
       "Family":"Network ",
-      "Code":"protnum"
+      "FieldCode":"protnum"
    },
    {
-      "Name":"Protocol (Name)",
+      "FieldName":"Protocol (Name)",
       "Family":"Network ",
-      "Code":"protname"
+      "FieldCode":"protname"
    },
    {
-      "Name":"TCP/UDP Port (Origin)",
+      "FieldName":"TCP/UDP Port (Origin)",
       "Family":"Network ",
-      "Code":"sport"
+      "FieldCode":"sport"
    },
    {
-      "Name":"TCP/UDP Port (Impacted)",
+      "FieldName":"TCP/UDP Port (Impacted)",
       "Family":"Network ",
-      "Code":"dport"
+      "FieldCode":"dport"
    },
    {
-      "Name":"NAT TCP/UDP Port (Origin)",
+      "FieldName":"NAT TCP/UDP Port (Origin)",
       "Family":"Network ",
-      "Code":"snatport"
+      "FieldCode":"snatport"
    },
    {
-      "Name":"NAT TCP/UDP Port (Impacted)",
+      "FieldName":"NAT TCP/UDP Port (Impacted)",
       "Family":"Network ",
-      "Code":"dnatport"
+      "FieldCode":"dnatport"
    },
    {
-      "Name":"Object",
+      "FieldName":"Object",
       "Family":"Application",
-      "Code":"object"
+      "FieldCode":"object"
    },
    {
-      "Name":"Object Name",
+      "FieldName":"Object Name",
       "Family":"Application",
-      "Code":"objectname"
+      "FieldCode":"objectname"
    },
    {
-      "Name":"Object Type",
+      "FieldName":"Object Type",
       "Family":"Application",
-      "Code":"objecttype"
+      "FieldCode":"objecttype"
    },
    {
-      "Name":"Hash",
+      "FieldName":"Hash",
       "Family":"Application",
-      "Code":"hash"
+      "FieldCode":"hash"
    },
    {
-      "Name":"Policy",
+      "FieldName":"Policy",
       "Family":"Application",
-      "Code":"policy"
+      "FieldCode":"policy"
    },
    {
-      "Name":"Result",
+      "FieldName":"Result",
       "Family":"Application",
-      "Code":"result"
+      "FieldCode":"result"
    },
    {
-      "Name":"URL",
+      "FieldName":"URL",
       "Family":"Application",
-      "Code":"url"
+      "FieldCode":"url"
    },
    {
-      "Name":"User Agent",
+      "FieldName":"User Agent",
       "Family":"Application",
-      "Code":"useragent"
+      "FieldCode":"useragent"
    },
    {
-      "Name":"Response Code",
+      "FieldName":"Response Code",
       "Family":"Application",
-      "Code":"responsecode"
+      "FieldCode":"responsecode"
    },
    {
-      "Name":"Subject",
+      "FieldName":"Subject",
       "Family":"Application",
-      "Code":"subject"
+      "FieldCode":"subject"
    },
    {
-      "Name":"Version",
+      "FieldName":"Version",
       "Family":"Application",
-      "Code":"version"
+      "FieldCode":"version"
    },
    {
-      "Name":"Command",
+      "FieldName":"Command",
       "Family":"Application",
-      "Code":"command"
+      "FieldCode":"command"
    },
    {
-      "Name":"Reason",
+      "FieldName":"Reason",
       "Family":"Application",
-      "Code":"reason"
+      "FieldCode":"reason"
    },
    {
-      "Name":"Action",
+      "FieldName":"Action",
       "Family":"Application",
-      "Code":"action"
+      "FieldCode":"action"
    },
    {
-      "Name":"Status",
+      "FieldName":"Status",
       "Family":"Application",
-      "Code":"status"
+      "FieldCode":"status"
    },
    {
-      "Name":"Session Type",
+      "FieldName":"Session Type",
       "Family":"Application",
-      "Code":"sessiontype"
+      "FieldCode":"sessiontype"
    },
    {
-      "Name":"Process Name",
+      "FieldName":"Process Name",
       "Family":"Application",
-      "Code":"process"
+      "FieldCode":"process"
    },
    {
-      "Name":"Process ID",
+      "FieldName":"Process ID",
       "Family":"Application",
-      "Code":"processid"
+      "FieldCode":"processid"
    },
    {
-      "Name":"Parent Process ID",
+      "FieldName":"Parent Process ID",
       "Family":"Application",
-      "Code":"parentprocessid"
+      "FieldCode":"parentprocessid"
    },
    {
-      "Name":"Parent Process Name",
+      "FieldName":"Parent Process Name",
       "Family":"Application",
-      "Code":"parentprocessname"
+      "FieldCode":"parentprocessname"
    },
    {
-      "Name":"Parent Process Path",
+      "FieldName":"Parent Process Path",
       "Family":"Application",
-      "Code":"parentprocesspath"
+      "FieldCode":"parentprocesspath"
    },
    {
-      "Name":"Quantity ",
+      "FieldName":"Quantity ",
       "Family":"Application",
-      "Code":"quantity"
+      "FieldCode":"quantity"
    },
    {
-      "Name":"Amount",
+      "FieldName":"Amount",
       "Family":"Application",
-      "Code":"amount"
+      "FieldCode":"amount"
    },
    {
-      "Name":"Size",
+      "FieldName":"Size",
       "Family":"Application",
-      "Code":"size"
+      "FieldCode":"size"
    },
    {
-      "Name":"Rate",
+      "FieldName":"Rate",
       "Family":"Application",
-      "Code":"rate"
+      "FieldCode":"rate"
    },
    {
-      "Name":"Session",
+      "FieldName":"Session",
       "Family":"Application",
-      "Code":"session"
+      "FieldCode":"session"
    },
    {
-      "Name":"Time Start",
+      "FieldName":"Time Start",
       "Family":"Duration",
-      "Code":"timestart"
+      "FieldCode":"timestart"
    },
    {
-      "Name":"Time End",
+      "FieldName":"Time End",
       "Family":"Duration",
-      "Code":"timeend"
+      "FieldCode":"timeend"
    },
    {
-      "Name":"Duration in Days",
+      "FieldName":"Duration in Days",
       "Family":"Duration",
-      "Code":"days"
+      "FieldCode":"days"
    },
    {
-      "Name":"Duration in Hours",
+      "FieldName":"Duration in Hours",
       "Family":"Duration",
-      "Code":"hours"
+      "FieldCode":"hours"
    },
    {
-      "Name":"Duration in Minutes",
+      "FieldName":"Duration in Minutes",
       "Family":"Duration",
-      "Code":"minutes"
+      "FieldCode":"minutes"
    },
    {
-      "Name":"Duration in Seconds",
+      "FieldName":"Duration in Seconds",
       "Family":"Duration",
-      "Code":"seconds"
+      "FieldCode":"seconds"
    },
    {
-      "Name":"Duration in Milliseconds",
+      "FieldName":"Duration in Milliseconds",
       "Family":"Duration",
-      "Code":"milliseconds"
+      "FieldCode":"milliseconds"
    },
    {
-      "Name":"Duration in Microsecond",
+      "FieldName":"Duration in Microsecond",
       "Family":"Duration",
-      "Code":"microseconds"
+      "FieldCode":"microseconds"
    },
    {
-      "Name":"Duration in Nanosecond",
+      "FieldName":"Duration in Nanosecond",
       "Family":"Duration",
-      "Code":"nanoseconds"
+      "FieldCode":"nanoseconds"
    },
    {
-      "Name":"Bits received",
+      "FieldName":"Bits received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"bitsin"
+      "FieldCode":"bitsin"
    },
    {
-      "Name":"Bytes received",
+      "FieldName":"Bytes received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"bytesin"
+      "FieldCode":"bytesin"
    },
    {
-      "Name":"Kilobits received",
+      "FieldName":"Kilobits received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"kilobitsin"
+      "FieldCode":"kilobitsin"
    },
    {
-      "Name":"KiloBytes received",
+      "FieldName":"KiloBytes received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"kilobytesin"
+      "FieldCode":"kilobytesin"
    },
    {
-      "Name":"Megabits received",
+      "FieldName":"Megabits received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"megabitsin"
+      "FieldCode":"megabitsin"
    },
    {
-      "Name":"MegaBytes received",
+      "FieldName":"MegaBytes received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"megabytein"
+      "FieldCode":"megabytein"
    },
    {
-      "Name":"Gigabits received",
+      "FieldName":"Gigabits received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"gigabitsin"
+      "FieldCode":"gigabitsin"
    },
    {
-      "Name":"GigaBytes received",
+      "FieldName":"GigaBytes received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"gigabytein"
+      "FieldCode":"gigabytein"
    },
    {
-      "Name":"Terabits received",
+      "FieldName":"Terabits received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"terabitsin"
+      "FieldCode":"terabitsin"
    },
    {
-      "Name":"TeraBytes received",
+      "FieldName":"TeraBytes received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"terabytesin"
+      "FieldCode":"terabytesin"
    },
    {
-      "Name":"Petabits received",
+      "FieldName":"Petabits received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"petabitsin"
+      "FieldCode":"petabitsin"
    },
    {
-      "Name":"PetaBytes received",
+      "FieldName":"PetaBytes received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"petabytesin"
+      "FieldCode":"petabytesin"
    },
    {
-      "Name":"Bits",
+      "FieldName":"Bits",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"bits"
+      "FieldCode":"bits"
    },
    {
-      "Name":"Bytes",
+      "FieldName":"Bytes",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"bytes"
+      "FieldCode":"bytes"
    },
    {
-      "Name":"Kbits",
+      "FieldName":"Kbits",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"kilobits"
+      "FieldCode":"kilobits"
    },
    {
-      "Name":"KBytes",
+      "FieldName":"KBytes",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"kilobytes"
+      "FieldCode":"kilobytes"
    },
    {
-      "Name":"Megabits",
+      "FieldName":"Megabits",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"megabits"
+      "FieldCode":"megabits"
    },
    {
-      "Name":"MegaBytes",
+      "FieldName":"MegaBytes",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"megabytes"
+      "FieldCode":"megabytes"
    },
    {
-      "Name":"Gigabits",
+      "FieldName":"Gigabits",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"gigabits"
+      "FieldCode":"gigabits"
    },
    {
-      "Name":"GigaBytes",
+      "FieldName":"GigaBytes",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"gigabytes"
+      "FieldCode":"gigabytes"
    },
    {
-      "Name":"Terabits",
+      "FieldName":"Terabits",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"terabits"
+      "FieldCode":"terabits"
    },
    {
-      "Name":"TeraBytes",
+      "FieldName":"TeraBytes",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"terabytes"
+      "FieldCode":"terabytes"
    },
    {
-      "Name":"Petabits",
+      "FieldName":"Petabits",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"petabits"
+      "FieldCode":"petabits"
    },
    {
-      "Name":"PetaBytes",
+      "FieldName":"PetaBytes",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"petabytes"
+      "FieldCode":"petabytes"
    },
    {
-      "Name":"Bits sent",
+      "FieldName":"Bits sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"bitsout"
+      "FieldCode":"bitsout"
    },
    {
-      "Name":"Bytes sent",
+      "FieldName":"Bytes sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"bytesout"
+      "FieldCode":"bytesout"
    },
    {
-      "Name":"Kbits sent",
+      "FieldName":"Kbits sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"kilobitsout"
+      "FieldCode":"kilobitsout"
    },
    {
-      "Name":"KBytes sent",
+      "FieldName":"KBytes sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"kilobytesout"
+      "FieldCode":"kilobytesout"
    },
    {
-      "Name":"Megabits sent",
+      "FieldName":"Megabits sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"megabitsout"
+      "FieldCode":"megabitsout"
    },
    {
-      "Name":"MegaBytes sent",
+      "FieldName":"MegaBytes sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"megabyteout"
+      "FieldCode":"megabyteout"
    },
    {
-      "Name":"Gigabits sent",
+      "FieldName":"Gigabits sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"gigabitsout"
+      "FieldCode":"gigabitsout"
    },
    {
-      "Name":"GigaBytes sent",
+      "FieldName":"GigaBytes sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"gigabyteout"
+      "FieldCode":"gigabyteout"
    },
    {
-      "Name":"Terabits sent",
+      "FieldName":"Terabits sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"terabitsout"
+      "FieldCode":"terabitsout"
    },
    {
-      "Name":"TeraBytes sent",
+      "FieldName":"TeraBytes sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"terabytesout"
+      "FieldCode":"terabytesout"
    },
    {
-      "Name":"Petabits sent",
+      "FieldName":"Petabits sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"petabitsout"
+      "FieldCode":"petabitsout"
    },
    {
-      "Name":"PetaBytes sent",
+      "FieldName":"PetaBytes sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"petabytesout"
+      "FieldCode":"petabytesout"
    },
    {
-      "Name":"Packet Received",
+      "FieldName":"Packet Received",
       "Family":"Host (Impacted) Traffic Received",
-      "Code":"packetsin"
+      "FieldCode":"packetsin"
    },
    {
-      "Name":"Packet Sent",
+      "FieldName":"Packet Sent",
       "Family":"Host (Impacted) Traffic Sent",
-      "Code":"packetsout"
+      "FieldCode":"packetsout"
    },
    {
-      "Name":"\u003ctag1\u003e ",
+      "FieldName":"\u003ctag1\u003e ",
       "Family":"Special Sub-Rule Tags ",
-      "Code":"tag1"
+      "FieldCode":"tag1"
    },
    {
-      "Name":"\u003ctag2\u003e ",
+      "FieldName":"\u003ctag2\u003e ",
       "Family":"Special Sub-Rule Tags ",
-      "Code":"tag2"
+      "FieldCode":"tag2"
    },
    {
-      "Name":"\u003ctag3\u003e ",
+      "FieldName":"\u003ctag3\u003e ",
       "Family":"Special Sub-Rule Tags ",
-      "Code":"tag3"
+      "FieldCode":"tag3"
    },
    {
-      "Name":"\u003ctag4\u003e ",
+      "FieldName":"\u003ctag4\u003e ",
       "Family":"Special Sub-Rule Tags ",
-      "Code":"tag4"
+      "FieldCode":"tag4"
    },
    {
-      "Name":"\u003ctag5\u003e ",
+      "FieldName":"\u003ctag5\u003e ",
       "Family":"Special Sub-Rule Tags ",
-      "Code":"tag5"
+      "FieldCode":"tag5"
    }
 ]
