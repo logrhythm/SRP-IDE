@@ -7,19 +7,6 @@
 				"Type": "Constant",
 				"Name": "Script",
 				"Switch": "-file \"%SRP\""
-			},
-			{
-				"Type": "String",
-				"Name": "Computer Name",
-				"MapToField": "dname",
-				"Switch": "-ComputerName"
-			},
-			{
-				"Type": "Constant",
-				"Name": "Action to do",
-				"ConstantValue": "Rule the World",
-				"Switch": "-Action",
-				"ValidationRule": "String | Empty or not"
 			}
 		]
     },
@@ -75,6 +62,30 @@
 				"Type": "Constant",
 				"Name": "Script",
 				"Switch": "\"%SRP\""
+			}
+		]
+    },
+    {
+        "Name":  "Powershell (bogus)",
+        "Command":  "powershell.exe",
+		"DefaultParameters": [
+			{
+				"Type": "Constant",
+				"Name": "Script",
+				"Switch": "-file \"%SRP\""
+			},
+			{
+				"Type": "String",
+				"Name": "Computer Name",
+				"MapToField": "dname",
+				"Switch": "-ComputerName"
+			},
+			{
+				"Type": "Constant",
+				"Name": "Action to do",
+				"ConstantValue": "Rule the World",
+				"Switch": "-Action",
+				"ValidationRule": "String | Empty or not"
 			}
 		]
     }
