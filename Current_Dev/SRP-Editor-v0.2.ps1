@@ -1174,6 +1174,7 @@ Function Get-FileName()
         [string] $Filter = "All files (*.*)| *.*",
         [string] $InitialDirectory = "",
         [string] $Title = "",
+        [string] $FileName = "",
         [Switch] $CheckFileExists = $false,
         [Switch] $ReadOnlyChecked = $false,
         [Switch] $ShowReadOnly = $false,
@@ -1191,6 +1192,7 @@ Function Get-FileName()
         $OpenFileDialog.ShowReadOnly = $ShowReadOnly
         $OpenFileDialog.Multiselect = $Multiselect
         $OpenFileDialog.Title = $Title
+        if ($FileName.Length -gt 0) { $OpenFileDialog.FileName = $FileName }
         $OpenFileDialog.ShowDialog() | Out-Null
         return $OpenFileDialog.filename
     }
