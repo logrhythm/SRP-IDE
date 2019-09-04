@@ -1,11 +1,20 @@
 In the Tag of the TextBox.
 
+Implemented so far:
+ValidIf__NotEmpty
+ValidIf__Empty
+ValidIf__RegEx:
+
 Examples:
 ValidIf__NotEmpty
 ValidIf__Integer__Positive
 ValidIf__Number__Min:350
 ValidIf__Number__Min:350__Max:450
 ValidIf__Contains:Tony
+ValidIf__RegEx:(^$)|(^https?://\S+(\s+https?://.+)*)
+ValidIf__RegEx:^Cert:\\.+
+ValidIf__RegEx:\d+
+ValidIf__RegEx:^((\s*-\S)|(\s*--\S+))*
 
 Definition: (all optional)
 
